@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,15 +6,15 @@
   <title>Nitin Patel Dhaba | Digital Menu — Chandrapur, Chhattisgarh</title>
 
   <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
 
   <!-- Google Fonts: Playfair Display (Editorial Headings) & Inter (Clean Body) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)" />
+  <link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin />
+  <link href="[https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap](https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap)" rel="stylesheet" />
 
   <!-- QRCode.js CDN for generating real scannable QR codes -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="[https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js](https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js)"></script>
 
   <script>
     tailwind.config = {
@@ -41,14 +40,12 @@
   </script>
 
   <style>
-    /* Smooth scrolling and subtle warm paper texture */
     body {
       background-color: #FAF6F0;
       color: #2C1E16;
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* Hide scrollbar for horizontal category strip */
     .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
@@ -57,7 +54,6 @@
       scrollbar-width: none;
     }
 
-    /* Page transition animation */
     @keyframes pageFadeIn {
       from {
         opacity: 0;
@@ -72,7 +68,6 @@
       animation: pageFadeIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
-    /* Pure Veg Standard Indian Food Symbol */
     .veg-icon {
       display: inline-flex;
       align-items: center;
@@ -91,7 +86,6 @@
       border-radius: 9999px;
     }
 
-    /* Print styles for printable QR Table Standee */
     @media print {
       body * {
         visibility: hidden;
@@ -117,10 +111,8 @@
   <!-- ==================== TOP NAVIGATION BAR ==================== -->
   <header class="sticky top-0 z-30 bg-parchment/95 backdrop-blur-md border-b border-espresso/10">
     <div class="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between gap-2">
-      <!-- Brand Identity -->
       <button onclick="goToPage(0)" class="flex items-center gap-2.5 text-left group focus:outline-none">
         <div class="w-10 h-10 rounded-xl bg-terracotta text-parchment flex items-center justify-center shadow-sm group-hover:bg-terracottaDark transition-colors">
-          <!-- Warm Flame / Clay Pot Icon -->
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 3c.5 2.5 3 4 3 7a3 3 0 11-6 0c0-1.5.7-2.8 1.5-3.8C10.5 7.5 11.5 5 12 3z" />
             <path stroke-linecap="round" stroke-linejoin="round" d="M5 13h14l-1.2 5.2A3 3 0 0114.9 20.5H9.1a3 3 0 01-2.9-2.3L5 13z" />
@@ -138,7 +130,6 @@
         </div>
       </button>
 
-      <!-- Action Buttons: Search & QR Code -->
       <div class="flex items-center gap-2">
         <button onclick="openSearchModal()" aria-label="Search Menu"
           class="p-2.5 rounded-xl bg-cream hover:bg-espresso/10 text-espresso transition-colors"
@@ -158,27 +149,20 @@
       </div>
     </div>
 
-    <!-- Horizontal Scrollable Section Pills -->
     <nav id="category-nav" class="max-w-3xl mx-auto px-4 pb-2.5 flex items-center gap-2 overflow-x-auto no-scrollbar" aria-label="Menu Pages">
-      <!-- Populated dynamically by JS -->
     </nav>
   </header>
 
   <!-- ==================== MAIN MENU BOOKLET CONTAINER ==================== -->
   <main id="swipe-area" class="flex-1 w-full max-w-3xl mx-auto px-4 py-6 sm:py-8 flex flex-col justify-between">
-    <!-- Dynamic Page Content -->
     <div id="menu-page-container" class="w-full">
-      <!-- Rendered dynamically by JS -->
     </div>
 
     <!-- ==================== PAGE NAVIGATION FOOTER ==================== -->
     <div class="mt-8 pt-5 border-t border-espresso/10 flex flex-col gap-4">
-      <!-- Progress Dots -->
       <div id="page-dots" class="flex items-center justify-center gap-1.5 flex-wrap">
-        <!-- Populated dynamically -->
       </div>
 
-      <!-- Prev / Page Counter / Next Controls -->
       <div class="flex items-center justify-between gap-3">
         <button id="prev-btn" onclick="prevPage()"
           class="flex items-center gap-2 px-4 py-3 rounded-xl border border-espresso/15 bg-white text-espresso font-medium text-sm shadow-sm hover:bg-cream disabled:opacity-35 disabled:cursor-not-allowed transition-all">
@@ -213,8 +197,8 @@
       <div class="flex items-center gap-3">
         <span id="order-count-badge" class="w-7 h-7 rounded-full bg-marigold text-espresso font-bold text-xs flex items-center justify-center">0</span>
         <div class="text-left">
-          <p class="text-xs text-parchment/75">My Table Shortlist</p>
-          <p class="text-sm font-semibold">View Selected Items</p>
+          <p class="text-xs text-parchment/75">My Table Plate</p>
+          <p class="text-sm font-semibold">Review &amp; Send to Chef</p>
         </div>
       </div>
       <div class="flex items-center gap-2">
@@ -229,11 +213,10 @@
   <!-- ==================== QR CODE & PRINTABLE TABLE CARD MODAL ==================== -->
   <div id="qr-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-espresso/60 backdrop-blur-sm p-4 overflow-y-auto">
     <div class="bg-parchment w-full max-w-md rounded-3xl shadow-2xl border border-espresso/10 overflow-hidden my-auto">
-      <!-- Modal Header -->
       <div class="px-6 py-4 bg-cream border-b border-espresso/10 flex items-center justify-between">
         <div>
           <h2 class="font-serif font-bold text-lg text-espresso">Menu QR Code</h2>
-          <p class="text-xs text-taupe">Scan to open the full multi-page menu</p>
+          <p class="text-xs text-taupe">Scan to open menu &amp; order direct to chef</p>
         </div>
         <button onclick="closeQrModal()" class="p-2 rounded-xl hover:bg-espresso/10 text-espresso transition-colors" aria-label="Close QR Modal">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -242,7 +225,6 @@
         </button>
       </div>
 
-      <!-- Printable Table Standee Card -->
       <div class="p-6">
         <div id="printable-qr-card" class="bg-white rounded-2xl border-2 border-dashed border-terracotta/40 p-6 text-center shadow-sm">
           <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-vegGreen/10 text-vegGreen text-[11px] font-semibold uppercase tracking-wider mb-2">
@@ -252,26 +234,24 @@
           <h3 class="font-serif font-bold text-2xl text-espresso">Nitin Patel Dhaba</h3>
           <p class="text-xs text-taupe mt-0.5">Highway &amp; Family Dhaba &bull; Chandrapur, Chhattisgarh</p>
 
-          <!-- QR Code Container -->
           <div class="my-5 flex justify-center">
             <div class="p-3 bg-white rounded-2xl border border-espresso/15 shadow-sm inline-block">
               <div id="qrcode-canvas" class="w-[180px] h-[180px] flex items-center justify-center"></div>
             </div>
           </div>
 
-          <p class="text-sm font-semibold text-terracotta">Scan with Phone Camera for Digital Menu</p>
+          <p class="text-sm font-semibold text-terracotta">Scan &rarr; Pick Dishes &rarr; Order Direct to Chef</p>
           <p class="text-[11px] text-taupe mt-1">Chhattisgarhi Specials &bull; Tandoor &bull; Thalis &bull; Family Combos</p>
         </div>
 
-        <!-- Custom URL Input for Owner -->
         <div class="mt-5">
           <label for="qr-url-input" class="block text-xs font-medium text-taupe mb-1.5">
-            Menu Link encoded in QR (editable if hosting on custom domain):
+            Menu Link encoded in QR:
           </label>
           <div class="flex gap-2">
             <input id="qr-url-input" type="text"
               class="flex-1 px-3 py-2 text-xs rounded-xl border border-espresso/15 bg-white text-espresso focus:outline-none focus:border-terracotta"
-              placeholder="https://your-dhaba-menu.com" />
+              placeholder="[https://np603.github.io/Dhaba-menu/](https://np603.github.io/Dhaba-menu/)" />
             <button onclick="updateQrFromInput()"
               class="px-3.5 py-2 rounded-xl bg-cream hover:bg-espresso/10 text-espresso text-xs font-semibold transition-colors">
               Update
@@ -279,7 +259,6 @@
           </div>
         </div>
 
-        <!-- Action Buttons -->
         <div class="mt-4 grid grid-cols-2 gap-2.5">
           <button onclick="copyMenuLink()"
             class="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl border border-espresso/15 bg-white hover:bg-cream text-espresso text-xs font-semibold transition-colors">
@@ -322,13 +301,13 @@
     </div>
   </div>
 
-  <!-- ==================== TABLE SHORTLIST MODAL ==================== -->
+  <!-- ==================== TABLE SHORTLIST & DIRECT ORDER MODAL ==================== -->
   <div id="order-modal" class="fixed inset-0 z-50 hidden items-end sm:items-center justify-center bg-espresso/60 backdrop-blur-sm p-0 sm:p-4">
-    <div class="bg-parchment w-full max-w-md rounded-t-3xl sm:rounded-3xl shadow-2xl border border-espresso/10 overflow-hidden flex flex-col max-h-[85vh]">
+    <div class="bg-parchment w-full max-w-md rounded-t-3xl sm:rounded-3xl shadow-2xl border border-espresso/10 overflow-hidden flex flex-col max-h-[88vh]">
       <div class="px-6 py-4 bg-cream border-b border-espresso/10 flex items-center justify-between">
         <div>
-          <h2 class="font-serif font-bold text-lg text-espresso">Your Table Shortlist</h2>
-          <p class="text-xs text-taupe">Show this list to our server to place your order</p>
+          <h2 class="font-serif font-bold text-lg text-espresso">Your Table Order</h2>
+          <p class="text-xs text-taupe">Order goes directly to our Chef — server will bring it hot</p>
         </div>
         <button onclick="closeOrderModal()" class="p-2 rounded-xl hover:bg-espresso/10 text-espresso">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -338,11 +317,10 @@
       </div>
 
       <div id="order-items-list" class="p-5 overflow-y-auto space-y-3 flex-1">
-        <!-- Populated dynamically -->
       </div>
 
       <div class="p-5 bg-white border-t border-espresso/10">
-        <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center justify-between mb-3">
           <span class="text-sm font-medium text-taupe">Estimated Total</span>
           <span id="order-modal-total" class="font-serif font-bold text-2xl text-espresso">₹0</span>
         </div>
@@ -351,9 +329,9 @@
             class="px-4 py-2.5 rounded-xl border border-espresso/15 text-espresso text-xs font-semibold hover:bg-cream transition-colors">
             Clear List
           </button>
-          <button onclick="closeOrderModal(); showToast('Ready! Show this list to your server.');"
-            class="px-4 py-2.5 rounded-xl bg-terracotta text-parchment text-xs font-semibold hover:bg-terracottaDark transition-colors">
-            Done
+          <button onclick="closeOrderModal()"
+            class="px-4 py-2.5 rounded-xl bg-cream text-espresso text-xs font-semibold hover:bg-espresso/10 transition-colors">
+            + Add More Dishes
           </button>
         </div>
       </div>
@@ -367,11 +345,6 @@
 
   <!-- ==================== APPLICATION SCRIPT ==================== -->
   <script>
-    /**
-     * Multi-Page Menu Dataset for Nitin Patel Dhaba (Chandrapur, Chhattisgarh).
-     * Intentionally curated with 4 to 8 items per page to ensure an airy,
-     * uncluttered, and aesthetic reading experience on mobile and desktop.
-     */
     const MENU_PAGES = [
       {
         id: 'cover',
@@ -586,12 +559,10 @@
       }
     ];
 
-    // Application State
     let currentPageIndex = 0;
-    let orderCart = {}; // { key: { name, variant, price, qty } }
+    let orderCart = {};
     let qrCodeInstance = null;
 
-    // ==================== INITIALIZATION ====================
     document.addEventListener('DOMContentLoaded', () => {
       renderCategoryNav();
       renderPage(0);
@@ -600,7 +571,6 @@
       initQrUrl();
     });
 
-    // ==================== CATEGORY NAVIGATION BAR ====================
     function renderCategoryNav() {
       const nav = document.getElementById('category-nav');
       nav.innerHTML = MENU_PAGES.map((page, idx) => {
@@ -619,21 +589,18 @@
         `;
       }).join('');
 
-      // Auto-scroll active pill into view smoothly
       const activePill = document.getElementById(`nav-pill-${currentPageIndex}`);
       if (activePill) {
         activePill.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
       }
     }
 
-    // ==================== RENDER CURRENT MENU PAGE ====================
     function renderPage(index) {
       currentPageIndex = Math.max(0, Math.min(index, MENU_PAGES.length - 1));
       const page = MENU_PAGES[currentPageIndex];
       const container = document.getElementById('menu-page-container');
 
       let html = '';
-
       if (page.type === 'cover') {
         html = renderCoverPage(page);
       } else if (page.priceType === 'half-full') {
@@ -645,15 +612,12 @@
       }
 
       container.innerHTML = `<div class="page-animate">${html}</div>`;
-
-      // Update controls & indicators
       renderCategoryNav();
       renderPageDots();
       updateFooterButtons();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Cover Page Template
     function renderCoverPage(page) {
       const quickJumps = [
         { label: 'Chai & Nashta', idx: 1, sub: 'From ₹15' },
@@ -666,7 +630,6 @@
 
       return `
         <section class="bg-white rounded-3xl border border-espresso/10 shadow-sm overflow-hidden">
-          <!-- Warm Decorative Header Banner -->
           <div class="bg-gradient-to-br from-espresso via-[#3B261B] to-terracottaDark text-parchment px-6 py-10 sm:py-12 text-center relative overflow-hidden">
             <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 border border-white/15 text-xs font-medium tracking-wide mb-4">
               <span class="w-2 h-2 rounded-full bg-green-400"></span>
@@ -697,7 +660,6 @@
             </div>
           </div>
 
-          <!-- Quick Jump Index -->
           <div class="p-6 sm:p-8">
             <div class="flex items-center justify-between mb-4">
               <h3 class="font-serif font-semibold text-lg text-espresso">Browse by Section</h3>
@@ -715,14 +677,13 @@
 
             <div class="mt-6 pt-5 border-t border-espresso/10 flex flex-wrap items-center justify-between gap-2 text-xs text-taupe">
               <span>&#10022; Freshly cooked on order</span>
-              <span>&#10022; Tap any price to add to your table shortlist</span>
+              <span>&#10022; Tap any price to order directly to Chef</span>
             </div>
           </div>
         </section>
       `;
     }
 
-    // Standard Single-Price Page Template
     function renderSinglePricePage(page) {
       return `
         <section class="bg-white rounded-3xl border border-espresso/10 shadow-sm p-6 sm:p-8">
@@ -748,7 +709,7 @@
                       ${item.options.map(opt => `
                         <button onclick="addToOrder('${escapeQuotes(item.name)}', '${opt.label}', ${opt.price})"
                           class="px-2.5 py-1.5 rounded-xl bg-parchment hover:bg-terracotta hover:text-parchment border border-espresso/10 text-xs font-semibold text-espresso transition-colors"
-                          title="Add ${opt.label} to shortlist">
+                          title="Add ${opt.label} to plate">
                           <span class="text-[10px] font-normal opacity-75 mr-0.5">${opt.label}</span> ₹${opt.price}
                         </button>
                       `).join('')}
@@ -756,7 +717,7 @@
                   ` : `
                     <button onclick="addToOrder('${escapeQuotes(item.name)}', 'Regular', ${item.price})"
                       class="px-3 py-1.5 rounded-xl bg-parchment hover:bg-terracotta hover:text-parchment border border-espresso/10 text-sm font-bold text-espresso transition-colors"
-                      title="Add to shortlist">
+                      title="Add to plate">
                       ${item.displayPrice} <span class="text-xs font-normal opacity-60 ml-0.5">+</span>
                     </button>
                   `}
@@ -768,13 +729,11 @@
       `;
     }
 
-    // Half / Full Price Page Template
     function renderHalfFullPage(page) {
       return `
         <section class="bg-white rounded-3xl border border-espresso/10 shadow-sm p-6 sm:p-8">
           ${renderPageHeader(page)}
 
-          <!-- Column Headers -->
           <div class="mt-6 pb-2.5 border-b border-espresso/15 flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-taupe">
             <span>Dish</span>
             <div class="flex items-center gap-2 sm:gap-3">
@@ -821,7 +780,6 @@
       `;
     }
 
-    // Thali & Family Combos Featured Card Template
     function renderComboPage(page) {
       return `
         <section class="bg-white rounded-3xl border border-espresso/10 shadow-sm p-6 sm:p-8">
@@ -845,7 +803,7 @@
                   <span class="font-serif font-bold text-2xl text-terracotta">₹${item.price}</span>
                   <button onclick="addToOrder('${escapeQuotes(item.name)}', 'Combo', ${item.price})"
                     class="px-4 py-2 rounded-xl bg-espresso hover:bg-terracotta text-parchment text-xs font-semibold transition-colors">
-                    + Add to List
+                    + Add to Plate
                   </button>
                 </div>
               </div>
@@ -855,7 +813,6 @@
       `;
     }
 
-    // Shared Header for Category Pages
     function renderPageHeader(page) {
       return `
         <div class="border-b border-espresso/10 pb-4">
@@ -863,7 +820,7 @@
             <span class="text-[11px] font-bold uppercase tracking-widest text-terracotta">
               Section ${page.sectionNumber}
             </span>
-            <span class="text-[11px] text-taupe">Tap price to shortlist</span>
+            <span class="text-[11px] text-taupe">Tap price to add to plate</span>
           </div>
           <h2 class="font-serif font-bold text-2xl sm:text-3xl text-espresso mt-1">
             ${page.category}
@@ -877,7 +834,6 @@
       return `<span class="px-2 py-0.5 rounded-md bg-marigold/20 text-[#8A5A00] text-[10px] font-semibold uppercase tracking-wide">${text}</span>`;
     }
 
-    // ==================== PAGINATION CONTROLS ====================
     function goToPage(index) {
       renderPage(index);
     }
@@ -915,7 +871,6 @@
       counter.textContent = `Page ${currentPageIndex + 1} of ${MENU_PAGES.length}`;
     }
 
-    // ==================== TOUCH SWIPE & KEYBOARD NAVIGATION ====================
     function setupSwipeGestures() {
       const area = document.getElementById('swipe-area');
       let touchStartX = 0;
@@ -930,7 +885,6 @@
         const diffX = e.changedTouches[0].screenX - touchStartX;
         const diffY = e.changedTouches[0].screenY - touchStartY;
 
-        // Only trigger horizontal swipe if horizontal movement dominates vertical scroll
         if (Math.abs(diffX) > 60 && Math.abs(diffX) > Math.abs(diffY) * 1.4) {
           if (diffX < 0) nextPage();
           else prevPage();
@@ -940,7 +894,6 @@
 
     function setupKeyboardNavigation() {
       document.addEventListener('keydown', (e) => {
-        // Ignore if typing in an input
         if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
         if (e.key === 'ArrowRight') nextPage();
         if (e.key === 'ArrowLeft') prevPage();
@@ -952,7 +905,6 @@
       });
     }
 
-    // ==================== TABLE SHORTLIST / ORDER CALCULATOR ====================
     function addToOrder(name, variant, price) {
       const key = `${name}__${variant}`;
       if (!orderCart[key]) {
@@ -978,7 +930,7 @@
       updateOrderBar();
       renderOrderModalItems();
       closeOrderModal();
-      showToast('Table shortlist cleared');
+      showToast('Table plate cleared');
     }
 
     function updateOrderBar() {
@@ -991,7 +943,6 @@
         bar.classList.remove('hidden');
         document.getElementById('order-count-badge').textContent = totalQty;
         document.getElementById('order-total-text').textContent = `₹${totalPrice}`;
-        // Add bottom padding so floating bar never hides footer buttons
         document.body.style.paddingBottom = '84px';
       } else {
         bar.classList.add('hidden');
@@ -1018,7 +969,7 @@
       let total = 0;
 
       if (entries.length === 0) {
-        list.innerHTML = `<p class="text-sm text-center text-taupe py-8">Your shortlist is empty.</p>`;
+        list.innerHTML = `<p class="text-sm text-center text-taupe py-8">Your plate is empty.</p>`;
       } else {
         list.innerHTML = entries.map(([key, item]) => {
           const subtotal = item.price * item.qty;
@@ -1044,13 +995,11 @@
       document.getElementById('order-modal-total').textContent = `₹${total}`;
     }
 
-    // ==================== QR CODE GENERATION & MODAL ====================
     function initQrUrl() {
       const input = document.getElementById('qr-url-input');
-      // Use current hosted URL if http/https, otherwise a clean default URL
       const defaultUrl = window.location.protocol.startsWith('http')
         ? window.location.href
-        : 'https://nitinpateldhaba.in/menu';
+        : 'https:/' + '/np603.github.io/Dhaba-menu/';
       input.value = defaultUrl;
     }
 
@@ -1059,7 +1008,7 @@
       container.innerHTML = '';
       try {
         qrCodeInstance = new QRCode(container, {
-          text: urlText || 'https://nitinpateldhaba.in/menu',
+          text: urlText || ('https:/' + '/np603.github.io/Dhaba-menu/'),
           width: 180,
           height: 180,
           colorDark: '#2C1E16',
@@ -1107,7 +1056,6 @@
       }
     }
 
-    // ==================== SEARCH ACROSS ALL PAGES ====================
     function openSearchModal() {
       const modal = document.getElementById('search-modal');
       modal.classList.remove('hidden');
@@ -1172,7 +1120,6 @@
       }).join('');
     }
 
-    // ==================== UTILITIES ====================
     function escapeQuotes(str) {
       return String(str).replace(/'/g, "\\'").replace(/"/g, '&quot;');
     }
@@ -1188,38 +1135,32 @@
         toast.classList.remove('opacity-100');
         toast.classList.add('opacity-0');
       }, 2200);
-    }    // ================ DIRECT-TO-CHEF & LIVE ALARM EXTENSION ================
-    const DHABA_BASE_URL = "[https://np603.github.io/Dhaba-menu/](https://np603.github.io/Dhaba-menu/)";
+    }
+
+    // ================ DIRECT-TO-CHEF & LIVE ALARM EXTENSION ================
+    const DHABA_BASE_URL = "https:/" + "/np603.github.io/Dhaba-menu/";
     const DHABA_CHANNEL = "nitin-patel-dhaba-kitchen-np603";
+    const DHABA_NTFY_URL = "https:/" + "/ntfy.sh/" + DHABA_CHANNEL;
     const DHABA_CHEF_PIN = "1234";
 
     let dhabaOrders = JSON.parse(localStorage.getItem("dhaba_live_orders") || "[]");
     let dhabaAlarmInterval = null;
     let dhabaAudioCtx = null;
     let dhabaStreamStarted = false;
-    let dhabaBackupItems = [];
 
     function dhabaGetTableFromUrl() {
       return new URLSearchParams(window.location.search).get("table") || "";
     }
 
     function dhabaGetSelectedItems() {
-      const candidates = [];
-      try { if (typeof shortlist !== "undefined" && Array.isArray(shortlist)) candidates.push(shortlist); } catch (e) {}
-      try { if (typeof plate !== "undefined" && Array.isArray(plate)) candidates.push(plate); } catch (e) {}
-      try { if (typeof cart !== "undefined" && Array.isArray(cart)) candidates.push(cart); } catch (e) {}
-      try { if (typeof orderList !== "undefined" && Array.isArray(orderList)) candidates.push(orderList); } catch (e) {}
-
-      for (const list of candidates) {
-        if (list.length > 0) {
-          return list.map(item => ({
-            name: item.label ? `${item.name} (${item.label})` : (item.variant ? `${item.name} (${item.variant})` : (item.name || item.title || "Dish")),
-            qty: Number(item.qty || item.quantity || item.count || 1),
-            price: Number(item.price || 0)
-          }));
-        }
+      if (typeof orderCart !== "undefined" && orderCart && typeof orderCart === "object") {
+        return Object.values(orderCart).map(item => ({
+          name: item.variant && item.variant !== "Regular" ? `${item.name} (${item.variant})` : item.name,
+          qty: Number(item.qty || 1),
+          price: Number(item.price || 0)
+        }));
       }
-      return dhabaBackupItems;
+      return [];
     }
 
     function dhabaPlayBell() {
@@ -1232,7 +1173,7 @@
           const gain = dhabaAudioCtx.createGain();
           osc.type = "triangle";
           osc.frequency.setValueAtTime(freq, now + idx * 0.14);
-          gain.gain.setValueAtTime(0.4, now + idx * 0.14);
+          gain.gain.setValueAtTime(0.45, now + idx * 0.14);
           gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.14 + 0.45);
           osc.connect(gain);
           gain.connect(dhabaAudioCtx.destination);
@@ -1262,23 +1203,23 @@
       const box = document.getElementById("dhabaChefOrdersBox");
       if (!box) return;
       if (dhabaOrders.length === 0) {
-        box.innerHTML = `<p style="text-align:center;color:#6e6259;font-size:13px;padding:24px 0;">Abhi koi naya order nahi hai...</p>`;
+        box.innerHTML = `<p style="text-align:center;color:#6E5A4F;font-size:13px;padding:24px 0;">Abhi koi naya order nahi hai...</p>`;
         return;
       }
       box.innerHTML = dhabaOrders.map(o => `
-        <div style="border:2px solid ${o.status === "new" ? "#dc2626" : "#16a34a"};background:${o.status === "new" ? "#fef2f2" : "#f0fdf4"};border-radius:14px;padding:12px;margin-bottom:10px;">
+        <div style="border:2px solid ${o.status === "new" ? "#dc2626" : "#2E7D32"};background:${o.status === "new" ? "#fef2f2" : "#f0fdf4"};border-radius:16px;padding:14px;margin-bottom:10px;">
           <div style="display:flex;justify-content:space-between;align-items:center;">
-            <strong style="font-size:17px;color:#7c2d12;">TABLE #${o.table}</strong>
-            <span style="font-size:12px;font-weight:700;color:#57534e;">${o.time} • ₹${o.total}</span>
+            <strong style="font-size:17px;color:#2C1E16;">TABLE #${o.table}</strong>
+            <span style="font-size:12px;font-weight:700;color:#6E5A4F;">${o.time} • ₹${o.total}</span>
           </div>
-          <div style="margin:8px 0;font-size:14px;line-height:1.5;color:#1c1917;">
+          <div style="margin:8px 0;font-size:14px;line-height:1.5;color:#2C1E16;">
             ${o.items.map(i => `<div>• <strong>${i.name}</strong> × ${i.qty}</div>`).join("")}
           </div>
-          ${o.note ? `<div style="font-size:12px;background:#fef3c7;color:#78350f;padding:6px 8px;border-radius:8px;margin-bottom:8px;"><strong>Chef Note:</strong> ${o.note}</div>` : ""}
-          <div style="display:flex;gap:8px;">
+          ${o.note ? `<div style="font-size:12px;background:#fef3c7;color:#78350f;padding:6px 10px;border-radius:8px;margin-bottom:8px;"><strong>Chef Note:</strong> ${o.note}</div>` : ""}
+          <div style="display:flex;gap:8px;margin-top:6px;">
             ${o.status === "new"
               ? `<button onclick="dhabaSetOrderStatus(${o.id}, 'cooking')" style="background:#dc2626;color:#fff;border:none;padding:8px 14px;border-radius:999px;font-size:12px;font-weight:700;cursor:pointer;">🔕 Stop Alarm & Cook</button>`
-              : `<button onclick="dhabaSetOrderStatus(${o.id}, 'done')" style="background:#16a34a;color:#fff;border:none;padding:8px 14px;border-radius:999px;font-size:12px;font-weight:700;cursor:pointer;">✅ Ready (Server ko dein)</button>`
+              : `<button onclick="dhabaSetOrderStatus(${o.id}, 'done')" style="background:#2E7D32;color:#fff;border:none;padding:8px 14px;border-radius:999px;font-size:12px;font-weight:700;cursor:pointer;">✅ Ready (Server ko dein)</button>`
             }
           </div>
         </div>
@@ -1305,12 +1246,12 @@
         btn.textContent = "🟢 Live Alarm Active — Order ka Intezaar...";
         btn.style.background = "#14532d";
       }
-      if (statusText) statusText.textContent = "Connected • Screen on rakhein, order aate hi bell bajegi";
+      if (statusText) statusText.textContent = "Connected • Phone screen khuli rakhein, order aate hi bell bajegi";
 
       if (dhabaStreamStarted) return;
       dhabaStreamStarted = true;
 
-      const sse = new EventSource(`[https://ntfy.sh/$](https://ntfy.sh/$){DHABA_CHANNEL}/sse`);
+      const sse = new EventSource(DHABA_NTFY_URL + "/sse");
       sse.onmessage = function(ev) {
         try {
           const data = JSON.parse(ev.data);
@@ -1346,7 +1287,6 @@
       }
       const tableInput = document.getElementById("dhabaOrderTable");
       const noteInput = document.getElementById("dhabaOrderNote");
-      const statusBox = document.getElementById("dhabaOrderSentMsg");
       const sendBtn = document.getElementById("dhabaDirectOrderBtn");
 
       const tableNo = tableInput ? tableInput.value.trim() : "";
@@ -1372,16 +1312,21 @@
       };
 
       try {
-        await fetch(`[https://ntfy.sh/$](https://ntfy.sh/$){DHABA_CHANNEL}`, {
+        await fetch(DHABA_NTFY_URL, {
           method: "POST",
           body: JSON.stringify(payload)
         });
-        if (statusBox) {
-          statusBox.innerHTML = `✅ <strong>Order Chef ko mil gaya! (Table #${tableNo})</strong><br>Khana tayyar hote hi server aapki seat par layega.`;
+        if (typeof orderCart !== "undefined") {
+          orderCart = {};
+          if (typeof updateOrderBar === "function") updateOrderBar();
         }
-        try { if (typeof showToast === "function") showToast("Order sent directly to Chef!"); } catch (e) {}
-        dhabaBackupItems = [];
         if (noteInput) noteInput.value = "";
+        if (typeof closeOrderModal === "function") closeOrderModal();
+        if (typeof showToast === "function") {
+          showToast(`✅ Order Chef ko mil gaya! (Table #${tableNo})`);
+        } else {
+          alert(`✅ Order Chef ko mil gaya! (Table #${tableNo}) — Khana tayyar hote hi server aapki seat par layega.`);
+        }
       } catch (err) {
         alert("Internet check karein aur dobara try karein.");
       } finally {
@@ -1395,33 +1340,32 @@
     window.dhabaUpdateQrForTable = function(val) {
       const t = String(val || "").trim();
       const targetUrl = t ? `${DHABA_BASE_URL}?table=${encodeURIComponent(t)}` : DHABA_BASE_URL;
-      const qrImg = document.querySelector("img[src*='qrserver.com'], img[src*='qr']");
-      if (qrImg) {
-        qrImg.src = `[https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=$](https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=$){encodeURIComponent(targetUrl)}`;
-      }
+      const urlInput = document.getElementById("qr-url-input");
+      if (urlInput) urlInput.value = targetUrl;
       const badge = document.getElementById("dhabaQrTableHeading");
       if (badge) badge.textContent = t ? `TABLE #${t}` : "";
-      const urlField = document.querySelector("#qrModal input[type='text'], input[value*='github.io']");
-      if (urlField) urlField.value = targetUrl;
+      if (typeof generateQrCode === "function") {
+        generateQrCode(targetUrl);
+      }
     };
 
     (function initDhabaKitchenSystem() {
       const tableNum = dhabaGetTableFromUrl();
 
-      // 1. Add Chef Live Kitchen Modal
+      // 1. Chef Live Kitchen Modal
       const chefOverlay = document.createElement("div");
       chefOverlay.id = "dhabaChefOverlay";
-      chefOverlay.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,0.65);display:none;align-items:center;justify-content:center;padding:16px;z-index:9999;";
+      chefOverlay.style.cssText = "position:fixed;inset:0;background:rgba(44,30,22,0.65);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:16px;z-index:9999;";
       chefOverlay.innerHTML = `
-        <div style="background:#fff;border-radius:20px;max-width:450px;width:100%;padding:20px;max-height:88vh;overflow-y:auto;box-shadow:0 20px 40px rgba(0,0,0,0.3);">
+        <div style="background:#FAF6F0;border-radius:24px;max-width:450px;width:100%;padding:20px;max-height:88vh;overflow-y:auto;box-shadow:0 20px 40px rgba(0,0,0,0.3);border:1px solid rgba(44,30,22,0.12);">
           <div style="display:flex;justify-content:space-between;align-items:center;">
             <div>
-              <h3 style="margin:0;font-size:18px;font-weight:800;color:#7c2d12;">👨‍🍳 Chef Live Kitchen</h3>
-              <p id="dhabaConnText" style="margin:2px 0 0;font-size:11px;color:#6e6259;">Order alarm chalu karne ke liye neeche dabayein</p>
+              <h3 style="margin:0;font-size:18px;font-weight:800;color:#2C1E16;">👨‍🍳 Chef Live Kitchen</h3>
+              <p id="dhabaConnText" style="margin:2px 0 0;font-size:11px;color:#6E5A4F;">Order alarm chalu karne ke liye neeche dabayein</p>
             </div>
-            <button onclick="dhabaCloseChefModal()" style="border:1px solid #ddd;background:#f5f5f4;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:700;cursor:pointer;">Close</button>
+            <button onclick="dhabaCloseChefModal()" style="border:1px solid rgba(44,30,22,0.15);background:#F3ECE1;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:700;color:#2C1E16;cursor:pointer;">Close</button>
           </div>
-          <button id="dhabaArmBtn" onclick="dhabaStartListening()" style="width:100%;margin-top:12px;padding:11px;border:none;border-radius:12px;background:#16a34a;color:#fff;font-size:13px;font-weight:800;cursor:pointer;">
+          <button id="dhabaArmBtn" onclick="dhabaStartListening()" style="width:100%;margin-top:12px;padding:12px;border:none;border-radius:14px;background:#2E7D32;color:#fff;font-size:13px;font-weight:800;cursor:pointer;">
             🔊 Start Live Alarm & Receive Orders
           </button>
           <div id="dhabaChefOrdersBox" style="margin-top:14px;"></div>
@@ -1429,62 +1373,56 @@
       `;
       document.body.appendChild(chefOverlay);
 
-      // 2. Add Floating Chef Button & Table Badge
+      // 2. Floating Chef Button & Table Number Badge
       const floatBar = document.createElement("div");
-      floatBar.style.cssText = "position:fixed;bottom:74px;right:14px;z-index:900;display:flex;flex-direction:column;align-items:flex-end;gap:6px;";
+      floatBar.style.cssText = "position:fixed;bottom:86px;right:16px;z-index:40;display:flex;flex-direction:column;align-items:flex-end;gap:6px;";
       floatBar.innerHTML = `
-        ${tableNum ? `<div style="background:#7c2d12;color:#fff;padding:5px 12px;border-radius:999px;font-size:12px;font-weight:800;box-shadow:0 4px 12px rgba(0,0,0,0.2);">🪑 Table #${tableNum}</div>` : ""}
-        <button onclick="dhabaOpenChefModal()" style="background:#1c1917;color:#fff;border:1px solid #44403c;padding:8px 14px;border-radius:999px;font-size:12px;font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,0.25);cursor:pointer;">
+        ${tableNum ? `<div style="background:#B84A27;color:#FAF6F0;padding:5px 12px;border-radius:999px;font-size:12px;font-weight:800;box-shadow:0 4px 12px rgba(0,0,0,0.2);">🪑 Table #${tableNum}</div>` : ""}
+        <button onclick="dhabaOpenChefModal()" style="background:#2C1E16;color:#FAF6F0;border:1px solid #D99B26;padding:8px 14px;border-radius:999px;font-size:12px;font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,0.25);cursor:pointer;">
           👨‍🍳 Chef
         </button>
       `;
       document.body.appendChild(floatBar);
 
-      // 3. Inject Direct Order Box into Shortlist/Plate Modal & Table Input into QR Modal
-      function enhanceModals() {
-        // Enhance QR Modal if open
-        const qrImg = document.querySelector("img[src*='qrserver.com'], img[src*='qr']");
-        if (qrImg && qrImg.parentElement && !document.getElementById("dhabaQrTableInput")) {
-          const heading = document.createElement("div");
-          heading.id = "dhabaQrTableHeading";
-          heading.style.cssText = "font-size:18px;font-weight:900;color:#b8441e;margin-bottom:6px;";
-          qrImg.parentElement.insertBefore(heading, qrImg);
-
-          const wrap = document.createElement("div");
-          wrap.style.cssText = "margin-top:10px;text-align:center;";
-          wrap.innerHTML = `
-            <label style="display:block;font-size:11px;font-weight:700;color:#57534e;margin-bottom:4px;">Table Number (har table ka alag QR print karein):</label>
-            <input id="dhabaQrTableInput" type="number" placeholder="Table No. likhein (1, 2, 3...)" oninput="dhabaUpdateQrForTable(this.value)" style="width:100%;padding:8px 10px;border:1px solid #d6d3d1;border-radius:8px;font-size:13px;text-align:center;" />
-          `;
-          qrImg.parentElement.appendChild(wrap);
-        }
-
-        // Enhance Shortlist / Plate Modal
-        const modals = document.querySelectorAll("[id*='shortlist' i], [id*='plate' i], [id*='cart' i], [id*='order' i]");
-        modals.forEach(m => {
-          if (m.id === "dhabaChefOverlay" || m.querySelector("#dhabaDirectOrderPanel")) return;
-          const card = m.firstElementChild || m;
-          const panel = document.createElement("div");
-          panel.id = "dhabaDirectOrderPanel";
-          panel.style.cssText = "margin-top:14px;padding-top:12px;border-top:2px dashed #e7e5e4;text-align:left;";
-          panel.innerHTML = `
-            <div style="font-size:12px;font-weight:800;color:#7c2d12;margin-bottom:6px;">Seedha Kitchen mein Order Bhejein:</div>
-            <input id="dhabaOrderTable" type="number" value="${tableNum}" placeholder="Table Number likhein (jaise 4) *" style="width:100%;padding:9px 11px;border:1px solid #d6d3d1;border-radius:10px;font-size:13px;margin-bottom:6px;" />
-            <input id="dhabaOrderNote" type="text" placeholder="Chef ke liye note (kam mirchi, bina pyaz...)" style="width:100%;padding:9px 11px;border:1px solid #d6d3d1;border-radius:10px;font-size:13px;margin-bottom:8px;" />
-            <button id="dhabaDirectOrderBtn" onclick="dhabaSendOrder()" style="width:100%;padding:11px;border:none;border-radius:12px;background:#16a34a;color:#fff;font-size:14px;font-weight:800;cursor:pointer;">
-              🍳 Send Order to Chef
-            </button>
-            <div id="dhabaOrderSentMsg" style="margin-top:8px;font-size:12px;color:#15803d;line-height:1.4;"></div>
-          `;
-          card.appendChild(panel);
-        });
+      // 3. Add Table Number Input to QR Card
+      const qrCard = document.getElementById("printable-qr-card");
+      const qrCanvas = document.getElementById("qrcode-canvas");
+      if (qrCard && qrCanvas && !document.getElementById("dhabaQrTableHeading")) {
+        const heading = document.createElement("div");
+        heading.id = "dhabaQrTableHeading";
+        heading.style.cssText = "font-size:20px;font-weight:900;color:#B84A27;margin-top:8px;letter-spacing:0.5px;";
+        qrCanvas.parentElement.parentElement.insertBefore(heading, qrCanvas.parentElement);
       }
 
-      enhanceModals();
-      const observer = new MutationObserver(enhanceModals);
-      observer.observe(document.body, { childList: true, subtree: true, attributes: true });
-    })();
+      const qrUrlInput = document.getElementById("qr-url-input");
+      if (qrUrlInput && qrUrlInput.parentElement && !document.getElementById("dhabaQrTableInput")) {
+        const tableBox = document.createElement("div");
+        tableBox.style.cssText = "margin-bottom:10px;";
+        tableBox.innerHTML = `
+          <label style="display:block;font-size:12px;font-weight:600;color:#6E5A4F;margin-bottom:4px;">Table Number (har table ka alag QR print karein):</label>
+          <input id="dhabaQrTableInput" type="number" placeholder="Table No. likhein (1, 2, 3...)" oninput="dhabaUpdateQrForTable(this.value)" style="width:100%;padding:8px 12px;border:1px solid rgba(44,30,22,0.15);border-radius:12px;font-size:13px;background:#fff;color:#2C1E16;" />
+        `;
+        qrUrlInput.parentElement.parentElement.insertBefore(tableBox, qrUrlInput.parentElement);
+      }
 
+      // 4. Add Direct-to-Chef Order Form inside #order-modal
+      const orderModal = document.getElementById("order-modal");
+      const orderItemsList = document.getElementById("order-items-list");
+      if (orderModal && orderItemsList && !document.getElementById("dhabaDirectOrderPanel")) {
+        const panel = document.createElement("div");
+        panel.id = "dhabaDirectOrderPanel";
+        panel.style.cssText = "padding:12px 20px;background:#F3ECE1;border-top:1px solid rgba(44,30,22,0.1);";
+        panel.innerHTML = `
+          <p style="font-size:12px;font-weight:700;color:#2C1E16;margin-bottom:6px;">Seedha Kitchen (Chef) ko Order Bhejein:</p>
+          <input id="dhabaOrderTable" type="number" value="${tableNum}" placeholder="Aapka Table Number likhein (jaise 4) *" style="width:100%;padding:9px 12px;border:1px solid rgba(44,30,22,0.15);border-radius:12px;font-size:13px;background:#fff;margin-bottom:6px;" />
+          <input id="dhabaOrderNote" type="text" placeholder="Chef ke liye note (kam mirchi, bina pyaz...)" style="width:100%;padding:9px 12px;border:1px solid rgba(44,30,22,0.15);border-radius:12px;font-size:13px;background:#fff;margin-bottom:8px;" />
+          <button id="dhabaDirectOrderBtn" onclick="dhabaSendOrder()" style="width:100%;padding:11px;border:none;border-radius:12px;background:#2E7D32;color:#fff;font-size:14px;font-weight:700;cursor:pointer;">
+            🍳 Send Order to Chef
+          </button>
+        `;
+        orderItemsList.parentElement.insertBefore(panel, orderItemsList.nextSibling);
+      }
+    })();
   </script>
 </body>
 </html>
