@@ -1,38 +1,39 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nitin Patel Dhaba | Digital Menu — Chandrapur, Chhattisgarh</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Nitin Patel Dhaba — Pure Veg Menu & Live Kitchen</title>
 
-  <!-- Tailwind CSS CDN -->
-  <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Google Fonts: Playfair Display (Editorial Headings) & Inter (Clean Body) -->
-  <link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)" />
-  <link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin />
-  <link href="[https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap](https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap)" rel="stylesheet" />
+  <!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <!-- QRCode.js CDN for generating real scannable QR codes -->
-  <script src="[https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js](https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js)"></script>
+  <!-- QRCode.js for crisp printable Table QR Codes -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            serif: ['Playfair Display', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
           },
           colors: {
-            parchment: '#FAF6F0',
-            cream: '#F3ECE1',
-            terracotta: '#B84A27',
-            terracottaDark: '#963A1C',
-            espresso: '#2C1E16',
-            taupe: '#6E5A4F',
-            marigold: '#D99B26',
-            vegGreen: '#2E7D32',
+            ivory: '#FBF8F3',
+            sand: '#F3ECE0',
+            spice: '#B8431E',
+            spiceDark: '#8F3113',
+            roast: '#231710',
+            umber: '#6B584C',
+            saffron: '#E09F24',
+            leaf: '#1F7A3E',
           }
         }
       }
@@ -41,11 +42,13 @@
 
   <style>
     body {
-      background-color: #FAF6F0;
-      color: #2C1E16;
+      background-color: #FBF8F3;
+      color: #231710;
       -webkit-tap-highlight-color: transparent;
+      overflow-x: hidden;
     }
 
+    /* Hide horizontal scrollbar on category bar */
     .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
@@ -54,1375 +57,1243 @@
       scrollbar-width: none;
     }
 
-    @keyframes pageFadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    .page-animate {
-      animation: pageFadeIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    }
-
-    .veg-icon {
+    /* Standard FSSAI Pure Veg Mark */
+    .veg-mark {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 15px;
-      height: 15px;
-      border: 1.5px solid #2E7D32;
-      border-radius: 3px;
+      width: 16px;
+      height: 16px;
+      border: 1.5px solid #1F7A3E;
+      border-radius: 4px;
+      background: #FFFFFF;
       flex-shrink: 0;
     }
-    .veg-icon::after {
+    .veg-mark::after {
       content: '';
-      width: 7px;
-      height: 7px;
-      background-color: #2E7D32;
+      width: 8px;
+      height: 8px;
       border-radius: 9999px;
+      background-color: #1F7A3E;
     }
 
+    /* Subtle pulse for live incoming kitchen orders */
+    @keyframes alarmPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.35); }
+      50% { box-shadow: 0 0 0 8px rgba(220, 38, 38, 0); }
+    }
+    .new-order-pulse {
+      animation: alarmPulse 1.6s infinite;
+    }
+
+    /* Drawer & Modal transitions */
+    @keyframes slideUp {
+      from { transform: translateY(100%); opacity: 0.6; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .animate-sheet {
+      animation: slideUp 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    /* Print styling for Table QR Standee */
     @media print {
       body * {
-        visibility: hidden;
+        visibility: hidden !important;
       }
-      #printable-qr-card, #printable-qr-card * {
-        visibility: visible;
+      #printable-standee, #printable-standee * {
+        visibility: visible !important;
       }
-      #printable-qr-card {
-        position: fixed;
-        inset: 0;
-        margin: auto;
-        width: 100%;
-        max-width: 420px;
-        height: fit-content;
+      #printable-standee {
+        position: fixed !important;
+        inset: 0 !important;
+        margin: auto !important;
+        width: 360px !important;
+        height: fit-content !important;
+        border: 2px solid #231710 !important;
         box-shadow: none !important;
-        border: 2px solid #2C1E16 !important;
       }
     }
   </style>
 </head>
-<body class="font-sans antialiased min-h-screen flex flex-col selection:bg-terracotta/20 selection:text-espresso">
+<body class="font-sans antialiased min-h-screen flex flex-col">
 
-  <!-- ==================== TOP NAVIGATION BAR ==================== -->
-  <header class="sticky top-0 z-30 bg-parchment/95 backdrop-blur-md border-b border-espresso/10">
-    <div class="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between gap-2">
-      <button onclick="goToPage(0)" class="flex items-center gap-2.5 text-left group focus:outline-none">
-        <div class="w-10 h-10 rounded-xl bg-terracotta text-parchment flex items-center justify-center shadow-sm group-hover:bg-terracottaDark transition-colors">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3c.5 2.5 3 4 3 7a3 3 0 11-6 0c0-1.5.7-2.8 1.5-3.8C10.5 7.5 11.5 5 12 3z" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13h14l-1.2 5.2A3 3 0 0114.9 20.5H9.1a3 3 0 01-2.9-2.3L5 13z" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 13h16" />
+  <!-- ==================== STICKY HEADER ==================== -->
+  <header class="sticky top-0 z-30 bg-ivory/95 backdrop-blur-md border-b border-roast/10">
+    <div class="max-w-2xl mx-auto px-4 py-3 flex items-center justify-between gap-2">
+      <!-- Brand Identity -->
+      <div class="flex items-center gap-2.5 min-w-0">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-spice to-spiceDark text-ivory flex items-center justify-center shadow-sm flex-shrink-0">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3c.6 2.3 2.8 3.8 2.8 6.5a2.8 2.8 0 11-5.6 0c0-1.4.6-2.5 1.3-3.4C10.5 7.2 11.4 5 12 3z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13h14l-1.1 5a3 3 0 01-2.9 2.3H9a3 3 0 01-2.9-2.3L5 13z" />
           </svg>
         </div>
-        <div>
-          <h1 class="font-serif font-bold text-base sm:text-lg leading-tight text-espresso tracking-tight">
+        <div class="min-w-0">
+          <h1 class="font-serif font-bold text-lg sm:text-xl text-roast truncate leading-tight">
             Nitin Patel Dhaba
           </h1>
-          <div class="flex items-center gap-1.5 text-[11px] sm:text-xs text-taupe">
-            <span class="inline-block w-2 h-2 rounded-full bg-vegGreen"></span>
-            <span>Pure Veg &bull; Chandrapur, CG</span>
+          <div class="flex items-center gap-1.5 text-[11px] text-umber">
+            <span class="w-2 h-2 rounded-full bg-leaf inline-block"></span>
+            <span class="truncate">100% Pure Veg &bull; Chandrapur, CG</span>
           </div>
         </div>
-      </button>
+      </div>
 
-      <div class="flex items-center gap-2">
-        <button onclick="openSearchModal()" aria-label="Search Menu"
-          class="p-2.5 rounded-xl bg-cream hover:bg-espresso/10 text-espresso transition-colors"
-          title="Search dishes">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
+      <!-- Right Controls: Table Pill + Chef Mode -->
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <button onclick="openOrderDrawer()" id="header-table-pill"
+          class="px-3 py-1.5 rounded-full bg-sand hover:bg-roast/10 border border-roast/10 text-xs font-bold text-roast transition-colors">
+          🪑 Set Table
         </button>
 
-        <button onclick="openQrModal()"
-          class="flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-espresso text-parchment hover:bg-terracotta transition-colors text-xs sm:text-sm font-medium shadow-sm">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h7v7H3V3zm11 0h7v7h-7V3zM3 14h7v7H3v-7zm11 3h3v4h-3v-4zm4-3h3v3h-3v-3zm-4 0h3v2h-3v-2zm4 5h3v2h-3v-2z" />
-          </svg>
-          <span>Scan QR</span>
+        <button onclick="openChefAuth()"
+          class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-roast text-ivory hover:bg-spice text-xs font-semibold shadow-sm transition-colors"
+          title="Chef Kitchen & Table QRs">
+          <span>👨‍🍳</span>
+          <span>Chef</span>
+          <span id="chef-live-dot" class="hidden w-2 h-2 rounded-full bg-green-400 animate-ping"></span>
         </button>
       </div>
     </div>
 
-    <nav id="category-nav" class="max-w-3xl mx-auto px-4 pb-2.5 flex items-center gap-2 overflow-x-auto no-scrollbar" aria-label="Menu Pages">
-    </nav>
+    <!-- Search & Quick Filter Bar -->
+    <div class="max-w-2xl mx-auto px-4 pb-2.5 space-y-2">
+      <div class="relative">
+        <svg class="w-4 h-4 text-umber absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <input id="menu-search" type="search" oninput="setSearchQuery(this.value)"
+          placeholder="Search paneer, chila, thali, dal tadka, roti..."
+          class="w-full pl-9 pr-8 py-2 rounded-xl bg-white border border-roast/10 text-sm text-roast placeholder:text-umber/60 focus:outline-none focus:border-spice transition-colors" />
+        <button id="clear-search-btn" onclick="clearSearch()" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-umber hover:text-roast text-xs font-bold p-1">
+          ✕
+        </button>
+      </div>
+
+      <!-- Horizontal Category Pills -->
+      <nav id="category-tabs" class="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5" aria-label="Menu Categories">
+        <!-- Populated dynamically -->
+      </nav>
+    </div>
   </header>
 
-  <!-- ==================== MAIN MENU BOOKLET CONTAINER ==================== -->
-  <main id="swipe-area" class="flex-1 w-full max-w-3xl mx-auto px-4 py-6 sm:py-8 flex flex-col justify-between">
-    <div id="menu-page-container" class="w-full">
-    </div>
-
-    <!-- ==================== PAGE NAVIGATION FOOTER ==================== -->
-    <div class="mt-8 pt-5 border-t border-espresso/10 flex flex-col gap-4">
-      <div id="page-dots" class="flex items-center justify-center gap-1.5 flex-wrap">
-      </div>
-
-      <div class="flex items-center justify-between gap-3">
-        <button id="prev-btn" onclick="prevPage()"
-          class="flex items-center gap-2 px-4 py-3 rounded-xl border border-espresso/15 bg-white text-espresso font-medium text-sm shadow-sm hover:bg-cream disabled:opacity-35 disabled:cursor-not-allowed transition-all">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-          </svg>
-          <span>Previous</span>
-        </button>
-
-        <div class="text-center">
-          <p id="page-counter-text" class="text-xs font-semibold uppercase tracking-widest text-taupe">
-            Page 1 of 13
+  <!-- ==================== HERO WELCOME CARD ==================== -->
+  <section class="max-w-2xl w-full mx-auto px-4 pt-4">
+    <div class="rounded-3xl bg-gradient-to-br from-roast via-[#362217] to-spiceDark text-ivory p-5 sm:p-6 shadow-md relative overflow-hidden">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="space-y-1.5">
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/10 text-[11px] font-semibold text-saffron">
+            <span>⚡</span> Direct-to-Kitchen Table Ordering
+          </div>
+          <h2 class="font-serif font-bold text-2xl sm:text-3xl leading-snug">
+            Fresh Desi Flavors, Straight from Our Tandoor
+          </h2>
+          <p class="text-xs sm:text-sm text-ivory/80 leading-relaxed max-w-md">
+            Pick your favorite dishes below and tap <strong>Send Order to Chef</strong>. Our server will bring your meal hot to your seat!
           </p>
-          <p class="text-[11px] text-taupe/70 hidden sm:block">Swipe or use arrow keys</p>
         </div>
 
-        <button id="next-btn" onclick="nextPage()"
-          class="flex items-center gap-2 px-4 py-3 rounded-xl bg-terracotta text-parchment font-medium text-sm shadow-sm hover:bg-terracottaDark disabled:opacity-35 disabled:cursor-not-allowed transition-all">
-          <span>Next Page</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
+        <!-- Quick Filter Chips -->
+        <div class="flex sm:flex-col gap-2 flex-wrap flex-shrink-0">
+          <button onclick="toggleQuickFilter('all')" data-filter="all"
+            class="filter-chip px-3 py-1.5 rounded-xl text-xs font-semibold bg-saffron text-roast shadow-sm transition-all">
+            All Dishes
+          </button>
+          <button onclick="toggleQuickFilter('bestseller')" data-filter="bestseller"
+            class="filter-chip px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/10 text-ivory hover:bg-white/20 transition-all">
+            ⭐ Bestsellers
+          </button>
+          <button onclick="toggleQuickFilter('local')" data-filter="local"
+            class="filter-chip px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/10 text-ivory hover:bg-white/20 transition-all">
+            🌾 CG Specials
+          </button>
+        </div>
       </div>
     </div>
+  </section>
+
+  <!-- ==================== MAIN MENU SECTIONS ==================== -->
+  <main id="menu-feed" class="flex-1 max-w-2xl w-full mx-auto px-4 pt-5 pb-32 space-y-7">
+    <!-- Rendered dynamically -->
   </main>
 
-  <!-- ==================== FLOATING TABLE ORDER SHORTLIST BAR ==================== -->
-  <div id="order-bar" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-30 w-[calc(100%-2rem)] max-w-md hidden">
-    <button onclick="openOrderModal()"
-      class="w-full flex items-center justify-between px-5 py-3.5 rounded-2xl bg-espresso text-parchment shadow-xl border border-marigold/30 hover:bg-terracottaDark transition-colors">
+  <!-- ==================== FLOATING BOTTOM PLATE BAR ==================== -->
+  <div id="floating-cart-bar" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-30 w-[calc(100%-2rem)] max-w-lg hidden">
+    <button onclick="openOrderDrawer()"
+      class="w-full flex items-center justify-between px-5 py-3.5 rounded-2xl bg-spice hover:bg-spiceDark text-ivory shadow-2xl border border-white/15 transition-all active:scale-[0.99]">
       <div class="flex items-center gap-3">
-        <span id="order-count-badge" class="w-7 h-7 rounded-full bg-marigold text-espresso font-bold text-xs flex items-center justify-center">0</span>
+        <div class="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center font-extrabold text-sm" id="cart-item-count">
+          0
+        </div>
         <div class="text-left">
-          <p class="text-xs text-parchment/75">My Table Plate</p>
-          <p class="text-sm font-semibold">Review &amp; Send to Chef</p>
+          <p class="text-[11px] uppercase tracking-wider text-ivory/80 font-semibold" id="cart-bar-table-label">Your Plate</p>
+          <p class="text-sm font-bold">Review &amp; Send to Chef</p>
         </div>
       </div>
       <div class="flex items-center gap-2">
-        <span id="order-total-text" class="font-bold text-base">₹0</span>
-        <svg class="w-4 h-4 text-marigold" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-        </svg>
+        <span class="font-extrabold text-lg" id="cart-bar-total">₹0</span>
+        <span class="px-2.5 py-1 rounded-lg bg-ivory text-spice text-xs font-extrabold">Order &rarr;</span>
       </div>
     </button>
   </div>
 
-  <!-- ==================== QR CODE & PRINTABLE TABLE CARD MODAL ==================== -->
-  <div id="qr-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-espresso/60 backdrop-blur-sm p-4 overflow-y-auto">
-    <div class="bg-parchment w-full max-w-md rounded-3xl shadow-2xl border border-espresso/10 overflow-hidden my-auto">
-      <div class="px-6 py-4 bg-cream border-b border-espresso/10 flex items-center justify-between">
+  <!-- ==================== CUSTOMER ORDER DRAWER (BOTTOM SHEET) ==================== -->
+  <div id="order-drawer" class="fixed inset-0 z-50 hidden items-end sm:items-center justify-center bg-roast/60 backdrop-blur-sm">
+    <div class="bg-ivory w-full max-w-lg rounded-t-3xl sm:rounded-3xl shadow-2xl border border-roast/10 overflow-hidden flex flex-col max-h-[90vh] animate-sheet">
+      <!-- Drawer Header -->
+      <div class="px-5 py-4 bg-sand border-b border-roast/10 flex items-center justify-between">
         <div>
-          <h2 class="font-serif font-bold text-lg text-espresso">Menu QR Code</h2>
-          <p class="text-xs text-taupe">Scan to open menu &amp; order direct to chef</p>
+          <h3 class="font-serif font-bold text-xl text-roast">Your Table Order</h3>
+          <p class="text-xs text-umber">Goes straight to our Chef — server brings it hot</p>
         </div>
-        <button onclick="closeQrModal()" class="p-2 rounded-xl hover:bg-espresso/10 text-espresso transition-colors" aria-label="Close QR Modal">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
+        <button onclick="closeOrderDrawer()" class="w-9 h-9 rounded-full bg-white hover:bg-roast/10 text-roast flex items-center justify-center font-bold">
+          ✕
         </button>
       </div>
 
-      <div class="p-6">
-        <div id="printable-qr-card" class="bg-white rounded-2xl border-2 border-dashed border-terracotta/40 p-6 text-center shadow-sm">
-          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-vegGreen/10 text-vegGreen text-[11px] font-semibold uppercase tracking-wider mb-2">
-            <span class="w-2 h-2 rounded-full bg-vegGreen"></span>
-            100% Pure Vegetarian
+      <!-- Scrollable Body -->
+      <div class="p-5 overflow-y-auto space-y-5 flex-1">
+        <!-- Table Selector -->
+        <div class="bg-white p-4 rounded-2xl border border-roast/10">
+          <div class="flex items-center justify-between mb-2.5">
+            <label class="text-xs font-extrabold uppercase tracking-wider text-roast">
+              1. Confirm Your Table Number *
+            </label>
+            <span id="table-locked-hint" class="hidden text-[11px] font-semibold text-leaf">Auto-detected from QR</span>
           </div>
-          <h3 class="font-serif font-bold text-2xl text-espresso">Nitin Patel Dhaba</h3>
-          <p class="text-xs text-taupe mt-0.5">Highway &amp; Family Dhaba &bull; Chandrapur, Chhattisgarh</p>
+          <div class="grid grid-cols-5 gap-2" id="table-quick-grid">
+            <!-- Buttons 1-10 rendered by JS -->
+          </div>
+          <div class="mt-2.5 flex items-center gap-2">
+            <span class="text-xs text-umber">Or enter table no.:</span>
+            <input id="customer-table-input" type="number" min="1" max="99" oninput="syncTableInput(this.value)"
+              placeholder="e.g. 12"
+              class="w-24 px-3 py-1.5 rounded-xl border border-roast/15 bg-ivory text-sm font-bold text-roast focus:outline-none focus:border-spice" />
+          </div>
+        </div>
 
-          <div class="my-5 flex justify-center">
-            <div class="p-3 bg-white rounded-2xl border border-espresso/15 shadow-sm inline-block">
-              <div id="qrcode-canvas" class="w-[180px] h-[180px] flex items-center justify-center"></div>
+        <!-- Selected Items List -->
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-extrabold uppercase tracking-wider text-roast">2. Selected Dishes</span>
+            <button onclick="clearCart()" class="text-xs font-semibold text-spice hover:underline">Clear All</button>
+          </div>
+          <div id="drawer-items-list" class="space-y-2.5">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Cooking Instructions for Chef -->
+        <div class="bg-white p-4 rounded-2xl border border-roast/10">
+          <label class="block text-xs font-extrabold uppercase tracking-wider text-roast mb-2">
+            3. Note for Chef (Optional)
+          </label>
+          <div class="flex flex-wrap gap-1.5 mb-2.5">
+            <button type="button" onclick="appendChefNote('Less Spicy')" class="px-2.5 py-1 rounded-full bg-sand hover:bg-spice hover:text-ivory text-[11px] font-semibold text-roast transition-colors">+ Less Spicy</button>
+            <button type="button" onclick="appendChefNote('No Onion & Garlic')" class="px-2.5 py-1 rounded-full bg-sand hover:bg-spice hover:text-ivory text-[11px] font-semibold text-roast transition-colors">+ No Onion/Garlic</button>
+            <button type="button" onclick="appendChefNote('Extra Butter')" class="px-2.5 py-1 rounded-full bg-sand hover:bg-spice hover:text-ivory text-[11px] font-semibold text-roast transition-colors">+ Extra Butter</button>
+            <button type="button" onclick="appendChefNote('Serve All Together')" class="px-2.5 py-1 rounded-full bg-sand hover:bg-spice hover:text-ivory text-[11px] font-semibold text-roast transition-colors">+ Serve Together</button>
+          </div>
+          <input id="customer-note-input" type="text"
+            placeholder="Any special cooking request for the chef..."
+            class="w-full px-3.5 py-2.5 rounded-xl border border-roast/15 bg-ivory text-sm text-roast focus:outline-none focus:border-spice" />
+        </div>
+      </div>
+
+      <!-- Drawer Footer -->
+      <div class="p-5 bg-white border-t border-roast/10">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-sm font-semibold text-umber">Total Payable at Counter</span>
+          <span id="drawer-total-amount" class="font-serif font-extrabold text-2xl text-roast">₹0</span>
+        </div>
+        <button id="submit-order-btn" onclick="submitOrderToKitchen()"
+          class="w-full py-3.5 rounded-2xl bg-leaf hover:bg-green-800 text-white font-extrabold text-base shadow-lg transition-all flex items-center justify-center gap-2">
+          <span>🍳 Send Order Directly to Chef</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== ORDER SENT SUCCESS TICKET MODAL ==================== -->
+  <div id="order-success-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-roast/70 backdrop-blur-sm p-4">
+    <div class="bg-white w-full max-w-sm rounded-3xl p-6 text-center shadow-2xl border border-roast/10 animate-sheet">
+      <div class="w-16 h-16 rounded-full bg-leaf/15 text-leaf flex items-center justify-center mx-auto mb-4 text-3xl">
+        ✅
+      </div>
+      <span id="success-table-tag" class="inline-block px-3 py-1 rounded-full bg-spice/10 text-spice text-xs font-extrabold uppercase tracking-wider">
+        Table #1
+      </span>
+      <h3 class="font-serif font-bold text-2xl text-roast mt-2">Order Received by Chef!</h3>
+      <p class="text-sm text-umber mt-2 leading-relaxed">
+        Your dishes are now on our kitchen screen. Sit back and relax — our server will bring your meal hot to your table.
+      </p>
+      <div id="success-summary-box" class="mt-4 p-3.5 rounded-2xl bg-ivory border border-roast/10 text-left text-xs space-y-1">
+      </div>
+      <button onclick="closeSuccessModal()"
+        class="mt-5 w-full py-3 rounded-xl bg-roast text-ivory font-bold text-sm hover:bg-spice transition-colors">
+        Back to Menu
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== CHEF PIN PAD MODAL (NO BROWSER PROMPT) ==================== -->
+  <div id="chef-pin-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-roast/70 backdrop-blur-sm p-4">
+    <div class="bg-ivory w-full max-w-xs rounded-3xl p-6 text-center shadow-2xl border border-roast/10 animate-sheet">
+      <div class="flex justify-between items-center mb-2">
+        <span class="text-xs font-bold uppercase tracking-wider text-umber">Kitchen Access</span>
+        <button onclick="closeChefPinModal()" class="text-umber hover:text-roast font-bold text-sm p-1">✕</button>
+      </div>
+      <h3 class="font-serif font-bold text-xl text-roast">Enter Chef PIN</h3>
+      <p class="text-xs text-umber mt-0.5">Default PIN: <strong>1234</strong></p>
+
+      <!-- PIN Dots -->
+      <div id="pin-dots" class="flex justify-center gap-3 my-5">
+        <span class="w-3.5 h-3.5 rounded-full border-2 border-roast/30"></span>
+        <span class="w-3.5 h-3.5 rounded-full border-2 border-roast/30"></span>
+        <span class="w-3.5 h-3.5 rounded-full border-2 border-roast/30"></span>
+        <span class="w-3.5 h-3.5 rounded-full border-2 border-roast/30"></span>
+      </div>
+      <p id="pin-error-text" class="text-xs font-bold text-red-600 h-4 mb-2"></p>
+
+      <!-- Touch Keypad -->
+      <div class="grid grid-cols-3 gap-2.5">
+        <button onclick="pressPinKey('1')" class="py-3 rounded-2xl bg-white hover:bg-sand border border-roast/10 font-extrabold text-lg text-roast">1</button>
+        <button onclick="pressPinKey('2')" class="py-3 rounded-2xl bg-white hover:bg-sand border border-roast/10 font-extrabold text-lg text-roast">2</button>
+        <button onclick="pressPinKey('3')" class="py-3 rounded-2xl bg-white hover:bg-sand border border-roast/10 font-extrabold text-lg text-roast">3</button>
+        <button onclick="pressPinKey('4')" class="py-3 rounded-2xl bg-white hover:bg-sand border border-roast/10 font-extrabold text-lg text-roast">4</button>
+        <button onclick="pressPinKey('5')" class="py-3 rounded-2xl bg-white hover:bg-sand border border-roast/10 font-extrabold text-lg text-roast">5</button>
+        <button onclick="pressPinKey('6')" class="py-3 rounded-2xl bg-white hover:bg-sand border border-roast/10 font-extrabold text-lg text-roast">6</button>
+        <button onclick="pressPinKey('7')" class="py-3 rounded-2xl bg-white hover:bg-sand border border-roast/10 font-extrabold text-lg text-roast">7</button>
+        <button onclick="pressPinKey('8')" class="py-3 rounded-2xl bg-white hover:bg-sand border border-roast/10 font-extrabold text-lg text-roast">8</button>
+        <button onclick="pressPinKey('9')" class="py-3 rounded-2xl bg-white hover:bg-sand border border-roast/10 font-extrabold text-lg text-roast">9</button>
+        <button onclick="clearPin()" class="py-3 rounded-2xl bg-sand text-xs font-bold text-umber">Clear</button>
+        <button onclick="pressPinKey('0')" class="py-3 rounded-2xl bg-white hover:bg-sand border border-roast/10 font-extrabold text-lg text-roast">0</button>
+        <button onclick="backspacePin()" class="py-3 rounded-2xl bg-sand text-sm font-bold text-roast">⌫</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CHEF LIVE KITCHEN & QR GENERATOR DASHBOARD ==================== -->
+  <div id="chef-dashboard-modal" class="fixed inset-0 z-50 hidden bg-roast/80 backdrop-blur-sm overflow-y-auto">
+    <div class="min-h-screen max-w-2xl mx-auto bg-ivory flex flex-col shadow-2xl">
+      <!-- Top Kitchen Bar -->
+      <div class="px-5 py-4 bg-roast text-ivory flex items-center justify-between sticky top-0 z-10">
+        <div>
+          <h2 class="font-serif font-bold text-xl">👨‍🍳 Chef Kitchen &amp; Table QRs</h2>
+          <p id="kitchen-status-subtitle" class="text-xs text-ivory/75">Tap "Activate Live Alarm" to receive table orders</p>
+        </div>
+        <button onclick="closeChefDashboard()" class="px-3.5 py-1.5 rounded-full bg-white/15 hover:bg-white/25 text-xs font-bold">
+          Exit
+        </button>
+      </div>
+
+      <!-- Mode Switch Tabs: Live Orders vs Print Table QRs -->
+      <div class="px-5 pt-4 bg-sand border-b border-roast/10 flex gap-2">
+        <button id="tab-live-orders" onclick="switchChefTab('orders')"
+          class="flex-1 py-2.5 rounded-t-xl bg-ivory text-roast font-extrabold text-xs sm:text-sm border-t border-x border-roast/10">
+          🔔 Live Orders (<span id="active-orders-count">0</span>)
+        </button>
+        <button id="tab-table-qrs" onclick="switchChefTab('qrs')"
+          class="flex-1 py-2.5 rounded-t-xl bg-transparent text-umber font-bold text-xs sm:text-sm">
+          🖨️ Print Table QR Cards
+        </button>
+      </div>
+
+      <!-- TAB 1: LIVE KITCHEN ORDERS -->
+      <div id="chef-orders-panel" class="p-5 flex-1 space-y-4">
+        <div class="flex gap-2">
+          <button id="activate-alarm-btn" onclick="activateKitchenStream()"
+            class="flex-1 py-3.5 px-4 rounded-2xl bg-leaf hover:bg-green-800 text-white font-extrabold text-sm shadow-md transition-all">
+            🔊 Activate Live Kitchen Alarm
+          </button>
+          <button onclick="playKitchenChime()"
+            class="px-4 py-3.5 rounded-2xl bg-white border border-roast/15 text-roast font-bold text-xs hover:bg-sand"
+            title="Test Sound">
+            Test Bell
+          </button>
+        </div>
+
+        <div id="kitchen-tickets-list" class="space-y-3.5">
+          <!-- Live Order Cards rendered here -->
+        </div>
+      </div>
+
+      <!-- TAB 2: TABLE-WISE QR GENERATOR -->
+      <div id="chef-qr-panel" class="hidden p-5 flex-1 space-y-4">
+        <div class="bg-white p-4 rounded-2xl border border-roast/10">
+          <label class="block text-xs font-extrabold uppercase tracking-wider text-roast mb-2">
+            Select or Type Table Number to Print QR:
+          </label>
+          <div class="flex gap-2">
+            <input id="qr-table-number-input" type="number" min="1" max="99" value="1" oninput="renderTableStandeeQR(this.value)"
+              class="w-28 px-3.5 py-2 rounded-xl border border-roast/15 bg-ivory font-extrabold text-base text-roast focus:outline-none focus:border-spice" />
+            <button onclick="window.print()"
+              class="flex-1 py-2.5 px-4 rounded-xl bg-spice hover:bg-spiceDark text-ivory font-bold text-sm shadow-sm">
+              🖨️ Print / Save PDF Card
+            </button>
+          </div>
+          <p class="text-[11px] text-umber mt-2">
+            Print separate cards for Table 1, Table 2, Table 3... When a customer scans Table 4's QR, their order automatically shows <strong>TABLE #4</strong> on your screen.
+          </p>
+        </div>
+
+        <!-- Printable Standee Preview -->
+        <div id="printable-standee" class="bg-white rounded-3xl border-2 border-dashed border-spice/50 p-6 text-center max-w-sm mx-auto shadow-sm">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-leaf/10 text-leaf text-[11px] font-extrabold uppercase tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-leaf"></span> 100% Pure Vegetarian
+          </div>
+          <h3 class="font-serif font-extrabold text-2xl text-roast mt-2">Nitin Patel Dhaba</h3>
+          <p class="text-xs text-umber">Chandrapur, Chhattisgarh</p>
+
+          <div id="standee-table-label" class="mt-3 inline-block px-4 py-1 rounded-xl bg-roast text-saffron font-extrabold text-lg tracking-wide">
+            TABLE #1
+          </div>
+
+          <div class="my-4 flex justify-center">
+            <div class="p-3 bg-white rounded-2xl border border-roast/15 inline-block">
+              <div id="standee-qr-canvas" class="w-[180px] h-[180px] flex items-center justify-center"></div>
             </div>
           </div>
 
-          <p class="text-sm font-semibold text-terracotta">Scan &rarr; Pick Dishes &rarr; Order Direct to Chef</p>
-          <p class="text-[11px] text-taupe mt-1">Chhattisgarhi Specials &bull; Tandoor &bull; Thalis &bull; Family Combos</p>
-        </div>
-
-        <div class="mt-5">
-          <label for="qr-url-input" class="block text-xs font-medium text-taupe mb-1.5">
-            Menu Link encoded in QR:
-          </label>
-          <div class="flex gap-2">
-            <input id="qr-url-input" type="text"
-              class="flex-1 px-3 py-2 text-xs rounded-xl border border-espresso/15 bg-white text-espresso focus:outline-none focus:border-terracotta"
-              placeholder="[https://np603.github.io/Dhaba-menu/](https://np603.github.io/Dhaba-menu/)" />
-            <button onclick="updateQrFromInput()"
-              class="px-3.5 py-2 rounded-xl bg-cream hover:bg-espresso/10 text-espresso text-xs font-semibold transition-colors">
-              Update
-            </button>
-          </div>
-        </div>
-
-        <div class="mt-4 grid grid-cols-2 gap-2.5">
-          <button onclick="copyMenuLink()"
-            class="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl border border-espresso/15 bg-white hover:bg-cream text-espresso text-xs font-semibold transition-colors">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-            </svg>
-            <span>Copy Link</span>
-          </button>
-          <button onclick="window.print()"
-            class="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-terracotta hover:bg-terracottaDark text-parchment text-xs font-semibold shadow-sm transition-colors">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2M6 14h12v8H6v-8z" />
-            </svg>
-            <span>Print Table Card</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== SEARCH MODAL ==================== -->
-  <div id="search-modal" class="fixed inset-0 z-50 hidden items-start justify-center bg-espresso/60 backdrop-blur-sm p-4 pt-12 sm:pt-20">
-    <div class="bg-parchment w-full max-w-lg rounded-3xl shadow-2xl border border-espresso/10 overflow-hidden flex flex-col max-h-[80vh]">
-      <div class="p-4 border-b border-espresso/10 flex items-center gap-3 bg-white">
-        <svg class="w-5 h-5 text-taupe flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
-        <input id="search-input" type="text" oninput="handleSearch(this.value)"
-          placeholder="Search Paneer, Farra, Thali, Chai, Roti..."
-          class="flex-1 bg-transparent text-sm sm:text-base text-espresso placeholder:text-taupe/60 focus:outline-none" />
-        <button onclick="closeSearchModal()" class="p-1.5 rounded-lg hover:bg-cream text-taupe">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
-      <div id="search-results" class="p-4 overflow-y-auto space-y-2.5">
-        <p class="text-xs text-center text-taupe py-6">Type a dish name or ingredient to search across all 13 pages.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== TABLE SHORTLIST & DIRECT ORDER MODAL ==================== -->
-  <div id="order-modal" class="fixed inset-0 z-50 hidden items-end sm:items-center justify-center bg-espresso/60 backdrop-blur-sm p-0 sm:p-4">
-    <div class="bg-parchment w-full max-w-md rounded-t-3xl sm:rounded-3xl shadow-2xl border border-espresso/10 overflow-hidden flex flex-col max-h-[88vh]">
-      <div class="px-6 py-4 bg-cream border-b border-espresso/10 flex items-center justify-between">
-        <div>
-          <h2 class="font-serif font-bold text-lg text-espresso">Your Table Order</h2>
-          <p class="text-xs text-taupe">Order goes directly to our Chef — server will bring it hot</p>
-        </div>
-        <button onclick="closeOrderModal()" class="p-2 rounded-xl hover:bg-espresso/10 text-espresso">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
-
-      <div id="order-items-list" class="p-5 overflow-y-auto space-y-3 flex-1">
-      </div>
-
-      <div class="p-5 bg-white border-t border-espresso/10">
-        <div class="flex items-center justify-between mb-3">
-          <span class="text-sm font-medium text-taupe">Estimated Total</span>
-          <span id="order-modal-total" class="font-serif font-bold text-2xl text-espresso">₹0</span>
-        </div>
-        <div class="grid grid-cols-2 gap-2.5">
-          <button onclick="clearOrder()"
-            class="px-4 py-2.5 rounded-xl border border-espresso/15 text-espresso text-xs font-semibold hover:bg-cream transition-colors">
-            Clear List
-          </button>
-          <button onclick="closeOrderModal()"
-            class="px-4 py-2.5 rounded-xl bg-cream text-espresso text-xs font-semibold hover:bg-espresso/10 transition-colors">
-            + Add More Dishes
-          </button>
+          <p class="text-sm font-extrabold text-spice">Scan &rarr; Pick Food &rarr; Direct Order to Chef</p>
+          <p class="text-[11px] text-umber mt-1">No waiting to order &bull; Freshly prepared on your tap</p>
         </div>
       </div>
     </div>
   </div>
 
   <!-- ==================== TOAST NOTIFICATION ==================== -->
-  <div id="toast" class="fixed top-20 left-1/2 -translate-x-1/2 z-50 px-4 py-2.5 rounded-xl bg-espresso text-parchment text-xs font-medium shadow-lg opacity-0 pointer-events-none transition-opacity duration-300">
-    Notification
+  <div id="toast-banner" class="fixed top-20 left-1/2 -translate-x-1/2 z-50 px-4 py-2.5 rounded-full bg-roast text-ivory text-xs font-bold shadow-xl opacity-0 pointer-events-none transition-all duration-300">
+    Added to plate
   </div>
 
-  <!-- ==================== APPLICATION SCRIPT ==================== -->
+  <!-- ==================== COMPLETE APPLICATION LOGIC ==================== -->
   <script>
-    const MENU_PAGES = [
+    const MENU_BASE_URL = "https:/" + "/np603.github.io/Dhaba-menu/";
+    const NTFY_TOPIC = "nitin-patel-dhaba-chandrapur-kds-v2";
+    const NTFY_ENDPOINT = "https:/" + "/ntfy.sh/" + NTFY_TOPIC;
+    const CHEF_SECRET_PIN = "1234";
+
+    // Complete Curated Menu Dataset
+    const DHABA_MENU = [
       {
-        id: 'cover',
-        shortTitle: 'Welcome',
-        type: 'cover',
-        title: 'Nitin Patel Dhaba',
-        subtitle: 'Pure Vegetarian Highway & Family Dhaba',
-        location: 'Chandrapur, Chhattisgarh',
-        tagline: 'Authentic Chhattisgarhi specialties, smoky tandoor breads, and comforting dhaba classics served fresh for families and highway travelers.'
-      },
-      {
-        id: 'chai-nashta',
-        shortTitle: 'Chai & Nashta',
-        sectionNumber: '01',
-        category: 'Chai, Nashta & Morning Specials',
-        subtitle: 'Freshly brewed kullhad chai and crisp morning favorites',
-        priceType: 'single',
+        id: "chai-nashta",
+        title: "Chai & Nashta",
+        subtitle: "Morning favorites & hot kullhad chai",
         items: [
-          { name: 'Kullhad Masala Chai / Adrak Chai', price: 15, displayPrice: '₹15', badge: 'Bestseller' },
-          { name: 'Hot Coffee', price: 25, displayPrice: '₹25' },
-          { name: 'Poha / Upma', desc: 'Morning Special', price: 30, displayPrice: '₹30', badge: 'Morning' },
-          { name: 'Samosa / Kachori (2 Pcs)', price: 30, displayPrice: '₹30' },
-          { name: 'Roasted Papad / Masala Papad', price: 20, altPrice: 35, displayPrice: '₹20 / ₹35', options: [{ label: 'Roasted', price: 20 }, { label: 'Masala', price: 35 }] }
+          { id: "cn1", name: "Kullhad Masala / Adrak Chai", price: 15, badge: "Bestseller" },
+          { id: "cn2", name: "Hot Coffee", price: 25 },
+          { id: "cn3", name: "Poha / Upma", desc: "Fresh morning special with sev & lemon", price: 30, badge: "Morning" },
+          { id: "cn4", name: "Samosa / Kachori (2 Pcs)", desc: "Served with tangy tamarind & mint chutney", price: 30 },
+          { id: "cn5", name: "Papad", options: [{ label: "Roasted", price: 20 }, { label: "Masala", price: 35 }] }
         ]
       },
       {
-        id: 'cg-specials',
-        shortTitle: 'CG Specials',
-        sectionNumber: '01B',
-        category: 'Chhattisgarhi Specials & Pakodas',
-        subtitle: 'Local Chhattisgarh flavors and piping-hot highway snacks',
-        priceType: 'single',
+        id: "cg-specials",
+        title: "CG Specials & Snacks",
+        subtitle: "Authentic Chhattisgarhi delicacies & crisp highway pakodas",
         items: [
-          { name: 'Chila (2 Pcs)', desc: 'Rice flour crepe served with tomato-coriander chutney', price: 45, displayPrice: '₹45', badge: 'Local Special' },
-          { name: 'Farra (1 Plate)', desc: 'Steamed rice dumplings tempered with mustard & curry leaves', price: 50, displayPrice: '₹50', badge: 'Local Special' },
-          { name: 'Onion Bhajiya / Aloo Pakoda', price: 60, displayPrice: '₹60' },
-          { name: 'Paneer Pakoda (8 Pcs)', price: 110, displayPrice: '₹110' },
-          { name: 'Chana Roast / Crispy Corn', price: 90, displayPrice: '₹90' }
+          { id: "cg1", name: "Chila (2 Pcs)", desc: "Traditional rice flour crepe with roasted tomato-coriander chutney", price: 45, badge: "Local Special" },
+          { id: "cg2", name: "Farra (1 Plate)", desc: "Steamed rice dumplings tempered with mustard seeds & curry leaves", price: 50, badge: "Local Special" },
+          { id: "cg3", name: "Onion Bhajiya / Aloo Pakoda", price: 60 },
+          { id: "cg4", name: "Paneer Pakoda (8 Pcs)", desc: "Crispy gram-flour battered cottage cheese fritters", price: 110, badge: "Bestseller" },
+          { id: "cg5", name: "Chana Roast / Crispy Corn", price: 90 }
         ]
       },
       {
-        id: 'dal-kadhi',
-        shortTitle: 'Dal & Kadhi',
-        sectionNumber: '02',
-        category: 'Dal & Local Kadhi',
-        subtitle: 'Slow-simmered lentils and traditional Chhattisgarhi kadhi',
-        priceType: 'half-full',
+        id: "dal-kadhi",
+        title: "Dal & Local Kadhi",
+        subtitle: "Slow-simmered lentils & regional Chhattisgarhi kadhi",
         items: [
-          { name: 'Plain Jeera Dal', half: 50, full: 80 },
-          { name: 'Dal Fry', half: 65, full: 100 },
-          { name: 'Dal Tadka', desc: 'Desi Ghee & Garlic tempering', half: 75, full: 120, badge: 'Popular' },
-          { name: 'Dal Makhani', half: 85, full: 140 },
-          { name: 'Dubki Kadhi / Pakoda Kadhi', desc: 'Regional comfort favorite', half: 70, full: 110, badge: 'Local Special' }
+          { id: "dk1", name: "Plain Jeera Dal", options: [{ label: "Half", price: 50 }, { label: "Full", price: 80 }] },
+          { id: "dk2", name: "Dal Fry", options: [{ label: "Half", price: 65 }, { label: "Full", price: 100 }] },
+          { id: "dk3", name: "Dal Tadka", desc: "Finished with desi ghee, roasted garlic & whole red chillies", badge: "Bestseller", options: [{ label: "Half", price: 75 }, { label: "Full", price: 120 }] },
+          { id: "dk4", name: "Dal Makhani", options: [{ label: "Half", price: 85 }, { label: "Full", price: 140 }] },
+          { id: "dk5", name: "Dubki Kadhi / Pakoda Kadhi", desc: "Authentic local comfort kadhi", badge: "Local Special", options: [{ label: "Half", price: 70 }, { label: "Full", price: 110 }] }
         ]
       },
       {
-        id: 'sabzi-classics',
-        shortTitle: 'Desi Sabzi I',
-        sectionNumber: '03',
-        category: 'Desi Sabziyan — Dhaba Classics',
-        subtitle: 'Seasonal home-style vegetables cooked in aromatic spices',
-        priceType: 'half-full',
+        id: "desi-sabzi",
+        title: "Desi Sabziyan",
+        subtitle: "Homestyle dhaba vegetables & rich festive gravies",
         items: [
-          { name: 'Aloo Jeera / Aloo Matar', half: 65, full: 100 },
-          { name: 'Aloo Gobhi Adraki', half: 70, full: 110 },
-          { name: 'Sev Tamatar', desc: 'Dhaba Signature tangy tomato gravy topped with crisp sev', half: 75, full: 115, badge: 'Signature' },
-          { name: 'Bhindi Masala / Bhindi Do Pyaza', half: 75, full: 115 },
-          { name: 'Baingan Bharta', desc: 'Tandoor Roasted smoky mashed eggplant', half: 75, full: 120 }
+          { id: "ds1", name: "Aloo Jeera / Aloo Matar", options: [{ label: "Half", price: 65 }, { label: "Full", price: 100 }] },
+          { id: "ds2", name: "Aloo Gobhi Adraki", options: [{ label: "Half", price: 70 }, { label: "Full", price: 110 }] },
+          { id: "ds3", name: "Sev Tamatar", desc: "Dhaba signature tangy tomato gravy topped with crisp ratlami sev", badge: "Bestseller", options: [{ label: "Half", price: 75 }, { label: "Full", price: 115 }] },
+          { id: "ds4", name: "Bhindi Masala / Bhindi Do Pyaza", options: [{ label: "Half", price: 75 }, { label: "Full", price: 115 }] },
+          { id: "ds5", name: "Baingan Bharta", desc: "Clay-tandoor roasted smoky mashed eggplant", options: [{ label: "Half", price: 75 }, { label: "Full", price: 120 }] },
+          { id: "ds6", name: "Chana Masala / Chole", options: [{ label: "Half", price: 75 }, { label: "Full", price: 120 }] },
+          { id: "ds7", name: "Mix Veg Kadhai", options: [{ label: "Half", price: 80 }, { label: "Full", price: 130 }] },
+          { id: "ds8", name: "Malai Kofta", options: [{ label: "Half", price: 100 }, { label: "Full", price: 160 }] },
+          { id: "ds9", name: "Mushroom Masala / Matar Mushroom", options: [{ label: "Half", price: 100 }, { label: "Full", price: 160 }] },
+          { id: "ds10", name: "Kaju Curry / Kaju Masala", options: [{ label: "Half", price: 120 }, { label: "Full", price: 190 }] }
         ]
       },
       {
-        id: 'sabzi-royal',
-        shortTitle: 'Desi Sabzi II',
-        sectionNumber: '03B',
-        category: 'Desi Sabziyan — Rich & Festive',
-        subtitle: 'Hearty gravies crafted for family feasts',
-        priceType: 'half-full',
+        id: "paneer-specials",
+        title: "Paneer Specials",
+        subtitle: "Soft fresh paneer cooked in royal & smoky gravies",
         items: [
-          { name: 'Chana Masala / Chole', half: 75, full: 120 },
-          { name: 'Mix Veg Kadhai', half: 80, full: 130 },
-          { name: 'Malai Kofta', half: 100, full: 160 },
-          { name: 'Mushroom Masala / Matar Mushroom', half: 100, full: 160 },
-          { name: 'Kaju Curry / Kaju Masala', half: 120, full: 190, badge: 'Rich' }
+          { id: "pn1", name: "Matar Paneer", options: [{ label: "Half", price: 95 }, { label: "Full", price: 150 }] },
+          { id: "pn2", name: "Palak Paneer", options: [{ label: "Half", price: 95 }, { label: "Full", price: 150 }] },
+          { id: "pn3", name: "Paneer Masala", options: [{ label: "Half", price: 100 }, { label: "Full", price: 160 }] },
+          { id: "pn4", name: "Paneer Butter Masala", desc: "Creamy tomato-cashew gravy with tender paneer cubes", badge: "Bestseller", options: [{ label: "Half", price: 110 }, { label: "Full", price: 175 }] },
+          { id: "pn5", name: "Kadhai Paneer", options: [{ label: "Half", price: 110 }, { label: "Full", price: 175 }] },
+          { id: "pn6", name: "Shahi Paneer", options: [{ label: "Half", price: 115 }, { label: "Full", price: 180 }] },
+          { id: "pn7", name: "Paneer Bhurji", options: [{ label: "Half", price: 115 }, { label: "Full", price: 180 }] },
+          { id: "pn8", name: "Paneer Angara", desc: "Smoky & spicy charcoal-infused house favorite", badge: "Smoky", options: [{ label: "Half", price: 120 }, { label: "Full", price: 185 }] },
+          { id: "pn9", name: "Nitin Patel Special Handi Paneer", desc: "Slow-cooked in a sealed clay handi with aromatic spices", price: 210, badge: "Bestseller" }
         ]
       },
       {
-        id: 'paneer-1',
-        shortTitle: 'Paneer I',
-        sectionNumber: '04',
-        category: 'Paneer Specials — Favorites',
-        subtitle: 'Fresh soft cottage cheese in classic North Indian gravies',
-        priceType: 'half-full',
+        id: "roti-paratha",
+        title: "Roti & Paratha",
+        subtitle: "Piping hot off the iron tawa & clay tandoor",
         items: [
-          { name: 'Matar Paneer', half: 95, full: 150 },
-          { name: 'Palak Paneer', half: 95, full: 150 },
-          { name: 'Paneer Masala', half: 100, full: 160 },
-          { name: 'Paneer Butter Masala', half: 110, full: 175, badge: 'Bestseller' },
-          { name: 'Kadhai Paneer', half: 110, full: 175 }
+          { id: "rt1", name: "Tawa Roti", options: [{ label: "Plain", price: 10 }, { label: "Butter", price: 15 }] },
+          { id: "rt2", name: "Tandoori Roti", options: [{ label: "Plain", price: 12 }, { label: "Butter", price: 18 }] },
+          { id: "rt3", name: "Missi Roti", price: 25 },
+          { id: "rt4", name: "Naan", options: [{ label: "Plain", price: 30 }, { label: "Butter", price: 40 }] },
+          { id: "rt5", name: "Garlic Naan", price: 50, badge: "Bestseller" },
+          { id: "rt6", name: "Lachha Paratha", price: 35 },
+          { id: "rt7", name: "Stuffed Paratha (with Dahi & Achar)", options: [{ label: "Aloo", price: 45 }, { label: "Gobhi", price: 50 }] },
+          { id: "rt8", name: "Paneer Paratha (with Dahi & Achar)", price: 65 }
         ]
       },
       {
-        id: 'paneer-2',
-        shortTitle: 'Paneer II',
-        sectionNumber: '04B',
-        category: 'Paneer Specials — Chef Signatures',
-        subtitle: 'Smoky, royal, and house-special paneer preparations',
-        priceType: 'half-full',
+        id: "chawal-chinese",
+        title: "Rice & Chinese",
+        subtitle: "Fragrant basmati rice, khichdi & wok-tossed Indo-Chinese",
         items: [
-          { name: 'Shahi Paneer', half: 115, full: 180 },
-          { name: 'Paneer Bhurji', half: 115, full: 180 },
-          { name: 'Paneer Angara', desc: 'Smoky & Spicy charcoal-infused gravy', half: 120, full: 185, badge: 'Smoky' },
-          { name: 'Nitin Patel Special Handi Paneer', desc: 'Slow-cooked in traditional clay handi', half: null, full: 210, badge: 'House Special' }
+          { id: "rc1", name: "Plain Steamed Rice", options: [{ label: "Half", price: 40 }, { label: "Full", price: 70 }] },
+          { id: "rc2", name: "Jeera Rice", options: [{ label: "Half", price: 50 }, { label: "Full", price: 85 }] },
+          { id: "rc3", name: "Veg Pulao", options: [{ label: "Half", price: 70 }, { label: "Full", price: 110 }] },
+          { id: "rc4", name: "Desi Ghee Dal Khichdi", desc: "Warm, comforting highway meal", badge: "Comfort", options: [{ label: "Half", price: 75 }, { label: "Full", price: 120 }] },
+          { id: "rc5", name: "Veg Biryani (with Boondi Raita)", options: [{ label: "Half", price: 85 }, { label: "Full", price: 140 }] },
+          { id: "rc6", name: "Veg Chowmein / Hakka Noodles", options: [{ label: "Half", price: 65 }, { label: "Full", price: 100 }] },
+          { id: "rc7", name: "Veg Fried Rice", options: [{ label: "Half", price: 70 }, { label: "Full", price: 110 }] },
+          { id: "rc8", name: "Veg Manchurian (Dry / Gravy)", options: [{ label: "Half", price: 70 }, { label: "Full", price: 110 }] },
+          { id: "rc9", name: "Chilli Paneer (Dry / Gravy)", badge: "Bestseller", options: [{ label: "Half", price: 95 }, { label: "Full", price: 150 }] }
         ]
       },
       {
-        id: 'roti-naan',
-        shortTitle: 'Roti & Paratha',
-        sectionNumber: '05',
-        category: 'Roti, Naan & Stuffed Paratha',
-        subtitle: 'Hot off the tawa and clay tandoor',
-        priceType: 'single',
+        id: "thali-combos",
+        title: "Thali & Combos",
+        subtitle: "Complete wholesome meals for travelers & families",
         items: [
-          { name: 'Tawa Roti (Plain / Butter)', displayPrice: '₹10 / ₹15', options: [{ label: 'Plain', price: 10 }, { label: 'Butter', price: 15 }] },
-          { name: 'Tandoori Roti (Plain / Butter)', displayPrice: '₹12 / ₹18', options: [{ label: 'Plain', price: 12 }, { label: 'Butter', price: 18 }] },
-          { name: 'Missi Roti', price: 25, displayPrice: '₹25' },
-          { name: 'Plain Naan / Butter Naan', displayPrice: '₹30 / ₹40', options: [{ label: 'Plain', price: 30 }, { label: 'Butter', price: 40 }] },
-          { name: 'Garlic Naan', price: 50, displayPrice: '₹50', badge: 'Popular' },
-          { name: 'Lachha Paratha', price: 35, displayPrice: '₹35' },
-          { name: 'Aloo Paratha / Gobhi Paratha', desc: 'Served with Dahi & Achar', displayPrice: '₹45 / ₹50', options: [{ label: 'Aloo', price: 45 }, { label: 'Gobhi', price: 50 }] },
-          { name: 'Paneer Paratha', desc: 'Served with Dahi & Achar', price: 65, displayPrice: '₹65' }
+          { id: "th1", name: "Regular Sadha Thali", desc: "4 Tawa Roti, Half Steamed Rice, Dal Fry, 1 Seasonal Sabzi, Salad & Achar", price: 100, badge: "Value" },
+          { id: "th2", name: "Nitin Patel Maharaja Dhaba Thali", desc: "3 Butter Tandoori Roti, Jeera Rice, Dal Tadka, Paneer Butter Masala, Mix Veg, Boondi Raita, Papad, Salad & 1 Gulab Jamun", price: 160, badge: "Bestseller" },
+          { id: "th3", name: "Highway Traveler Combo (For 1)", desc: "Dal Tadka + 4 Tawa Roti + Onion Salad & Achar", price: 90 },
+          { id: "th4", name: "Family Saver Pack (Serves 4)", desc: "1 Full Paneer Dish, 1 Full Dal Tadka, 1 Full Mix Veg, 1 Full Jeera Rice, 10 Butter Roti, Raita & Papad", price: 480, badge: "Family Pack" }
         ]
       },
       {
-        id: 'chawal-khichdi',
-        shortTitle: 'Chawal & Khichdi',
-        sectionNumber: '06',
-        category: 'Chawal & Comfort Khichdi',
-        subtitle: 'Fragrant basmati rice, pulao, and desi ghee khichdi',
-        priceType: 'half-full',
+        id: "raita-sweets",
+        title: "Raita & Sweets",
+        subtitle: "Cooling buttermilk, lassi & warm Indian desserts",
         items: [
-          { name: 'Plain Steamed Rice', half: 40, full: 70 },
-          { name: 'Jeera Rice', half: 50, full: 85 },
-          { name: 'Veg Pulao', half: 70, full: 110 },
-          { name: 'Desi Ghee Dal Khichdi', desc: 'Warm, soothing highway comfort bowl', half: 75, full: 120, badge: 'Comfort' },
-          { name: 'Veg Biryani', desc: 'Served with Boondi Raita', half: 85, full: 140 }
-        ]
-      },
-      {
-        id: 'chinese-corner',
-        shortTitle: 'Chinese Corner',
-        sectionNumber: '06B',
-        category: 'Desi Chinese Corner',
-        subtitle: 'Wok-tossed Indo-Chinese favorites made fresh to order',
-        priceType: 'half-full',
-        items: [
-          { name: 'Veg Chowmein / Hakka Noodles', half: 65, full: 100 },
-          { name: 'Veg Fried Rice', half: 70, full: 110 },
-          { name: 'Veg Manchurian (Dry / Gravy)', half: 70, full: 110 },
-          { name: 'Chilli Paneer (Dry / Gravy)', half: 95, full: 150, badge: 'Popular' }
-        ]
-      },
-      {
-        id: 'thali-combos',
-        shortTitle: 'Thali & Combos',
-        sectionNumber: '07',
-        category: 'Thali & Family Combos',
-        subtitle: 'Wholesome value meals for solo travelers and families',
-        priceType: 'combo',
-        items: [
-          {
-            name: 'Regular Sadha Thali',
-            price: 100,
-            desc: '4 Tawa Roti, Half Steamed Rice, Dal Fry, 1 Seasonal Sabzi, Salad, Achar',
-            badge: 'Daily Value'
-          },
-          {
-            name: 'Nitin Patel Maharaja Dhaba Thali',
-            price: 160,
-            desc: '3 Butter Tandoori Roti, Jeera Rice, Dal Tadka, Paneer Butter Masala, Mix Veg, Boondi Raita, Papad, Salad & 1 Gulab Jamun',
-            badge: 'Chef Special'
-          },
-          {
-            name: 'Highway Traveler Combo (For 1)',
-            price: 90,
-            desc: 'Dal Tadka + 4 Tawa Roti + Onion Salad & Achar',
-            badge: 'Quick Meal'
-          },
-          {
-            name: 'Family Saver Pack (Serves 4)',
-            price: 480,
-            desc: '1 Full Paneer Dish, 1 Full Dal Tadka, 1 Full Mix Veg, 1 Full Jeera Rice, 10 Butter Roti, Raita & Papad',
-            badge: 'Best for Families'
-          }
-        ]
-      },
-      {
-        id: 'raita-sweets',
-        shortTitle: 'Raita & Sweets',
-        sectionNumber: '08',
-        category: 'Raita, Salad & Sweets',
-        subtitle: 'Cooling accompaniments, refreshing lassi, and warm desserts',
-        priceType: 'single',
-        items: [
-          { name: 'Green Salad / Onion-Chilli Salad', displayPrice: '₹35 / ₹20', options: [{ label: 'Green', price: 35 }, { label: 'Onion-Chilli', price: 20 }] },
-          { name: 'Plain Dahi (1 Bowl)', price: 30, displayPrice: '₹30' },
-          { name: 'Boondi Raita / Kheera Raita', price: 45, displayPrice: '₹45' },
-          { name: 'Masala Chaas (Buttermilk)', price: 25, displayPrice: '₹25', badge: 'Refreshing' },
-          { name: 'Sweet Punjabi Lassi', price: 45, displayPrice: '₹45', badge: 'Popular' },
-          { name: 'Hot Gulab Jamun (2 Pcs)', price: 40, displayPrice: '₹40', badge: 'Sweet' },
-          { name: 'Rasgulla (2 Pcs)', price: 40, displayPrice: '₹40', badge: 'Sweet' }
+          { id: "rs1", name: "Salad", options: [{ label: "Onion", price: 20 }, { label: "Green", price: 35 }] },
+          { id: "rs2", name: "Plain Dahi (1 Bowl)", price: 30 },
+          { id: "rs3", name: "Boondi Raita / Kheera Raita", price: 45 },
+          { id: "rs4", name: "Masala Chaas (Buttermilk)", price: 25 },
+          { id: "rs5", name: "Sweet Punjabi Lassi", price: 45, badge: "Bestseller" },
+          { id: "rs6", name: "Hot Gulab Jamun (2 Pcs)", price: 40 },
+          { id: "rs7", name: "Rasgulla (2 Pcs)", price: 40 }
         ]
       }
     ];
 
-    let currentPageIndex = 0;
-    let orderCart = {};
-    let qrCodeInstance = null;
+    // App State
+    let cart = {}; // { key: { key, name, variant, price, qty } }
+    let selectedTable = "";
+    let activeCategory = DHABA_MENU[0].id;
+    let quickFilter = "all";
+    let searchQuery = "";
 
-    document.addEventListener('DOMContentLoaded', () => {
-      renderCategoryNav();
-      renderPage(0);
-      setupSwipeGestures();
-      setupKeyboardNavigation();
-      initQrUrl();
+    // Chef Kitchen State
+    let kitchenOrders = JSON.parse(localStorage.getItem("npd_kds_orders_v2") || "[]");
+    let alarmLoopId = null;
+    let audioContext = null;
+    let sseConnected = false;
+    let enteredPin = "";
+
+    // ==================== INITIALIZE ====================
+    document.addEventListener("DOMContentLoaded", () => {
+      detectUrlTable();
+      renderCategoryTabs();
+      renderTableQuickGrid();
+      renderMenuFeed();
+      updateCartUI();
+      renderKitchenTickets();
     });
 
-    function renderCategoryNav() {
-      const nav = document.getElementById('category-nav');
-      nav.innerHTML = MENU_PAGES.map((page, idx) => {
-        const isActive = idx === currentPageIndex;
+    function detectUrlTable() {
+      const params = new URLSearchParams(window.location.search);
+      const t = params.get("table");
+      if (t) {
+        selectedTable = String(t).trim();
+        document.getElementById("customer-table-input").value = selectedTable;
+        document.getElementById("table-locked-hint").classList.remove("hidden");
+        updateTableBadges();
+      }
+    }
+
+    function updateTableBadges() {
+      const pill = document.getElementById("header-table-pill");
+      const barLabel = document.getElementById("cart-bar-table-label");
+      if (selectedTable) {
+        pill.innerHTML = `🪑 Table #${selectedTable}`;
+        pill.classList.add("bg-spice", "text-ivory", "border-spice");
+        pill.classList.remove("bg-sand", "text-roast");
+        barLabel.textContent = `Table #${selectedTable} Plate`;
+      } else {
+        pill.innerHTML = `🪑 Set Table`;
+        pill.classList.remove("bg-spice", "text-ivory", "border-spice");
+        pill.classList.add("bg-sand", "text-roast");
+        barLabel.textContent = `Your Plate`;
+      }
+      renderTableQuickGrid();
+    }
+
+    // ==================== CATEGORY TABS & FILTERS ====================
+    function renderCategoryTabs() {
+      const nav = document.getElementById("category-tabs");
+      nav.innerHTML = DHABA_MENU.map(cat => {
+        const isSelected = cat.id === activeCategory;
         return `
-          <button
-            onclick="goToPage(${idx})"
-            id="nav-pill-${idx}"
-            class="whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-medium transition-all flex-shrink-0 ${
-              isActive
-                ? 'bg-terracotta text-parchment shadow-sm'
-                : 'bg-cream text-taupe hover:bg-espresso/10 hover:text-espresso'
+          <button onclick="scrollToCategory('${cat.id}')"
+            id="cat-tab-${cat.id}"
+            class="whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-bold transition-all flex-shrink-0 ${
+              isSelected
+                ? "bg-roast text-ivory shadow-sm"
+                : "bg-white text-umber border border-roast/10 hover:text-roast"
             }">
-            ${page.shortTitle}
+            ${cat.title}
           </button>
         `;
-      }).join('');
+      }).join("");
+    }
 
-      const activePill = document.getElementById(`nav-pill-${currentPageIndex}`);
-      if (activePill) {
-        activePill.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    function scrollToCategory(catId) {
+      activeCategory = catId;
+      renderCategoryTabs();
+      const target = document.getElementById(`sec-${catId}`);
+      if (target) {
+        const yOffset = -148;
+        const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
       }
     }
 
-    function renderPage(index) {
-      currentPageIndex = Math.max(0, Math.min(index, MENU_PAGES.length - 1));
-      const page = MENU_PAGES[currentPageIndex];
-      const container = document.getElementById('menu-page-container');
+    function toggleQuickFilter(filter) {
+      quickFilter = filter;
+      document.querySelectorAll(".filter-chip").forEach(btn => {
+        const active = btn.dataset.filter === filter;
+        btn.className = active
+          ? "filter-chip px-3 py-1.5 rounded-xl text-xs font-semibold bg-saffron text-roast shadow-sm transition-all"
+          : "filter-chip px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/10 text-ivory hover:bg-white/20 transition-all";
+      });
+      renderMenuFeed();
+    }
 
-      let html = '';
-      if (page.type === 'cover') {
-        html = renderCoverPage(page);
-      } else if (page.priceType === 'half-full') {
-        html = renderHalfFullPage(page);
-      } else if (page.priceType === 'combo') {
-        html = renderComboPage(page);
+    function setSearchQuery(val) {
+      searchQuery = val.trim().toLowerCase();
+      document.getElementById("clear-search-btn").classList.toggle("hidden", !searchQuery);
+      renderMenuFeed();
+    }
+
+    function clearSearch() {
+      const input = document.getElementById("menu-search");
+      input.value = "";
+      setSearchQuery("");
+    }
+
+    // ==================== RENDER MENU CARDS ====================
+    function renderMenuFeed() {
+      const feed = document.getElementById("menu-feed");
+      let totalVisibleItems = 0;
+
+      const sectionsHtml = DHABA_MENU.map(cat => {
+        const filteredItems = cat.items.filter(item => {
+          if (quickFilter === "bestseller" && item.badge !== "Bestseller") return false;
+          if (quickFilter === "local" && item.badge !== "Local Special") return false;
+          if (searchQuery) {
+            const haystack = `${item.name} ${item.desc || ""} ${cat.title}`.toLowerCase();
+            if (!haystack.includes(searchQuery)) return false;
+          }
+          return true;
+        });
+
+        if (filteredItems.length === 0) return "";
+        totalVisibleItems += filteredItems.length;
+
+        return `
+          <section id="sec-${cat.id}" class="scroll-mt-36">
+            <div class="mb-3 flex items-end justify-between px-1">
+              <div>
+                <h2 class="font-serif font-bold text-xl sm:text-2xl text-roast">${cat.title}</h2>
+                <p class="text-xs text-umber">${cat.subtitle}</p>
+              </div>
+              <span class="text-[11px] font-semibold text-umber">${filteredItems.length} items</span>
+            </div>
+
+            <div class="bg-white rounded-3xl border border-roast/10 shadow-sm divide-y divide-roast/10 overflow-hidden">
+              ${filteredItems.map(item => renderMenuItemRow(item)).join("")}
+            </div>
+          </section>
+        `;
+      }).join("");
+
+      if (totalVisibleItems === 0) {
+        feed.innerHTML = `
+          <div class="bg-white rounded-3xl border border-roast/10 p-10 text-center">
+            <p class="text-3xl mb-2">🍲</p>
+            <h3 class="font-serif font-bold text-lg text-roast">No matching dishes found</h3>
+            <p class="text-xs text-umber mt-1">Try clearing your search or switching back to "All Dishes".</p>
+            <button onclick="clearSearch(); toggleQuickFilter('all');"
+              class="mt-4 px-4 py-2 rounded-xl bg-spice text-ivory text-xs font-bold">
+              Reset Filters
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      feed.innerHTML = sectionsHtml;
+    }
+
+    function renderMenuItemRow(item) {
+      const badgeHtml = item.badge
+        ? `<span class="px-2 py-0.5 rounded-md text-[10px] font-extrabold uppercase tracking-wide ${
+            item.badge === "Local Special"
+              ? "bg-leaf/15 text-leaf"
+              : "bg-saffron/20 text-[#875800]"
+          }">${item.badge}</span>`
+        : "";
+
+      let controlsHtml = "";
+      if (item.options) {
+        controlsHtml = `<div class="flex flex-wrap justify-end gap-2">` + item.options.map(opt => {
+          const key = `${item.id}_${opt.label}`;
+          const qty = cart[key] ? cart[key].qty : 0;
+          if (qty > 0) {
+            return `
+              <div class="inline-flex items-center rounded-xl bg-spice text-ivory shadow-sm overflow-hidden">
+                <button onclick="updateItemQty('${key}', -1)" class="px-2.5 py-1.5 font-extrabold text-sm hover:bg-spiceDark">−</button>
+                <span class="px-1.5 text-xs font-extrabold">${opt.label} ×${qty}</span>
+                <button onclick="updateItemQty('${key}', 1)" class="px-2.5 py-1.5 font-extrabold text-sm hover:bg-spiceDark">+</button>
+              </div>
+            `;
+          }
+          return `
+            <button onclick="addItemToCart('${key}', '${escapeAttr(item.name)}', '${escapeAttr(opt.label)}', ${opt.price})"
+              class="px-3 py-1.5 rounded-xl bg-ivory hover:bg-sand border border-roast/15 text-xs font-bold text-roast transition-colors">
+              <span class="text-umber font-medium">${opt.label}</span> ₹${opt.price} <span class="text-spice font-extrabold">+</span>
+            </button>
+          `;
+        }).join("") + `</div>`;
       } else {
-        html = renderSinglePricePage(page);
+        const key = `${item.id}_Regular`;
+        const qty = cart[key] ? cart[key].qty : 0;
+        if (qty > 0) {
+          controlsHtml = `
+            <div class="inline-flex items-center rounded-xl bg-spice text-ivory shadow-sm overflow-hidden">
+              <button onclick="updateItemQty('${key}', -1)" class="px-3 py-1.5 font-extrabold text-sm hover:bg-spiceDark">−</button>
+              <span class="px-2 text-xs font-extrabold">${qty}</span>
+              <button onclick="updateItemQty('${key}', 1)" class="px-3 py-1.5 font-extrabold text-sm hover:bg-spiceDark">+</button>
+            </div>
+          `;
+        } else {
+          controlsHtml = `
+            <button onclick="addItemToCart('${key}', '${escapeAttr(item.name)}', 'Regular', ${item.price})"
+              class="px-3.5 py-1.5 rounded-xl bg-ivory hover:bg-spice hover:text-ivory border border-roast/15 text-xs sm:text-sm font-extrabold text-roast transition-colors whitespace-nowrap">
+              ₹${item.price} <span class="text-spice group-hover:text-ivory">+</span>
+            </button>
+          `;
+        }
       }
 
-      container.innerHTML = `<div class="page-animate">${html}</div>`;
-      renderCategoryNav();
-      renderPageDots();
-      updateFooterButtons();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function renderCoverPage(page) {
-      const quickJumps = [
-        { label: 'Chai & Nashta', idx: 1, sub: 'From ₹15' },
-        { label: 'Chhattisgarhi Specials', idx: 2, sub: 'Chila & Farra' },
-        { label: 'Dal & Local Kadhi', idx: 3, sub: 'Desi Ghee Tadka' },
-        { label: 'Desi Sabziyan', idx: 4, sub: 'Sev Tamatar & more' },
-        { label: 'Paneer Specials', idx: 6, sub: 'Handi & Angara' },
-        { label: 'Thali & Family Combos', idx: 11, sub: 'From ₹90' },
-      ];
-
       return `
-        <section class="bg-white rounded-3xl border border-espresso/10 shadow-sm overflow-hidden">
-          <div class="bg-gradient-to-br from-espresso via-[#3B261B] to-terracottaDark text-parchment px-6 py-10 sm:py-12 text-center relative overflow-hidden">
-            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 border border-white/15 text-xs font-medium tracking-wide mb-4">
-              <span class="w-2 h-2 rounded-full bg-green-400"></span>
-              100% Pure Vegetarian
-            </div>
-            <h2 class="font-serif font-bold text-3xl sm:text-5xl tracking-tight text-parchment">
-              ${page.title}
-            </h2>
-            <p class="mt-2 text-sm sm:text-base text-parchment/85 font-medium">
-              ${page.subtitle}
-            </p>
-            <p class="mt-1 text-xs uppercase tracking-widest text-marigold font-semibold">
-              ${page.location}
-            </p>
-            <p class="mt-5 max-w-md mx-auto text-xs sm:text-sm text-parchment/75 leading-relaxed">
-              ${page.tagline}
-            </p>
-
-            <div class="mt-7 flex flex-wrap items-center justify-center gap-3">
-              <button onclick="goToPage(1)"
-                class="px-6 py-3 rounded-xl bg-marigold hover:bg-amber-500 text-espresso font-semibold text-sm shadow-md transition-all">
-                Start Exploring Menu &rarr;
-              </button>
-              <button onclick="openQrModal()"
-                class="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-parchment font-medium text-sm border border-white/20 transition-all">
-                Show Table QR Code
-              </button>
-            </div>
-          </div>
-
-          <div class="p-6 sm:p-8">
-            <div class="flex items-center justify-between mb-4">
-              <h3 class="font-serif font-semibold text-lg text-espresso">Browse by Section</h3>
-              <span class="text-xs text-taupe">12 Clean Menu Pages</span>
-            </div>
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-              ${quickJumps.map(q => `
-                <button onclick="goToPage(${q.idx})"
-                  class="text-left p-3.5 rounded-2xl bg-parchment hover:bg-cream border border-espresso/10 transition-all group">
-                  <p class="font-semibold text-sm text-espresso group-hover:text-terracotta transition-colors">${q.label}</p>
-                  <p class="text-[11px] text-taupe mt-0.5">${q.sub}</p>
-                </button>
-              `).join('')}
-            </div>
-
-            <div class="mt-6 pt-5 border-t border-espresso/10 flex flex-wrap items-center justify-between gap-2 text-xs text-taupe">
-              <span>&#10022; Freshly cooked on order</span>
-              <span>&#10022; Tap any price to order directly to Chef</span>
-            </div>
-          </div>
-        </section>
-      `;
-    }
-
-    function renderSinglePricePage(page) {
-      return `
-        <section class="bg-white rounded-3xl border border-espresso/10 shadow-sm p-6 sm:p-8">
-          ${renderPageHeader(page)}
-
-          <div class="mt-6 divide-y divide-espresso/10">
-            ${page.items.map(item => `
-              <div class="py-4 first:pt-1 last:pb-1 flex items-start justify-between gap-4">
-                <div class="flex items-start gap-2.5">
-                  <span class="veg-icon mt-1" title="Pure Vegetarian"></span>
-                  <div>
-                    <div class="flex flex-wrap items-center gap-2">
-                      <h3 class="font-semibold text-sm sm:text-base text-espresso">${item.name}</h3>
-                      ${item.badge ? renderBadge(item.badge) : ''}
-                    </div>
-                    ${item.desc ? `<p class="text-xs text-taupe mt-1 leading-relaxed">${item.desc}</p>` : ''}
-                  </div>
-                </div>
-
-                <div class="flex-shrink-0 flex flex-col items-end gap-1.5">
-                  ${item.options ? `
-                    <div class="flex flex-wrap justify-end gap-1.5">
-                      ${item.options.map(opt => `
-                        <button onclick="addToOrder('${escapeQuotes(item.name)}', '${opt.label}', ${opt.price})"
-                          class="px-2.5 py-1.5 rounded-xl bg-parchment hover:bg-terracotta hover:text-parchment border border-espresso/10 text-xs font-semibold text-espresso transition-colors"
-                          title="Add ${opt.label} to plate">
-                          <span class="text-[10px] font-normal opacity-75 mr-0.5">${opt.label}</span> ₹${opt.price}
-                        </button>
-                      `).join('')}
-                    </div>
-                  ` : `
-                    <button onclick="addToOrder('${escapeQuotes(item.name)}', 'Regular', ${item.price})"
-                      class="px-3 py-1.5 rounded-xl bg-parchment hover:bg-terracotta hover:text-parchment border border-espresso/10 text-sm font-bold text-espresso transition-colors"
-                      title="Add to plate">
-                      ${item.displayPrice} <span class="text-xs font-normal opacity-60 ml-0.5">+</span>
-                    </button>
-                  `}
-                </div>
+        <div class="p-4 flex items-start justify-between gap-3">
+          <div class="flex items-start gap-2.5 min-w-0">
+            <span class="veg-mark mt-1" title="Pure Vegetarian"></span>
+            <div class="min-w-0">
+              <div class="flex flex-wrap items-center gap-1.5">
+                <h3 class="font-bold text-sm sm:text-base text-roast leading-snug">${item.name}</h3>
+                ${badgeHtml}
               </div>
-            `).join('')}
-          </div>
-        </section>
-      `;
-    }
-
-    function renderHalfFullPage(page) {
-      return `
-        <section class="bg-white rounded-3xl border border-espresso/10 shadow-sm p-6 sm:p-8">
-          ${renderPageHeader(page)}
-
-          <div class="mt-6 pb-2.5 border-b border-espresso/15 flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-taupe">
-            <span>Dish</span>
-            <div class="flex items-center gap-2 sm:gap-3">
-              <span class="w-16 sm:w-20 text-center">Half</span>
-              <span class="w-16 sm:w-20 text-center">Full</span>
+              ${item.desc ? `<p class="text-xs text-umber mt-1 leading-relaxed">${item.desc}</p>` : ""}
             </div>
           </div>
-
-          <div class="divide-y divide-espresso/10">
-            ${page.items.map(item => `
-              <div class="py-4 last:pb-1 flex items-center justify-between gap-3">
-                <div class="flex items-start gap-2.5 pr-2">
-                  <span class="veg-icon mt-1" title="Pure Vegetarian"></span>
-                  <div>
-                    <div class="flex flex-wrap items-center gap-1.5">
-                      <h3 class="font-semibold text-sm sm:text-base text-espresso">${item.name}</h3>
-                      ${item.badge ? renderBadge(item.badge) : ''}
-                    </div>
-                    ${item.desc ? `<p class="text-xs text-taupe mt-0.5 leading-relaxed">${item.desc}</p>` : ''}
-                  </div>
-                </div>
-
-                <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-                  ${item.half !== null ? `
-                    <button onclick="addToOrder('${escapeQuotes(item.name)}', 'Half', ${item.half})"
-                      class="w-16 sm:w-20 py-1.5 rounded-xl bg-parchment hover:bg-terracotta hover:text-parchment border border-espresso/10 text-xs sm:text-sm font-semibold text-espresso text-center transition-colors"
-                      title="Add Half portion">
-                      ₹${item.half}
-                    </button>
-                  ` : `
-                    <span class="w-16 sm:w-20 text-center text-sm text-taupe/50">—</span>
-                  `}
-
-                  <button onclick="addToOrder('${escapeQuotes(item.name)}', 'Full', ${item.full})"
-                    class="w-16 sm:w-20 py-1.5 rounded-xl bg-cream hover:bg-terracotta hover:text-parchment border border-espresso/10 text-xs sm:text-sm font-bold text-espresso text-center transition-colors"
-                    title="Add Full portion">
-                    ₹${item.full}
-                  </button>
-                </div>
-              </div>
-            `).join('')}
+          <div class="flex-shrink-0">
+            ${controlsHtml}
           </div>
-        </section>
-      `;
-    }
-
-    function renderComboPage(page) {
-      return `
-        <section class="bg-white rounded-3xl border border-espresso/10 shadow-sm p-6 sm:p-8">
-          ${renderPageHeader(page)}
-
-          <div class="mt-6 grid grid-cols-1 gap-4">
-            ${page.items.map(item => `
-              <div class="p-5 rounded-2xl bg-parchment/80 border border-espresso/10 hover:border-terracotta/40 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div class="space-y-1.5">
-                  <div class="flex flex-wrap items-center gap-2">
-                    <span class="veg-icon"></span>
-                    <h3 class="font-serif font-bold text-lg text-espresso">${item.name}</h3>
-                    ${item.badge ? renderBadge(item.badge) : ''}
-                  </div>
-                  <p class="text-xs sm:text-sm text-taupe leading-relaxed pl-6">
-                    ${item.desc}
-                  </p>
-                </div>
-
-                <div class="flex sm:flex-col items-center sm:items-end justify-between gap-2 pl-6 sm:pl-0 flex-shrink-0">
-                  <span class="font-serif font-bold text-2xl text-terracotta">₹${item.price}</span>
-                  <button onclick="addToOrder('${escapeQuotes(item.name)}', 'Combo', ${item.price})"
-                    class="px-4 py-2 rounded-xl bg-espresso hover:bg-terracotta text-parchment text-xs font-semibold transition-colors">
-                    + Add to Plate
-                  </button>
-                </div>
-              </div>
-            `).join('')}
-          </div>
-        </section>
-      `;
-    }
-
-    function renderPageHeader(page) {
-      return `
-        <div class="border-b border-espresso/10 pb-4">
-          <div class="flex items-center justify-between">
-            <span class="text-[11px] font-bold uppercase tracking-widest text-terracotta">
-              Section ${page.sectionNumber}
-            </span>
-            <span class="text-[11px] text-taupe">Tap price to add to plate</span>
-          </div>
-          <h2 class="font-serif font-bold text-2xl sm:text-3xl text-espresso mt-1">
-            ${page.category}
-          </h2>
-          <p class="text-xs sm:text-sm text-taupe mt-1">${page.subtitle}</p>
         </div>
       `;
     }
 
-    function renderBadge(text) {
-      return `<span class="px-2 py-0.5 rounded-md bg-marigold/20 text-[#8A5A00] text-[10px] font-semibold uppercase tracking-wide">${text}</span>`;
+    function escapeAttr(str) {
+      return String(str).replace(/'/g, "\\'").replace(/"/g, "&quot;");
     }
 
-    function goToPage(index) {
-      renderPage(index);
-    }
-
-    function nextPage() {
-      if (currentPageIndex < MENU_PAGES.length - 1) {
-        renderPage(currentPageIndex + 1);
+    // ==================== CART & PLATE MANAGEMENT ====================
+    function addItemToCart(key, name, variant, price) {
+      if (!cart[key]) {
+        cart[key] = { key, name, variant, price, qty: 0 };
       }
+      cart[key].qty += 1;
+      updateCartUI();
+      renderMenuFeed();
+      showToast(`Added ${name}${variant !== "Regular" ? " (" + variant + ")" : ""}`);
     }
 
-    function prevPage() {
-      if (currentPageIndex > 0) {
-        renderPage(currentPageIndex - 1);
+    function updateItemQty(key, delta) {
+      if (!cart[key]) return;
+      cart[key].qty += delta;
+      if (cart[key].qty <= 0) {
+        delete cart[key];
       }
+      updateCartUI();
+      renderMenuFeed();
+      renderDrawerItems();
     }
 
-    function renderPageDots() {
-      const dots = document.getElementById('page-dots');
-      dots.innerHTML = MENU_PAGES.map((_, idx) => `
-        <button onclick="goToPage(${idx})" aria-label="Go to page ${idx + 1}"
-          class="h-2 rounded-full transition-all ${
-            idx === currentPageIndex ? 'w-6 bg-terracotta' : 'w-2 bg-espresso/20 hover:bg-espresso/40'
-          }">
-        </button>
-      `).join('');
+    function clearCart() {
+      cart = {};
+      updateCartUI();
+      renderMenuFeed();
+      renderDrawerItems();
+      showToast("Plate cleared");
     }
 
-    function updateFooterButtons() {
-      const prevBtn = document.getElementById('prev-btn');
-      const nextBtn = document.getElementById('next-btn');
-      const counter = document.getElementById('page-counter-text');
+    function updateCartUI() {
+      const items = Object.values(cart);
+      const count = items.reduce((sum, i) => sum + i.qty, 0);
+      const total = items.reduce((sum, i) => sum + i.price * i.qty, 0);
 
-      prevBtn.disabled = currentPageIndex === 0;
-      nextBtn.disabled = currentPageIndex === MENU_PAGES.length - 1;
-      counter.textContent = `Page ${currentPageIndex + 1} of ${MENU_PAGES.length}`;
-    }
-
-    function setupSwipeGestures() {
-      const area = document.getElementById('swipe-area');
-      let touchStartX = 0;
-      let touchStartY = 0;
-
-      area.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-        touchStartY = e.changedTouches[0].screenY;
-      }, { passive: true });
-
-      area.addEventListener('touchend', (e) => {
-        const diffX = e.changedTouches[0].screenX - touchStartX;
-        const diffY = e.changedTouches[0].screenY - touchStartY;
-
-        if (Math.abs(diffX) > 60 && Math.abs(diffX) > Math.abs(diffY) * 1.4) {
-          if (diffX < 0) nextPage();
-          else prevPage();
-        }
-      }, { passive: true });
-    }
-
-    function setupKeyboardNavigation() {
-      document.addEventListener('keydown', (e) => {
-        if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
-        if (e.key === 'ArrowRight') nextPage();
-        if (e.key === 'ArrowLeft') prevPage();
-        if (e.key === 'Escape') {
-          closeQrModal();
-          closeSearchModal();
-          closeOrderModal();
-        }
-      });
-    }
-
-    function addToOrder(name, variant, price) {
-      const key = `${name}__${variant}`;
-      if (!orderCart[key]) {
-        orderCart[key] = { name, variant, price, qty: 0 };
-      }
-      orderCart[key].qty += 1;
-      updateOrderBar();
-      showToast(`Added ${name} (${variant}) — ₹${price}`);
-    }
-
-    function changeOrderQty(key, delta) {
-      if (!orderCart[key]) return;
-      orderCart[key].qty += delta;
-      if (orderCart[key].qty <= 0) {
-        delete orderCart[key];
-      }
-      updateOrderBar();
-      renderOrderModalItems();
-    }
-
-    function clearOrder() {
-      orderCart = {};
-      updateOrderBar();
-      renderOrderModalItems();
-      closeOrderModal();
-      showToast('Table plate cleared');
-    }
-
-    function updateOrderBar() {
-      const entries = Object.values(orderCart);
-      const totalQty = entries.reduce((sum, item) => sum + item.qty, 0);
-      const totalPrice = entries.reduce((sum, item) => sum + item.price * item.qty, 0);
-
-      const bar = document.getElementById('order-bar');
-      if (totalQty > 0) {
-        bar.classList.remove('hidden');
-        document.getElementById('order-count-badge').textContent = totalQty;
-        document.getElementById('order-total-text').textContent = `₹${totalPrice}`;
-        document.body.style.paddingBottom = '84px';
+      const bar = document.getElementById("floating-cart-bar");
+      if (count > 0) {
+        bar.classList.remove("hidden");
+        document.getElementById("cart-item-count").textContent = count;
+        document.getElementById("cart-bar-total").textContent = `₹${total}`;
       } else {
-        bar.classList.add('hidden');
-        document.body.style.paddingBottom = '0px';
+        bar.classList.add("hidden");
       }
+      document.getElementById("drawer-total-amount").textContent = `₹${total}`;
     }
 
-    function openOrderModal() {
-      renderOrderModalItems();
-      const modal = document.getElementById('order-modal');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-    }
-
-    function closeOrderModal() {
-      const modal = document.getElementById('order-modal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    }
-
-    function renderOrderModalItems() {
-      const list = document.getElementById('order-items-list');
-      const entries = Object.entries(orderCart);
-      let total = 0;
-
-      if (entries.length === 0) {
-        list.innerHTML = `<p class="text-sm text-center text-taupe py-8">Your plate is empty.</p>`;
-      } else {
-        list.innerHTML = entries.map(([key, item]) => {
-          const subtotal = item.price * item.qty;
-          total += subtotal;
-          return `
-            <div class="flex items-center justify-between gap-3 p-3 rounded-2xl bg-white border border-espresso/10">
-              <div>
-                <p class="text-sm font-semibold text-espresso">${item.name}</p>
-                <p class="text-xs text-taupe">${item.variant} &bull; ₹${item.price}</p>
-              </div>
-              <div class="flex items-center gap-2">
-                <button onclick="changeOrderQty('${escapeQuotes(key)}', -1)"
-                  class="w-7 h-7 rounded-lg bg-cream hover:bg-espresso/10 text-espresso font-bold text-sm">−</button>
-                <span class="w-5 text-center text-sm font-semibold">${item.qty}</span>
-                <button onclick="changeOrderQty('${escapeQuotes(key)}', 1)"
-                  class="w-7 h-7 rounded-lg bg-terracotta text-parchment font-bold text-sm">+</button>
-              </div>
-            </div>
-          `;
-        }).join('');
-      }
-
-      document.getElementById('order-modal-total').textContent = `₹${total}`;
-    }
-
-    function initQrUrl() {
-      const input = document.getElementById('qr-url-input');
-      const defaultUrl = window.location.protocol.startsWith('http')
-        ? window.location.href
-        : 'https:/' + '/np603.github.io/Dhaba-menu/';
-      input.value = defaultUrl;
-    }
-
-    function generateQrCode(urlText) {
-      const container = document.getElementById('qrcode-canvas');
-      container.innerHTML = '';
-      try {
-        qrCodeInstance = new QRCode(container, {
-          text: urlText || ('https:/' + '/np603.github.io/Dhaba-menu/'),
-          width: 180,
-          height: 180,
-          colorDark: '#2C1E16',
-          colorLight: '#FFFFFF',
-          correctLevel: QRCode.CorrectLevel.H
-        });
-      } catch (err) {
-        container.innerHTML = '<p class="text-xs text-terracotta">Unable to generate QR code.</p>';
-      }
-    }
-
-    function openQrModal() {
-      const modal = document.getElementById('qr-modal');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-      const urlVal = document.getElementById('qr-url-input').value.trim();
-      generateQrCode(urlVal);
-    }
-
-    function closeQrModal() {
-      const modal = document.getElementById('qr-modal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    }
-
-    function updateQrFromInput() {
-      const urlVal = document.getElementById('qr-url-input').value.trim();
-      if (!urlVal) {
-        showToast('Please enter a valid menu link');
-        return;
-      }
-      generateQrCode(urlVal);
-      showToast('QR Code updated!');
-    }
-
-    function copyMenuLink() {
-      const input = document.getElementById('qr-url-input');
-      input.select();
-      input.setSelectionRange(0, 99999);
-      try {
-        document.execCommand('copy');
-        showToast('Menu link copied to clipboard!');
-      } catch (e) {
-        showToast('Copy failed. Please copy manually.');
-      }
-    }
-
-    function openSearchModal() {
-      const modal = document.getElementById('search-modal');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-      const input = document.getElementById('search-input');
-      input.value = '';
-      handleSearch('');
-      setTimeout(() => input.focus(), 100);
-    }
-
-    function closeSearchModal() {
-      const modal = document.getElementById('search-modal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    }
-
-    function handleSearch(query) {
-      const resultsBox = document.getElementById('search-results');
-      const q = query.trim().toLowerCase();
-
-      if (!q) {
-        resultsBox.innerHTML = `<p class="text-xs text-center text-taupe py-6">Type a dish name or ingredient to search across all ${MENU_PAGES.length} pages.</p>`;
-        return;
-      }
-
-      const matches = [];
-      MENU_PAGES.forEach((page, pageIdx) => {
-        if (!page.items) return;
-        page.items.forEach(item => {
-          const text = `${item.name} ${item.desc || ''} ${page.category}`.toLowerCase();
-          if (text.includes(q)) {
-            matches.push({ pageIdx, pageTitle: page.shortTitle, item, priceType: page.priceType });
-          }
-        });
-      });
-
-      if (matches.length === 0) {
-        resultsBox.innerHTML = `<p class="text-sm text-center text-taupe py-6">No dishes found matching "${query}".</p>`;
-        return;
-      }
-
-      resultsBox.innerHTML = matches.map(m => {
-        let priceLabel = '';
-        if (m.priceType === 'half-full') {
-          priceLabel = m.item.half ? `Half ₹${m.item.half} | Full ₹${m.item.full}` : `Full ₹${m.item.full}`;
-        } else if (m.priceType === 'combo') {
-          priceLabel = `₹${m.item.price}`;
-        } else {
-          priceLabel = m.item.displayPrice;
-        }
-
+    // ==================== CUSTOMER ORDER DRAWER ====================
+    function renderTableQuickGrid() {
+      const grid = document.getElementById("table-quick-grid");
+      grid.innerHTML = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => {
+        const active = String(num) === String(selectedTable);
         return `
-          <button onclick="closeSearchModal(); goToPage(${m.pageIdx});"
-            class="w-full text-left p-3.5 rounded-2xl bg-white hover:bg-cream border border-espresso/10 flex items-center justify-between gap-3 transition-colors">
-            <div>
-              <p class="text-sm font-semibold text-espresso">${m.item.name}</p>
-              <p class="text-[11px] text-taupe mt-0.5">Page ${m.pageIdx + 1} &bull; ${m.pageTitle}</p>
-            </div>
-            <span class="text-xs font-bold text-terracotta whitespace-nowrap">${priceLabel}</span>
+          <button type="button" onclick="selectTableNumber('${num}')"
+            class="py-2 rounded-xl text-xs font-extrabold border transition-all ${
+              active
+                ? "bg-spice text-ivory border-spice shadow-sm"
+                : "bg-ivory hover:bg-sand text-roast border-roast/10"
+            }">
+            #${num}
           </button>
         `;
-      }).join('');
+      }).join("");
     }
 
-    function escapeQuotes(str) {
-      return String(str).replace(/'/g, "\\'").replace(/"/g, '&quot;');
+    function selectTableNumber(num) {
+      selectedTable = String(num);
+      document.getElementById("customer-table-input").value = selectedTable;
+      updateTableBadges();
     }
 
-    let toastTimer = null;
-    function showToast(message) {
-      const toast = document.getElementById('toast');
-      toast.textContent = message;
-      toast.classList.remove('opacity-0');
-      toast.classList.add('opacity-100');
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => {
-        toast.classList.remove('opacity-100');
-        toast.classList.add('opacity-0');
-      }, 2200);
+    function syncTableInput(val) {
+      selectedTable = String(val || "").trim();
+      updateTableBadges();
     }
 
-    // ================ DIRECT-TO-CHEF & LIVE ALARM EXTENSION ================
-    const DHABA_BASE_URL = "https:/" + "/np603.github.io/Dhaba-menu/";
-    const DHABA_CHANNEL = "nitin-patel-dhaba-kitchen-np603";
-    const DHABA_NTFY_URL = "https:/" + "/ntfy.sh/" + DHABA_CHANNEL;
-    const DHABA_CHEF_PIN = "1234";
-
-    let dhabaOrders = JSON.parse(localStorage.getItem("dhaba_live_orders") || "[]");
-    let dhabaAlarmInterval = null;
-    let dhabaAudioCtx = null;
-    let dhabaStreamStarted = false;
-
-    function dhabaGetTableFromUrl() {
-      return new URLSearchParams(window.location.search).get("table") || "";
-    }
-
-    function dhabaGetSelectedItems() {
-      if (typeof orderCart !== "undefined" && orderCart && typeof orderCart === "object") {
-        return Object.values(orderCart).map(item => ({
-          name: item.variant && item.variant !== "Regular" ? `${item.name} (${item.variant})` : item.name,
-          qty: Number(item.qty || 1),
-          price: Number(item.price || 0)
-        }));
-      }
-      return [];
-    }
-
-    function dhabaPlayBell() {
-      try {
-        if (!dhabaAudioCtx) dhabaAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        if (dhabaAudioCtx.state === "suspended") dhabaAudioCtx.resume();
-        const now = dhabaAudioCtx.currentTime;
-        [880, 1174, 1318].forEach((freq, idx) => {
-          const osc = dhabaAudioCtx.createOscillator();
-          const gain = dhabaAudioCtx.createGain();
-          osc.type = "triangle";
-          osc.frequency.setValueAtTime(freq, now + idx * 0.14);
-          gain.gain.setValueAtTime(0.45, now + idx * 0.14);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.14 + 0.45);
-          osc.connect(gain);
-          gain.connect(dhabaAudioCtx.destination);
-          osc.start(now + idx * 0.14);
-          osc.stop(now + idx * 0.14 + 0.46);
-        });
-        if (navigator.vibrate) navigator.vibrate([450, 150, 450]);
-      } catch (e) {}
-    }
-
-    function dhabaStartAlarm() {
-      dhabaPlayBell();
-      if (!dhabaAlarmInterval) {
-        dhabaAlarmInterval = setInterval(dhabaPlayBell, 3000);
+    function appendChefNote(text) {
+      const input = document.getElementById("customer-note-input");
+      const current = input.value.trim();
+      if (!current) {
+        input.value = text;
+      } else if (!current.toLowerCase().includes(text.toLowerCase())) {
+        input.value = `${current}, ${text}`;
       }
     }
 
-    function dhabaCheckStopAlarm() {
-      const hasUnread = dhabaOrders.some(o => o.status === "new");
-      if (!hasUnread && dhabaAlarmInterval) {
-        clearInterval(dhabaAlarmInterval);
-        dhabaAlarmInterval = null;
-      }
+    function openOrderDrawer() {
+      renderTableQuickGrid();
+      renderDrawerItems();
+      const drawer = document.getElementById("order-drawer");
+      drawer.classList.remove("hidden");
+      drawer.classList.add("flex");
     }
 
-    function dhabaRenderChefOrders() {
-      const box = document.getElementById("dhabaChefOrdersBox");
-      if (!box) return;
-      if (dhabaOrders.length === 0) {
-        box.innerHTML = `<p style="text-align:center;color:#6E5A4F;font-size:13px;padding:24px 0;">Abhi koi naya order nahi hai...</p>`;
+    function closeOrderDrawer() {
+      const drawer = document.getElementById("order-drawer");
+      drawer.classList.add("hidden");
+      drawer.classList.remove("flex");
+    }
+
+    function renderDrawerItems() {
+      const box = document.getElementById("drawer-items-list");
+      const items = Object.values(cart);
+
+      if (items.length === 0) {
+        box.innerHTML = `<div class="bg-white rounded-2xl p-6 text-center text-xs text-umber border border-roast/10">Your plate is empty. Tap + on any dish in the menu to add!</div>`;
         return;
       }
-      box.innerHTML = dhabaOrders.map(o => `
-        <div style="border:2px solid ${o.status === "new" ? "#dc2626" : "#2E7D32"};background:${o.status === "new" ? "#fef2f2" : "#f0fdf4"};border-radius:16px;padding:14px;margin-bottom:10px;">
-          <div style="display:flex;justify-content:space-between;align-items:center;">
-            <strong style="font-size:17px;color:#2C1E16;">TABLE #${o.table}</strong>
-            <span style="font-size:12px;font-weight:700;color:#6E5A4F;">${o.time} • ₹${o.total}</span>
+
+      box.innerHTML = items.map(item => `
+        <div class="bg-white p-3.5 rounded-2xl border border-roast/10 flex items-center justify-between gap-3">
+          <div class="min-w-0">
+            <p class="font-bold text-sm text-roast truncate">${item.name}</p>
+            <p class="text-xs text-umber">${item.variant !== "Regular" ? item.variant + " • " : ""}₹${item.price} each</p>
           </div>
-          <div style="margin:8px 0;font-size:14px;line-height:1.5;color:#2C1E16;">
-            ${o.items.map(i => `<div>• <strong>${i.name}</strong> × ${i.qty}</div>`).join("")}
-          </div>
-          ${o.note ? `<div style="font-size:12px;background:#fef3c7;color:#78350f;padding:6px 10px;border-radius:8px;margin-bottom:8px;"><strong>Chef Note:</strong> ${o.note}</div>` : ""}
-          <div style="display:flex;gap:8px;margin-top:6px;">
-            ${o.status === "new"
-              ? `<button onclick="dhabaSetOrderStatus(${o.id}, 'cooking')" style="background:#dc2626;color:#fff;border:none;padding:8px 14px;border-radius:999px;font-size:12px;font-weight:700;cursor:pointer;">🔕 Stop Alarm & Cook</button>`
-              : `<button onclick="dhabaSetOrderStatus(${o.id}, 'done')" style="background:#2E7D32;color:#fff;border:none;padding:8px 14px;border-radius:999px;font-size:12px;font-weight:700;cursor:pointer;">✅ Ready (Server ko dein)</button>`
-            }
+          <div class="flex items-center gap-2 flex-shrink-0">
+            <button onclick="updateItemQty('${item.key}', -1)" class="w-7 h-7 rounded-lg bg-sand hover:bg-roast/10 font-extrabold text-roast">−</button>
+            <span class="w-5 text-center text-sm font-extrabold">${item.qty}</span>
+            <button onclick="updateItemQty('${item.key}', 1)" class="w-7 h-7 rounded-lg bg-spice text-ivory font-extrabold">+</button>
           </div>
         </div>
       `).join("");
     }
 
-    window.dhabaSetOrderStatus = function(id, status) {
-      if (status === "done") {
-        dhabaOrders = dhabaOrders.filter(o => o.id !== id);
-      } else {
-        const found = dhabaOrders.find(o => o.id === id);
-        if (found) found.status = status;
-      }
-      localStorage.setItem("dhaba_live_orders", JSON.stringify(dhabaOrders));
-      dhabaRenderChefOrders();
-      dhabaCheckStopAlarm();
-    };
-
-    window.dhabaStartListening = function() {
-      dhabaPlayBell();
-      const btn = document.getElementById("dhabaArmBtn");
-      const statusText = document.getElementById("dhabaConnText");
-      if (btn) {
-        btn.textContent = "🟢 Live Alarm Active — Order ka Intezaar...";
-        btn.style.background = "#14532d";
-      }
-      if (statusText) statusText.textContent = "Connected • Phone screen khuli rakhein, order aate hi bell bajegi";
-
-      if (dhabaStreamStarted) return;
-      dhabaStreamStarted = true;
-
-      const sse = new EventSource(DHABA_NTFY_URL + "/sse");
-      sse.onmessage = function(ev) {
-        try {
-          const data = JSON.parse(ev.data);
-          if (data.event === "message" && data.message) {
-            const incoming = JSON.parse(data.message);
-            if (!dhabaOrders.some(o => o.id === incoming.id)) {
-              dhabaOrders.unshift(incoming);
-              localStorage.setItem("dhaba_live_orders", JSON.stringify(dhabaOrders));
-              dhabaRenderChefOrders();
-              dhabaStartAlarm();
-            }
-          }
-        } catch (err) {}
-      };
-    };
-
-    window.dhabaOpenChefModal = function() {
-      const entered = prompt("Chef PIN daalein (Default: 1234):");
-      if (entered !== DHABA_CHEF_PIN) return;
-      document.getElementById("dhabaChefOverlay").style.display = "flex";
-      dhabaRenderChefOrders();
-    };
-
-    window.dhabaCloseChefModal = function() {
-      document.getElementById("dhabaChefOverlay").style.display = "none";
-    };
-
-    window.dhabaSendOrder = async function() {
-      const items = dhabaGetSelectedItems();
-      if (!items || items.length === 0) {
-        alert("Pehle menu mein se dish ke price par tap karke items add karein.");
+    async function submitOrderToKitchen() {
+      const items = Object.values(cart);
+      if (items.length === 0) {
+        showToast("Please add at least one dish first!");
         return;
       }
-      const tableInput = document.getElementById("dhabaOrderTable");
-      const noteInput = document.getElementById("dhabaOrderNote");
-      const sendBtn = document.getElementById("dhabaDirectOrderBtn");
-
-      const tableNo = tableInput ? tableInput.value.trim() : "";
-      if (!tableNo) {
-        alert("Apna Table Number likhein taaki server aapki seat par khana la sake.");
-        if (tableInput) tableInput.focus();
+      if (!selectedTable) {
+        showToast("Please select your Table Number first!");
+        document.getElementById("customer-table-input").focus();
         return;
       }
 
-      if (sendBtn) {
-        sendBtn.disabled = true;
-        sendBtn.textContent = "Chef ko bhej rahe hain...";
-      }
+      const btn = document.getElementById("submit-order-btn");
+      btn.disabled = true;
+      btn.innerHTML = `<span>⏳ Sending to Chef...</span>`;
 
-      const payload = {
+      const note = document.getElementById("customer-note-input").value.trim();
+      const total = items.reduce((s, i) => s + i.price * i.qty, 0);
+
+      const orderTicket = {
         id: Date.now(),
-        table: tableNo,
-        items: items,
-        total: items.reduce((s, i) => s + i.price * i.qty, 0),
-        note: noteInput ? noteInput.value.trim() : "",
+        table: selectedTable,
+        items: items.map(i => ({
+          name: i.variant !== "Regular" ? `${i.name} (${i.variant})` : i.name,
+          qty: i.qty,
+          price: i.price
+        })),
+        total,
+        note,
         time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
         status: "new"
       };
 
       try {
-        await fetch(DHABA_NTFY_URL, {
+        await fetch(NTFY_ENDPOINT, {
           method: "POST",
-          body: JSON.stringify(payload)
+          body: JSON.stringify(orderTicket)
         });
-        if (typeof orderCart !== "undefined") {
-          orderCart = {};
-          if (typeof updateOrderBar === "function") updateOrderBar();
-        }
-        if (noteInput) noteInput.value = "";
-        if (typeof closeOrderModal === "function") closeOrderModal();
-        if (typeof showToast === "function") {
-          showToast(`✅ Order Chef ko mil gaya! (Table #${tableNo})`);
-        } else {
-          alert(`✅ Order Chef ko mil gaya! (Table #${tableNo}) — Khana tayyar hote hi server aapki seat par layega.`);
-        }
+
+        // Reset cart & show confirmation ticket
+        cart = {};
+        document.getElementById("customer-note-input").value = "";
+        updateCartUI();
+        renderMenuFeed();
+        closeOrderDrawer();
+
+        document.getElementById("success-table-tag").textContent = `Table #${orderTicket.table}`;
+        document.getElementById("success-summary-box").innerHTML =
+          orderTicket.items.map(i => `<div class="flex justify-between"><span>${i.name} × ${i.qty}</span><strong>₹${i.price * i.qty}</strong></div>`).join("") +
+          `<div class="border-t border-roast/10 pt-1.5 mt-1.5 flex justify-between font-extrabold text-roast"><span>Total</span><span>₹${orderTicket.total}</span></div>`;
+
+        const successModal = document.getElementById("order-success-modal");
+        successModal.classList.remove("hidden");
+        successModal.classList.add("flex");
       } catch (err) {
-        alert("Internet check karein aur dobara try karein.");
+        showToast("Network error — please check internet and try again.");
       } finally {
-        if (sendBtn) {
-          sendBtn.disabled = false;
-          sendBtn.textContent = "🍳 Send Order to Chef";
+        btn.disabled = false;
+        btn.innerHTML = `<span>🍳 Send Order Directly to Chef</span>`;
+      }
+    }
+
+    function closeSuccessModal() {
+      const modal = document.getElementById("order-success-modal");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    }
+
+    // ==================== CHEF PIN PAD & DASHBOARD ====================
+    function openChefAuth() {
+      enteredPin = "";
+      updatePinDots();
+      document.getElementById("pin-error-text").textContent = "";
+      const modal = document.getElementById("chef-pin-modal");
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+    }
+
+    function closeChefPinModal() {
+      const modal = document.getElementById("chef-pin-modal");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    }
+
+    function pressPinKey(digit) {
+      if (enteredPin.length >= 4) return;
+      enteredPin += digit;
+      updatePinDots();
+
+      if (enteredPin.length === 4) {
+        if (enteredPin === CHEF_SECRET_PIN) {
+          closeChefPinModal();
+          openChefDashboard();
+        } else {
+          document.getElementById("pin-error-text").textContent = "Wrong PIN. Try 1234";
+          setTimeout(() => {
+            enteredPin = "";
+            updatePinDots();
+          }, 500);
         }
       }
-    };
+    }
 
-    window.dhabaUpdateQrForTable = function(val) {
-      const t = String(val || "").trim();
-      const targetUrl = t ? `${DHABA_BASE_URL}?table=${encodeURIComponent(t)}` : DHABA_BASE_URL;
-      const urlInput = document.getElementById("qr-url-input");
-      if (urlInput) urlInput.value = targetUrl;
-      const badge = document.getElementById("dhabaQrTableHeading");
-      if (badge) badge.textContent = t ? `TABLE #${t}` : "";
-      if (typeof generateQrCode === "function") {
-        generateQrCode(targetUrl);
+    function backspacePin() {
+      enteredPin = enteredPin.slice(0, -1);
+      updatePinDots();
+    }
+
+    function clearPin() {
+      enteredPin = "";
+      updatePinDots();
+    }
+
+    function updatePinDots() {
+      const dots = document.getElementById("pin-dots").children;
+      for (let i = 0; i < 4; i++) {
+        dots[i].className = i < enteredPin.length
+          ? "w-3.5 h-3.5 rounded-full bg-spice border-2 border-spice transition-all"
+          : "w-3.5 h-3.5 rounded-full border-2 border-roast/30 transition-all";
       }
-    };
+    }
 
-    (function initDhabaKitchenSystem() {
-      const tableNum = dhabaGetTableFromUrl();
+    function openChefDashboard() {
+      document.getElementById("chef-dashboard-modal").classList.remove("hidden");
+      renderKitchenTickets();
+      renderTableStandeeQR(document.getElementById("qr-table-number-input").value || 1);
+    }
 
-      // 1. Chef Live Kitchen Modal
-      const chefOverlay = document.createElement("div");
-      chefOverlay.id = "dhabaChefOverlay";
-      chefOverlay.style.cssText = "position:fixed;inset:0;background:rgba(44,30,22,0.65);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:16px;z-index:9999;";
-      chefOverlay.innerHTML = `
-        <div style="background:#FAF6F0;border-radius:24px;max-width:450px;width:100%;padding:20px;max-height:88vh;overflow-y:auto;box-shadow:0 20px 40px rgba(0,0,0,0.3);border:1px solid rgba(44,30,22,0.12);">
-          <div style="display:flex;justify-content:space-between;align-items:center;">
-            <div>
-              <h3 style="margin:0;font-size:18px;font-weight:800;color:#2C1E16;">👨‍🍳 Chef Live Kitchen</h3>
-              <p id="dhabaConnText" style="margin:2px 0 0;font-size:11px;color:#6E5A4F;">Order alarm chalu karne ke liye neeche dabayein</p>
-            </div>
-            <button onclick="dhabaCloseChefModal()" style="border:1px solid rgba(44,30,22,0.15);background:#F3ECE1;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:700;color:#2C1E16;cursor:pointer;">Close</button>
+    function closeChefDashboard() {
+      document.getElementById("chef-dashboard-modal").classList.add("hidden");
+    }
+
+    function switchChefTab(tab) {
+      const isOrders = tab === "orders";
+      document.getElementById("chef-orders-panel").classList.toggle("hidden", !isOrders);
+      document.getElementById("chef-qr-panel").classList.toggle("hidden", isOrders);
+
+      document.getElementById("tab-live-orders").className = isOrders
+        ? "flex-1 py-2.5 rounded-t-xl bg-ivory text-roast font-extrabold text-xs sm:text-sm border-t border-x border-roast/10"
+        : "flex-1 py-2.5 rounded-t-xl bg-transparent text-umber font-bold text-xs sm:text-sm";
+
+      document.getElementById("tab-table-qrs").className = !isOrders
+        ? "flex-1 py-2.5 rounded-t-xl bg-ivory text-roast font-extrabold text-xs sm:text-sm border-t border-x border-roast/10"
+        : "flex-1 py-2.5 rounded-t-xl bg-transparent text-umber font-bold text-xs sm:text-sm";
+    }
+
+    // ==================== KITCHEN LIVE ALARM & SSE STREAM ====================
+    function playKitchenChime() {
+      try {
+        if (!audioContext) {
+          audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioContext.state === "suspended") {
+          audioContext.resume();
+        }
+        const now = audioContext.currentTime;
+        const notes = [880, 1174.66, 1318.51, 1760];
+        notes.forEach((freq, i) => {
+          const osc = audioContext.createOscillator();
+          const gain = audioContext.createGain();
+          osc.type = "triangle";
+          osc.frequency.setValueAtTime(freq, now + i * 0.12);
+          gain.gain.setValueAtTime(0.45, now + i * 0.12);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.12 + 0.45);
+          osc.connect(gain);
+          gain.connect(audioContext.destination);
+          osc.start(now + i * 0.12);
+          osc.stop(now + i * 0.12 + 0.46);
+        });
+        if (navigator.vibrate) {
+          navigator.vibrate([400, 150, 400]);
+        }
+      } catch (e) {}
+    }
+
+    function startKitchenAlarmLoop() {
+      playKitchenChime();
+      if (!alarmLoopId) {
+        alarmLoopId = setInterval(playKitchenChime, 2800);
+      }
+    }
+
+    function evaluateAlarmState() {
+      const hasNewOrder = kitchenOrders.some(o => o.status === "new");
+      if (!hasNewOrder && alarmLoopId) {
+        clearInterval(alarmLoopId);
+        alarmLoopId = null;
+      }
+    }
+
+    function activateKitchenStream() {
+      playKitchenChime();
+      const btn = document.getElementById("activate-alarm-btn");
+      btn.innerHTML = `🟢 Live Alarm ON — Waiting for Orders...`;
+      btn.classList.remove("bg-leaf");
+      btn.classList.add("bg-green-900");
+      document.getElementById("kitchen-status-subtitle").textContent = "Live Connected • Keep screen awake for instant bell";
+      document.getElementById("chef-live-dot").classList.remove("hidden");
+
+      if (sseConnected) return;
+      sseConnected = true;
+
+      const stream = new EventSource(`${NTFY_ENDPOINT}/sse`);
+      stream.onmessage = (event) => {
+        try {
+          const packet = JSON.parse(event.data);
+          if (packet.event === "message" && packet.message) {
+            const incomingOrder = JSON.parse(packet.message);
+            if (!kitchenOrders.some(o => o.id === incomingOrder.id)) {
+              kitchenOrders.unshift(incomingOrder);
+              saveKitchenOrders();
+              renderKitchenTickets();
+              startKitchenAlarmLoop();
+            }
+          }
+        } catch (err) {}
+      };
+    }
+
+    function changeKitchenTicketStatus(id, nextStatus) {
+      if (nextStatus === "served") {
+        kitchenOrders = kitchenOrders.filter(o => o.id !== id);
+      } else {
+        const order = kitchenOrders.find(o => o.id === id);
+        if (order) order.status = nextStatus;
+      }
+      saveKitchenOrders();
+      renderKitchenTickets();
+      evaluateAlarmState();
+    }
+
+    function saveKitchenOrders() {
+      localStorage.setItem("npd_kds_orders_v2", JSON.stringify(kitchenOrders));
+    }
+
+    function renderKitchenTickets() {
+      document.getElementById("active-orders-count").textContent = kitchenOrders.length;
+      const container = document.getElementById("kitchen-tickets-list");
+
+      if (kitchenOrders.length === 0) {
+        container.innerHTML = `
+          <div class="bg-white rounded-3xl border border-roast/10 p-10 text-center">
+            <p class="text-3xl mb-2">👨‍🍳</p>
+            <p class="font-bold text-sm text-roast">No pending table orders right now</p>
+            <p class="text-xs text-umber mt-1">New orders scanned from tables will ring here immediately.</p>
           </div>
-          <button id="dhabaArmBtn" onclick="dhabaStartListening()" style="width:100%;margin-top:12px;padding:12px;border:none;border-radius:14px;background:#2E7D32;color:#fff;font-size:13px;font-weight:800;cursor:pointer;">
-            🔊 Start Live Alarm & Receive Orders
-          </button>
-          <div id="dhabaChefOrdersBox" style="margin-top:14px;"></div>
-        </div>
-      `;
-      document.body.appendChild(chefOverlay);
-
-      // 2. Floating Chef Button & Table Number Badge
-      const floatBar = document.createElement("div");
-      floatBar.style.cssText = "position:fixed;bottom:86px;right:16px;z-index:40;display:flex;flex-direction:column;align-items:flex-end;gap:6px;";
-      floatBar.innerHTML = `
-        ${tableNum ? `<div style="background:#B84A27;color:#FAF6F0;padding:5px 12px;border-radius:999px;font-size:12px;font-weight:800;box-shadow:0 4px 12px rgba(0,0,0,0.2);">🪑 Table #${tableNum}</div>` : ""}
-        <button onclick="dhabaOpenChefModal()" style="background:#2C1E16;color:#FAF6F0;border:1px solid #D99B26;padding:8px 14px;border-radius:999px;font-size:12px;font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,0.25);cursor:pointer;">
-          👨‍🍳 Chef
-        </button>
-      `;
-      document.body.appendChild(floatBar);
-
-      // 3. Add Table Number Input to QR Card
-      const qrCard = document.getElementById("printable-qr-card");
-      const qrCanvas = document.getElementById("qrcode-canvas");
-      if (qrCard && qrCanvas && !document.getElementById("dhabaQrTableHeading")) {
-        const heading = document.createElement("div");
-        heading.id = "dhabaQrTableHeading";
-        heading.style.cssText = "font-size:20px;font-weight:900;color:#B84A27;margin-top:8px;letter-spacing:0.5px;";
-        qrCanvas.parentElement.parentElement.insertBefore(heading, qrCanvas.parentElement);
-      }
-
-      const qrUrlInput = document.getElementById("qr-url-input");
-      if (qrUrlInput && qrUrlInput.parentElement && !document.getElementById("dhabaQrTableInput")) {
-        const tableBox = document.createElement("div");
-        tableBox.style.cssText = "margin-bottom:10px;";
-        tableBox.innerHTML = `
-          <label style="display:block;font-size:12px;font-weight:600;color:#6E5A4F;margin-bottom:4px;">Table Number (har table ka alag QR print karein):</label>
-          <input id="dhabaQrTableInput" type="number" placeholder="Table No. likhein (1, 2, 3...)" oninput="dhabaUpdateQrForTable(this.value)" style="width:100%;padding:8px 12px;border:1px solid rgba(44,30,22,0.15);border-radius:12px;font-size:13px;background:#fff;color:#2C1E16;" />
         `;
-        qrUrlInput.parentElement.parentElement.insertBefore(tableBox, qrUrlInput.parentElement);
+        return;
       }
 
-      // 4. Add Direct-to-Chef Order Form inside #order-modal
-      const orderModal = document.getElementById("order-modal");
-      const orderItemsList = document.getElementById("order-items-list");
-      if (orderModal && orderItemsList && !document.getElementById("dhabaDirectOrderPanel")) {
-        const panel = document.createElement("div");
-        panel.id = "dhabaDirectOrderPanel";
-        panel.style.cssText = "padding:12px 20px;background:#F3ECE1;border-top:1px solid rgba(44,30,22,0.1);";
-        panel.innerHTML = `
-          <p style="font-size:12px;font-weight:700;color:#2C1E16;margin-bottom:6px;">Seedha Kitchen (Chef) ko Order Bhejein:</p>
-          <input id="dhabaOrderTable" type="number" value="${tableNum}" placeholder="Aapka Table Number likhein (jaise 4) *" style="width:100%;padding:9px 12px;border:1px solid rgba(44,30,22,0.15);border-radius:12px;font-size:13px;background:#fff;margin-bottom:6px;" />
-          <input id="dhabaOrderNote" type="text" placeholder="Chef ke liye note (kam mirchi, bina pyaz...)" style="width:100%;padding:9px 12px;border:1px solid rgba(44,30,22,0.15);border-radius:12px;font-size:13px;background:#fff;margin-bottom:8px;" />
-          <button id="dhabaDirectOrderBtn" onclick="dhabaSendOrder()" style="width:100%;padding:11px;border:none;border-radius:12px;background:#2E7D32;color:#fff;font-size:14px;font-weight:700;cursor:pointer;">
-            🍳 Send Order to Chef
-          </button>
+      container.innerHTML = kitchenOrders.map(order => {
+        const isNew = order.status === "new";
+        return `
+          <div class="rounded-3xl p-4 border-2 transition-all ${
+            isNew
+              ? "bg-red-50 border-red-500 new-order-pulse"
+              : "bg-white border-leaf"
+          }">
+            <div class="flex items-center justify-between gap-2 pb-2.5 border-b border-roast/10">
+              <div class="flex items-center gap-2">
+                <span class="px-3 py-1 rounded-xl font-extrabold text-base ${
+                  isNew ? "bg-red-600 text-white" : "bg-leaf text-white"
+                }">
+                  TABLE #${order.table}
+                </span>
+                <span class="text-xs font-bold uppercase tracking-wider ${isNew ? "text-red-700" : "text-leaf"}">
+                  ${isNew ? "🔔 NEW ORDER" : "🔥 COOKING"}
+                </span>
+              </div>
+              <span class="text-xs font-bold text-umber">${order.time} &bull; ₹${order.total}</span>
+            </div>
+
+            <div class="py-3 space-y-1.5 text-sm text-roast">
+              ${order.items.map(i => `
+                <div class="flex justify-between items-center">
+                  <span class="font-bold">${i.name}</span>
+                  <span class="px-2 py-0.5 rounded-lg bg-sand font-extrabold text-xs">× ${i.qty}</span>
+                </div>
+              `).join("")}
+            </div>
+
+            ${order.note ? `
+              <div class="mb-3 px-3 py-2 rounded-xl bg-amber-100 border border-amber-300 text-xs font-bold text-amber-950">
+                📝 Chef Note: ${order.note}
+              </div>
+            ` : ""}
+
+            <div class="flex gap-2">
+              ${isNew
+                ? `<button onclick="changeKitchenTicketStatus(${order.id}, 'cooking')"
+                    class="w-full py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-extrabold text-sm shadow-sm">
+                    🔕 Stop Alarm &amp; Start Cooking
+                  </button>`
+                : `<button onclick="changeKitchenTicketStatus(${order.id}, 'served')"
+                    class="w-full py-3 rounded-xl bg-leaf hover:bg-green-800 text-white font-extrabold text-sm shadow-sm">
+                    ✅ Food Ready — Hand to Server
+                  </button>`
+              }
+            </div>
+          </div>
         `;
-        orderItemsList.parentElement.insertBefore(panel, orderItemsList.nextSibling);
-      }
-    })();
+      }).join("");
+    }
+
+    // ==================== PRINTABLE TABLE QR GENERATOR ====================
+    function renderTableStandeeQR(tableVal) {
+      const t = String(tableVal || "1").trim() || "1";
+      const tableUrl = `${MENU_BASE_URL}?table=${encodeURIComponent(t)}`;
+      document.getElementById("standee-table-label").textContent = `TABLE #${t}`;
+
+      const canvasBox = document.getElementById("standee-qr-canvas");
+      canvasBox.innerHTML = "";
+      new QRCode(canvasBox, {
+        text: tableUrl,
+        width: 180,
+        height: 180,
+        colorDark: "#231710",
+        colorLight: "#FFFFFF",
+        correctLevel: QRCode.CorrectLevel.H
+      });
+    }
+
+    // ==================== TOAST HELPER ====================
+    let toastTimeout = null;
+    function showToast(msg) {
+      const el = document.getElementById("toast-banner");
+      el.textContent = msg;
+      el.classList.remove("opacity-0");
+      el.classList.add("opacity-100");
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        el.classList.remove("opacity-100");
+        el.classList.add("opacity-0");
+      }, 2200);
+    }
   </script>
 </body>
 </html>
