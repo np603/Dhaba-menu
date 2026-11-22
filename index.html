@@ -1,0 +1,1194 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nitin Patel Dhaba | Digital Menu — Chandrapur, Chhattisgarh</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Playfair Display (Editorial Headings) & Inter (Clean Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+
+  <!-- QRCode.js CDN for generating real scannable QR codes -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'Georgia', 'serif'],
+          },
+          colors: {
+            parchment: '#FAF6F0',
+            cream: '#F3ECE1',
+            terracotta: '#B84A27',
+            terracottaDark: '#963A1C',
+            espresso: '#2C1E16',
+            taupe: '#6E5A4F',
+            marigold: '#D99B26',
+            vegGreen: '#2E7D32',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Smooth scrolling and subtle warm paper texture */
+    body {
+      background-color: #FAF6F0;
+      color: #2C1E16;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Hide scrollbar for horizontal category strip */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Page transition animation */
+    @keyframes pageFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .page-animate {
+      animation: pageFadeIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    /* Pure Veg Standard Indian Food Symbol */
+    .veg-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 15px;
+      height: 15px;
+      border: 1.5px solid #2E7D32;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+    .veg-icon::after {
+      content: '';
+      width: 7px;
+      height: 7px;
+      background-color: #2E7D32;
+      border-radius: 9999px;
+    }
+
+    /* Print styles for printable QR Table Standee */
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #printable-qr-card, #printable-qr-card * {
+        visibility: visible;
+      }
+      #printable-qr-card {
+        position: fixed;
+        inset: 0;
+        margin: auto;
+        width: 100%;
+        max-width: 420px;
+        height: fit-content;
+        box-shadow: none !important;
+        border: 2px solid #2C1E16 !important;
+      }
+    }
+  </style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col selection:bg-terracotta/20 selection:text-espresso">
+
+  <!-- ==================== TOP NAVIGATION BAR ==================== -->
+  <header class="sticky top-0 z-30 bg-parchment/95 backdrop-blur-md border-b border-espresso/10">
+    <div class="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between gap-2">
+      <!-- Brand Identity -->
+      <button onclick="goToPage(0)" class="flex items-center gap-2.5 text-left group focus:outline-none">
+        <div class="w-10 h-10 rounded-xl bg-terracotta text-parchment flex items-center justify-center shadow-sm group-hover:bg-terracottaDark transition-colors">
+          <!-- Warm Flame / Clay Pot Icon -->
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3c.5 2.5 3 4 3 7a3 3 0 11-6 0c0-1.5.7-2.8 1.5-3.8C10.5 7.5 11.5 5 12 3z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13h14l-1.2 5.2A3 3 0 0114.9 20.5H9.1a3 3 0 01-2.9-2.3L5 13z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 13h16" />
+          </svg>
+        </div>
+        <div>
+          <h1 class="font-serif font-bold text-base sm:text-lg leading-tight text-espresso tracking-tight">
+            Nitin Patel Dhaba
+          </h1>
+          <div class="flex items-center gap-1.5 text-[11px] sm:text-xs text-taupe">
+            <span class="inline-block w-2 h-2 rounded-full bg-vegGreen"></span>
+            <span>Pure Veg &bull; Chandrapur, CG</span>
+          </div>
+        </div>
+      </button>
+
+      <!-- Action Buttons: Search & QR Code -->
+      <div class="flex items-center gap-2">
+        <button onclick="openSearchModal()" aria-label="Search Menu"
+          class="p-2.5 rounded-xl bg-cream hover:bg-espresso/10 text-espresso transition-colors"
+          title="Search dishes">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </button>
+
+        <button onclick="openQrModal()"
+          class="flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-espresso text-parchment hover:bg-terracotta transition-colors text-xs sm:text-sm font-medium shadow-sm">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h7v7H3V3zm11 0h7v7h-7V3zM3 14h7v7H3v-7zm11 3h3v4h-3v-4zm4-3h3v3h-3v-3zm-4 0h3v2h-3v-2zm4 5h3v2h-3v-2z" />
+          </svg>
+          <span>Scan QR</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Horizontal Scrollable Section Pills -->
+    <nav id="category-nav" class="max-w-3xl mx-auto px-4 pb-2.5 flex items-center gap-2 overflow-x-auto no-scrollbar" aria-label="Menu Pages">
+      <!-- Populated dynamically by JS -->
+    </nav>
+  </header>
+
+  <!-- ==================== MAIN MENU BOOKLET CONTAINER ==================== -->
+  <main id="swipe-area" class="flex-1 w-full max-w-3xl mx-auto px-4 py-6 sm:py-8 flex flex-col justify-between">
+    <!-- Dynamic Page Content -->
+    <div id="menu-page-container" class="w-full">
+      <!-- Rendered dynamically by JS -->
+    </div>
+
+    <!-- ==================== PAGE NAVIGATION FOOTER ==================== -->
+    <div class="mt-8 pt-5 border-t border-espresso/10 flex flex-col gap-4">
+      <!-- Progress Dots -->
+      <div id="page-dots" class="flex items-center justify-center gap-1.5 flex-wrap">
+        <!-- Populated dynamically -->
+      </div>
+
+      <!-- Prev / Page Counter / Next Controls -->
+      <div class="flex items-center justify-between gap-3">
+        <button id="prev-btn" onclick="prevPage()"
+          class="flex items-center gap-2 px-4 py-3 rounded-xl border border-espresso/15 bg-white text-espresso font-medium text-sm shadow-sm hover:bg-cream disabled:opacity-35 disabled:cursor-not-allowed transition-all">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+          <span>Previous</span>
+        </button>
+
+        <div class="text-center">
+          <p id="page-counter-text" class="text-xs font-semibold uppercase tracking-widest text-taupe">
+            Page 1 of 13
+          </p>
+          <p class="text-[11px] text-taupe/70 hidden sm:block">Swipe or use arrow keys</p>
+        </div>
+
+        <button id="next-btn" onclick="nextPage()"
+          class="flex items-center gap-2 px-4 py-3 rounded-xl bg-terracotta text-parchment font-medium text-sm shadow-sm hover:bg-terracottaDark disabled:opacity-35 disabled:cursor-not-allowed transition-all">
+          <span>Next Page</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- ==================== FLOATING TABLE ORDER SHORTLIST BAR ==================== -->
+  <div id="order-bar" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-30 w-[calc(100%-2rem)] max-w-md hidden">
+    <button onclick="openOrderModal()"
+      class="w-full flex items-center justify-between px-5 py-3.5 rounded-2xl bg-espresso text-parchment shadow-xl border border-marigold/30 hover:bg-terracottaDark transition-colors">
+      <div class="flex items-center gap-3">
+        <span id="order-count-badge" class="w-7 h-7 rounded-full bg-marigold text-espresso font-bold text-xs flex items-center justify-center">0</span>
+        <div class="text-left">
+          <p class="text-xs text-parchment/75">My Table Shortlist</p>
+          <p class="text-sm font-semibold">View Selected Items</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <span id="order-total-text" class="font-bold text-base">₹0</span>
+        <svg class="w-4 h-4 text-marigold" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </div>
+    </button>
+  </div>
+
+  <!-- ==================== QR CODE & PRINTABLE TABLE CARD MODAL ==================== -->
+  <div id="qr-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-espresso/60 backdrop-blur-sm p-4 overflow-y-auto">
+    <div class="bg-parchment w-full max-w-md rounded-3xl shadow-2xl border border-espresso/10 overflow-hidden my-auto">
+      <!-- Modal Header -->
+      <div class="px-6 py-4 bg-cream border-b border-espresso/10 flex items-center justify-between">
+        <div>
+          <h2 class="font-serif font-bold text-lg text-espresso">Menu QR Code</h2>
+          <p class="text-xs text-taupe">Scan to open the full multi-page menu</p>
+        </div>
+        <button onclick="closeQrModal()" class="p-2 rounded-xl hover:bg-espresso/10 text-espresso transition-colors" aria-label="Close QR Modal">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Printable Table Standee Card -->
+      <div class="p-6">
+        <div id="printable-qr-card" class="bg-white rounded-2xl border-2 border-dashed border-terracotta/40 p-6 text-center shadow-sm">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-vegGreen/10 text-vegGreen text-[11px] font-semibold uppercase tracking-wider mb-2">
+            <span class="w-2 h-2 rounded-full bg-vegGreen"></span>
+            100% Pure Vegetarian
+          </div>
+          <h3 class="font-serif font-bold text-2xl text-espresso">Nitin Patel Dhaba</h3>
+          <p class="text-xs text-taupe mt-0.5">Highway &amp; Family Dhaba &bull; Chandrapur, Chhattisgarh</p>
+
+          <!-- QR Code Container -->
+          <div class="my-5 flex justify-center">
+            <div class="p-3 bg-white rounded-2xl border border-espresso/15 shadow-sm inline-block">
+              <div id="qrcode-canvas" class="w-[180px] h-[180px] flex items-center justify-center"></div>
+            </div>
+          </div>
+
+          <p class="text-sm font-semibold text-terracotta">Scan with Phone Camera for Digital Menu</p>
+          <p class="text-[11px] text-taupe mt-1">Chhattisgarhi Specials &bull; Tandoor &bull; Thalis &bull; Family Combos</p>
+        </div>
+
+        <!-- Custom URL Input for Owner -->
+        <div class="mt-5">
+          <label for="qr-url-input" class="block text-xs font-medium text-taupe mb-1.5">
+            Menu Link encoded in QR (editable if hosting on custom domain):
+          </label>
+          <div class="flex gap-2">
+            <input id="qr-url-input" type="text"
+              class="flex-1 px-3 py-2 text-xs rounded-xl border border-espresso/15 bg-white text-espresso focus:outline-none focus:border-terracotta"
+              placeholder="https://your-dhaba-menu.com" />
+            <button onclick="updateQrFromInput()"
+              class="px-3.5 py-2 rounded-xl bg-cream hover:bg-espresso/10 text-espresso text-xs font-semibold transition-colors">
+              Update
+            </button>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="mt-4 grid grid-cols-2 gap-2.5">
+          <button onclick="copyMenuLink()"
+            class="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl border border-espresso/15 bg-white hover:bg-cream text-espresso text-xs font-semibold transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+            <span>Copy Link</span>
+          </button>
+          <button onclick="window.print()"
+            class="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-terracotta hover:bg-terracottaDark text-parchment text-xs font-semibold shadow-sm transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2M6 14h12v8H6v-8z" />
+            </svg>
+            <span>Print Table Card</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SEARCH MODAL ==================== -->
+  <div id="search-modal" class="fixed inset-0 z-50 hidden items-start justify-center bg-espresso/60 backdrop-blur-sm p-4 pt-12 sm:pt-20">
+    <div class="bg-parchment w-full max-w-lg rounded-3xl shadow-2xl border border-espresso/10 overflow-hidden flex flex-col max-h-[80vh]">
+      <div class="p-4 border-b border-espresso/10 flex items-center gap-3 bg-white">
+        <svg class="w-5 h-5 text-taupe flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <input id="search-input" type="text" oninput="handleSearch(this.value)"
+          placeholder="Search Paneer, Farra, Thali, Chai, Roti..."
+          class="flex-1 bg-transparent text-sm sm:text-base text-espresso placeholder:text-taupe/60 focus:outline-none" />
+        <button onclick="closeSearchModal()" class="p-1.5 rounded-lg hover:bg-cream text-taupe">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div id="search-results" class="p-4 overflow-y-auto space-y-2.5">
+        <p class="text-xs text-center text-taupe py-6">Type a dish name or ingredient to search across all 13 pages.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TABLE SHORTLIST MODAL ==================== -->
+  <div id="order-modal" class="fixed inset-0 z-50 hidden items-end sm:items-center justify-center bg-espresso/60 backdrop-blur-sm p-0 sm:p-4">
+    <div class="bg-parchment w-full max-w-md rounded-t-3xl sm:rounded-3xl shadow-2xl border border-espresso/10 overflow-hidden flex flex-col max-h-[85vh]">
+      <div class="px-6 py-4 bg-cream border-b border-espresso/10 flex items-center justify-between">
+        <div>
+          <h2 class="font-serif font-bold text-lg text-espresso">Your Table Shortlist</h2>
+          <p class="text-xs text-taupe">Show this list to our server to place your order</p>
+        </div>
+        <button onclick="closeOrderModal()" class="p-2 rounded-xl hover:bg-espresso/10 text-espresso">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <div id="order-items-list" class="p-5 overflow-y-auto space-y-3 flex-1">
+        <!-- Populated dynamically -->
+      </div>
+
+      <div class="p-5 bg-white border-t border-espresso/10">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-sm font-medium text-taupe">Estimated Total</span>
+          <span id="order-modal-total" class="font-serif font-bold text-2xl text-espresso">₹0</span>
+        </div>
+        <div class="grid grid-cols-2 gap-2.5">
+          <button onclick="clearOrder()"
+            class="px-4 py-2.5 rounded-xl border border-espresso/15 text-espresso text-xs font-semibold hover:bg-cream transition-colors">
+            Clear List
+          </button>
+          <button onclick="closeOrderModal(); showToast('Ready! Show this list to your server.');"
+            class="px-4 py-2.5 rounded-xl bg-terracotta text-parchment text-xs font-semibold hover:bg-terracottaDark transition-colors">
+            Done
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TOAST NOTIFICATION ==================== -->
+  <div id="toast" class="fixed top-20 left-1/2 -translate-x-1/2 z-50 px-4 py-2.5 rounded-xl bg-espresso text-parchment text-xs font-medium shadow-lg opacity-0 pointer-events-none transition-opacity duration-300">
+    Notification
+  </div>
+
+  <!-- ==================== APPLICATION SCRIPT ==================== -->
+  <script>
+    /**
+     * Multi-Page Menu Dataset for Nitin Patel Dhaba (Chandrapur, Chhattisgarh).
+     * Intentionally curated with 4 to 8 items per page to ensure an airy,
+     * uncluttered, and aesthetic reading experience on mobile and desktop.
+     */
+    const MENU_PAGES = [
+      {
+        id: 'cover',
+        shortTitle: 'Welcome',
+        type: 'cover',
+        title: 'Nitin Patel Dhaba',
+        subtitle: 'Pure Vegetarian Highway & Family Dhaba',
+        location: 'Chandrapur, Chhattisgarh',
+        tagline: 'Authentic Chhattisgarhi specialties, smoky tandoor breads, and comforting dhaba classics served fresh for families and highway travelers.'
+      },
+      {
+        id: 'chai-nashta',
+        shortTitle: 'Chai & Nashta',
+        sectionNumber: '01',
+        category: 'Chai, Nashta & Morning Specials',
+        subtitle: 'Freshly brewed kullhad chai and crisp morning favorites',
+        priceType: 'single',
+        items: [
+          { name: 'Kullhad Masala Chai / Adrak Chai', price: 15, displayPrice: '₹15', badge: 'Bestseller' },
+          { name: 'Hot Coffee', price: 25, displayPrice: '₹25' },
+          { name: 'Poha / Upma', desc: 'Morning Special', price: 30, displayPrice: '₹30', badge: 'Morning' },
+          { name: 'Samosa / Kachori (2 Pcs)', price: 30, displayPrice: '₹30' },
+          { name: 'Roasted Papad / Masala Papad', price: 20, altPrice: 35, displayPrice: '₹20 / ₹35', options: [{ label: 'Roasted', price: 20 }, { label: 'Masala', price: 35 }] }
+        ]
+      },
+      {
+        id: 'cg-specials',
+        shortTitle: 'CG Specials',
+        sectionNumber: '01B',
+        category: 'Chhattisgarhi Specials & Pakodas',
+        subtitle: 'Local Chhattisgarh flavors and piping-hot highway snacks',
+        priceType: 'single',
+        items: [
+          { name: 'Chila (2 Pcs)', desc: 'Rice flour crepe served with tomato-coriander chutney', price: 45, displayPrice: '₹45', badge: 'Local Special' },
+          { name: 'Farra (1 Plate)', desc: 'Steamed rice dumplings tempered with mustard & curry leaves', price: 50, displayPrice: '₹50', badge: 'Local Special' },
+          { name: 'Onion Bhajiya / Aloo Pakoda', price: 60, displayPrice: '₹60' },
+          { name: 'Paneer Pakoda (8 Pcs)', price: 110, displayPrice: '₹110' },
+          { name: 'Chana Roast / Crispy Corn', price: 90, displayPrice: '₹90' }
+        ]
+      },
+      {
+        id: 'dal-kadhi',
+        shortTitle: 'Dal & Kadhi',
+        sectionNumber: '02',
+        category: 'Dal & Local Kadhi',
+        subtitle: 'Slow-simmered lentils and traditional Chhattisgarhi kadhi',
+        priceType: 'half-full',
+        items: [
+          { name: 'Plain Jeera Dal', half: 50, full: 80 },
+          { name: 'Dal Fry', half: 65, full: 100 },
+          { name: 'Dal Tadka', desc: 'Desi Ghee & Garlic tempering', half: 75, full: 120, badge: 'Popular' },
+          { name: 'Dal Makhani', half: 85, full: 140 },
+          { name: 'Dubki Kadhi / Pakoda Kadhi', desc: 'Regional comfort favorite', half: 70, full: 110, badge: 'Local Special' }
+        ]
+      },
+      {
+        id: 'sabzi-classics',
+        shortTitle: 'Desi Sabzi I',
+        sectionNumber: '03',
+        category: 'Desi Sabziyan — Dhaba Classics',
+        subtitle: 'Seasonal home-style vegetables cooked in aromatic spices',
+        priceType: 'half-full',
+        items: [
+          { name: 'Aloo Jeera / Aloo Matar', half: 65, full: 100 },
+          { name: 'Aloo Gobhi Adraki', half: 70, full: 110 },
+          { name: 'Sev Tamatar', desc: 'Dhaba Signature tangy tomato gravy topped with crisp sev', half: 75, full: 115, badge: 'Signature' },
+          { name: 'Bhindi Masala / Bhindi Do Pyaza', half: 75, full: 115 },
+          { name: 'Baingan Bharta', desc: 'Tandoor Roasted smoky mashed eggplant', half: 75, full: 120 }
+        ]
+      },
+      {
+        id: 'sabzi-royal',
+        shortTitle: 'Desi Sabzi II',
+        sectionNumber: '03B',
+        category: 'Desi Sabziyan — Rich & Festive',
+        subtitle: 'Hearty gravies crafted for family feasts',
+        priceType: 'half-full',
+        items: [
+          { name: 'Chana Masala / Chole', half: 75, full: 120 },
+          { name: 'Mix Veg Kadhai', half: 80, full: 130 },
+          { name: 'Malai Kofta', half: 100, full: 160 },
+          { name: 'Mushroom Masala / Matar Mushroom', half: 100, full: 160 },
+          { name: 'Kaju Curry / Kaju Masala', half: 120, full: 190, badge: 'Rich' }
+        ]
+      },
+      {
+        id: 'paneer-1',
+        shortTitle: 'Paneer I',
+        sectionNumber: '04',
+        category: 'Paneer Specials — Favorites',
+        subtitle: 'Fresh soft cottage cheese in classic North Indian gravies',
+        priceType: 'half-full',
+        items: [
+          { name: 'Matar Paneer', half: 95, full: 150 },
+          { name: 'Palak Paneer', half: 95, full: 150 },
+          { name: 'Paneer Masala', half: 100, full: 160 },
+          { name: 'Paneer Butter Masala', half: 110, full: 175, badge: 'Bestseller' },
+          { name: 'Kadhai Paneer', half: 110, full: 175 }
+        ]
+      },
+      {
+        id: 'paneer-2',
+        shortTitle: 'Paneer II',
+        sectionNumber: '04B',
+        category: 'Paneer Specials — Chef Signatures',
+        subtitle: 'Smoky, royal, and house-special paneer preparations',
+        priceType: 'half-full',
+        items: [
+          { name: 'Shahi Paneer', half: 115, full: 180 },
+          { name: 'Paneer Bhurji', half: 115, full: 180 },
+          { name: 'Paneer Angara', desc: 'Smoky & Spicy charcoal-infused gravy', half: 120, full: 185, badge: 'Smoky' },
+          { name: 'Nitin Patel Special Handi Paneer', desc: 'Slow-cooked in traditional clay handi', half: null, full: 210, badge: 'House Special' }
+        ]
+      },
+      {
+        id: 'roti-naan',
+        shortTitle: 'Roti & Paratha',
+        sectionNumber: '05',
+        category: 'Roti, Naan & Stuffed Paratha',
+        subtitle: 'Hot off the tawa and clay tandoor',
+        priceType: 'single',
+        items: [
+          { name: 'Tawa Roti (Plain / Butter)', displayPrice: '₹10 / ₹15', options: [{ label: 'Plain', price: 10 }, { label: 'Butter', price: 15 }] },
+          { name: 'Tandoori Roti (Plain / Butter)', displayPrice: '₹12 / ₹18', options: [{ label: 'Plain', price: 12 }, { label: 'Butter', price: 18 }] },
+          { name: 'Missi Roti', price: 25, displayPrice: '₹25' },
+          { name: 'Plain Naan / Butter Naan', displayPrice: '₹30 / ₹40', options: [{ label: 'Plain', price: 30 }, { label: 'Butter', price: 40 }] },
+          { name: 'Garlic Naan', price: 50, displayPrice: '₹50', badge: 'Popular' },
+          { name: 'Lachha Paratha', price: 35, displayPrice: '₹35' },
+          { name: 'Aloo Paratha / Gobhi Paratha', desc: 'Served with Dahi & Achar', displayPrice: '₹45 / ₹50', options: [{ label: 'Aloo', price: 45 }, { label: 'Gobhi', price: 50 }] },
+          { name: 'Paneer Paratha', desc: 'Served with Dahi & Achar', price: 65, displayPrice: '₹65' }
+        ]
+      },
+      {
+        id: 'chawal-khichdi',
+        shortTitle: 'Chawal & Khichdi',
+        sectionNumber: '06',
+        category: 'Chawal & Comfort Khichdi',
+        subtitle: 'Fragrant basmati rice, pulao, and desi ghee khichdi',
+        priceType: 'half-full',
+        items: [
+          { name: 'Plain Steamed Rice', half: 40, full: 70 },
+          { name: 'Jeera Rice', half: 50, full: 85 },
+          { name: 'Veg Pulao', half: 70, full: 110 },
+          { name: 'Desi Ghee Dal Khichdi', desc: 'Warm, soothing highway comfort bowl', half: 75, full: 120, badge: 'Comfort' },
+          { name: 'Veg Biryani', desc: 'Served with Boondi Raita', half: 85, full: 140 }
+        ]
+      },
+      {
+        id: 'chinese-corner',
+        shortTitle: 'Chinese Corner',
+        sectionNumber: '06B',
+        category: 'Desi Chinese Corner',
+        subtitle: 'Wok-tossed Indo-Chinese favorites made fresh to order',
+        priceType: 'half-full',
+        items: [
+          { name: 'Veg Chowmein / Hakka Noodles', half: 65, full: 100 },
+          { name: 'Veg Fried Rice', half: 70, full: 110 },
+          { name: 'Veg Manchurian (Dry / Gravy)', half: 70, full: 110 },
+          { name: 'Chilli Paneer (Dry / Gravy)', half: 95, full: 150, badge: 'Popular' }
+        ]
+      },
+      {
+        id: 'thali-combos',
+        shortTitle: 'Thali & Combos',
+        sectionNumber: '07',
+        category: 'Thali & Family Combos',
+        subtitle: 'Wholesome value meals for solo travelers and families',
+        priceType: 'combo',
+        items: [
+          {
+            name: 'Regular Sadha Thali',
+            price: 100,
+            desc: '4 Tawa Roti, Half Steamed Rice, Dal Fry, 1 Seasonal Sabzi, Salad, Achar',
+            badge: 'Daily Value'
+          },
+          {
+            name: 'Nitin Patel Maharaja Dhaba Thali',
+            price: 160,
+            desc: '3 Butter Tandoori Roti, Jeera Rice, Dal Tadka, Paneer Butter Masala, Mix Veg, Boondi Raita, Papad, Salad & 1 Gulab Jamun',
+            badge: 'Chef Special'
+          },
+          {
+            name: 'Highway Traveler Combo (For 1)',
+            price: 90,
+            desc: 'Dal Tadka + 4 Tawa Roti + Onion Salad & Achar',
+            badge: 'Quick Meal'
+          },
+          {
+            name: 'Family Saver Pack (Serves 4)',
+            price: 480,
+            desc: '1 Full Paneer Dish, 1 Full Dal Tadka, 1 Full Mix Veg, 1 Full Jeera Rice, 10 Butter Roti, Raita & Papad',
+            badge: 'Best for Families'
+          }
+        ]
+      },
+      {
+        id: 'raita-sweets',
+        shortTitle: 'Raita & Sweets',
+        sectionNumber: '08',
+        category: 'Raita, Salad & Sweets',
+        subtitle: 'Cooling accompaniments, refreshing lassi, and warm desserts',
+        priceType: 'single',
+        items: [
+          { name: 'Green Salad / Onion-Chilli Salad', displayPrice: '₹35 / ₹20', options: [{ label: 'Green', price: 35 }, { label: 'Onion-Chilli', price: 20 }] },
+          { name: 'Plain Dahi (1 Bowl)', price: 30, displayPrice: '₹30' },
+          { name: 'Boondi Raita / Kheera Raita', price: 45, displayPrice: '₹45' },
+          { name: 'Masala Chaas (Buttermilk)', price: 25, displayPrice: '₹25', badge: 'Refreshing' },
+          { name: 'Sweet Punjabi Lassi', price: 45, displayPrice: '₹45', badge: 'Popular' },
+          { name: 'Hot Gulab Jamun (2 Pcs)', price: 40, displayPrice: '₹40', badge: 'Sweet' },
+          { name: 'Rasgulla (2 Pcs)', price: 40, displayPrice: '₹40', badge: 'Sweet' }
+        ]
+      }
+    ];
+
+    // Application State
+    let currentPageIndex = 0;
+    let orderCart = {}; // { key: { name, variant, price, qty } }
+    let qrCodeInstance = null;
+
+    // ==================== INITIALIZATION ====================
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCategoryNav();
+      renderPage(0);
+      setupSwipeGestures();
+      setupKeyboardNavigation();
+      initQrUrl();
+    });
+
+    // ==================== CATEGORY NAVIGATION BAR ====================
+    function renderCategoryNav() {
+      const nav = document.getElementById('category-nav');
+      nav.innerHTML = MENU_PAGES.map((page, idx) => {
+        const isActive = idx === currentPageIndex;
+        return `
+          <button
+            onclick="goToPage(${idx})"
+            id="nav-pill-${idx}"
+            class="whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-medium transition-all flex-shrink-0 ${
+              isActive
+                ? 'bg-terracotta text-parchment shadow-sm'
+                : 'bg-cream text-taupe hover:bg-espresso/10 hover:text-espresso'
+            }">
+            ${page.shortTitle}
+          </button>
+        `;
+      }).join('');
+
+      // Auto-scroll active pill into view smoothly
+      const activePill = document.getElementById(`nav-pill-${currentPageIndex}`);
+      if (activePill) {
+        activePill.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+    }
+
+    // ==================== RENDER CURRENT MENU PAGE ====================
+    function renderPage(index) {
+      currentPageIndex = Math.max(0, Math.min(index, MENU_PAGES.length - 1));
+      const page = MENU_PAGES[currentPageIndex];
+      const container = document.getElementById('menu-page-container');
+
+      let html = '';
+
+      if (page.type === 'cover') {
+        html = renderCoverPage(page);
+      } else if (page.priceType === 'half-full') {
+        html = renderHalfFullPage(page);
+      } else if (page.priceType === 'combo') {
+        html = renderComboPage(page);
+      } else {
+        html = renderSinglePricePage(page);
+      }
+
+      container.innerHTML = `<div class="page-animate">${html}</div>`;
+
+      // Update controls & indicators
+      renderCategoryNav();
+      renderPageDots();
+      updateFooterButtons();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Cover Page Template
+    function renderCoverPage(page) {
+      const quickJumps = [
+        { label: 'Chai & Nashta', idx: 1, sub: 'From ₹15' },
+        { label: 'Chhattisgarhi Specials', idx: 2, sub: 'Chila & Farra' },
+        { label: 'Dal & Local Kadhi', idx: 3, sub: 'Desi Ghee Tadka' },
+        { label: 'Desi Sabziyan', idx: 4, sub: 'Sev Tamatar & more' },
+        { label: 'Paneer Specials', idx: 6, sub: 'Handi & Angara' },
+        { label: 'Thali & Family Combos', idx: 11, sub: 'From ₹90' },
+      ];
+
+      return `
+        <section class="bg-white rounded-3xl border border-espresso/10 shadow-sm overflow-hidden">
+          <!-- Warm Decorative Header Banner -->
+          <div class="bg-gradient-to-br from-espresso via-[#3B261B] to-terracottaDark text-parchment px-6 py-10 sm:py-12 text-center relative overflow-hidden">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 border border-white/15 text-xs font-medium tracking-wide mb-4">
+              <span class="w-2 h-2 rounded-full bg-green-400"></span>
+              100% Pure Vegetarian
+            </div>
+            <h2 class="font-serif font-bold text-3xl sm:text-5xl tracking-tight text-parchment">
+              ${page.title}
+            </h2>
+            <p class="mt-2 text-sm sm:text-base text-parchment/85 font-medium">
+              ${page.subtitle}
+            </p>
+            <p class="mt-1 text-xs uppercase tracking-widest text-marigold font-semibold">
+              ${page.location}
+            </p>
+            <p class="mt-5 max-w-md mx-auto text-xs sm:text-sm text-parchment/75 leading-relaxed">
+              ${page.tagline}
+            </p>
+
+            <div class="mt-7 flex flex-wrap items-center justify-center gap-3">
+              <button onclick="goToPage(1)"
+                class="px-6 py-3 rounded-xl bg-marigold hover:bg-amber-500 text-espresso font-semibold text-sm shadow-md transition-all">
+                Start Exploring Menu &rarr;
+              </button>
+              <button onclick="openQrModal()"
+                class="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-parchment font-medium text-sm border border-white/20 transition-all">
+                Show Table QR Code
+              </button>
+            </div>
+          </div>
+
+          <!-- Quick Jump Index -->
+          <div class="p-6 sm:p-8">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="font-serif font-semibold text-lg text-espresso">Browse by Section</h3>
+              <span class="text-xs text-taupe">12 Clean Menu Pages</span>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              ${quickJumps.map(q => `
+                <button onclick="goToPage(${q.idx})"
+                  class="text-left p-3.5 rounded-2xl bg-parchment hover:bg-cream border border-espresso/10 transition-all group">
+                  <p class="font-semibold text-sm text-espresso group-hover:text-terracotta transition-colors">${q.label}</p>
+                  <p class="text-[11px] text-taupe mt-0.5">${q.sub}</p>
+                </button>
+              `).join('')}
+            </div>
+
+            <div class="mt-6 pt-5 border-t border-espresso/10 flex flex-wrap items-center justify-between gap-2 text-xs text-taupe">
+              <span>&#10022; Freshly cooked on order</span>
+              <span>&#10022; Tap any price to add to your table shortlist</span>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    // Standard Single-Price Page Template
+    function renderSinglePricePage(page) {
+      return `
+        <section class="bg-white rounded-3xl border border-espresso/10 shadow-sm p-6 sm:p-8">
+          ${renderPageHeader(page)}
+
+          <div class="mt-6 divide-y divide-espresso/10">
+            ${page.items.map(item => `
+              <div class="py-4 first:pt-1 last:pb-1 flex items-start justify-between gap-4">
+                <div class="flex items-start gap-2.5">
+                  <span class="veg-icon mt-1" title="Pure Vegetarian"></span>
+                  <div>
+                    <div class="flex flex-wrap items-center gap-2">
+                      <h3 class="font-semibold text-sm sm:text-base text-espresso">${item.name}</h3>
+                      ${item.badge ? renderBadge(item.badge) : ''}
+                    </div>
+                    ${item.desc ? `<p class="text-xs text-taupe mt-1 leading-relaxed">${item.desc}</p>` : ''}
+                  </div>
+                </div>
+
+                <div class="flex-shrink-0 flex flex-col items-end gap-1.5">
+                  ${item.options ? `
+                    <div class="flex flex-wrap justify-end gap-1.5">
+                      ${item.options.map(opt => `
+                        <button onclick="addToOrder('${escapeQuotes(item.name)}', '${opt.label}', ${opt.price})"
+                          class="px-2.5 py-1.5 rounded-xl bg-parchment hover:bg-terracotta hover:text-parchment border border-espresso/10 text-xs font-semibold text-espresso transition-colors"
+                          title="Add ${opt.label} to shortlist">
+                          <span class="text-[10px] font-normal opacity-75 mr-0.5">${opt.label}</span> ₹${opt.price}
+                        </button>
+                      `).join('')}
+                    </div>
+                  ` : `
+                    <button onclick="addToOrder('${escapeQuotes(item.name)}', 'Regular', ${item.price})"
+                      class="px-3 py-1.5 rounded-xl bg-parchment hover:bg-terracotta hover:text-parchment border border-espresso/10 text-sm font-bold text-espresso transition-colors"
+                      title="Add to shortlist">
+                      ${item.displayPrice} <span class="text-xs font-normal opacity-60 ml-0.5">+</span>
+                    </button>
+                  `}
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </section>
+      `;
+    }
+
+    // Half / Full Price Page Template
+    function renderHalfFullPage(page) {
+      return `
+        <section class="bg-white rounded-3xl border border-espresso/10 shadow-sm p-6 sm:p-8">
+          ${renderPageHeader(page)}
+
+          <!-- Column Headers -->
+          <div class="mt-6 pb-2.5 border-b border-espresso/15 flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-taupe">
+            <span>Dish</span>
+            <div class="flex items-center gap-2 sm:gap-3">
+              <span class="w-16 sm:w-20 text-center">Half</span>
+              <span class="w-16 sm:w-20 text-center">Full</span>
+            </div>
+          </div>
+
+          <div class="divide-y divide-espresso/10">
+            ${page.items.map(item => `
+              <div class="py-4 last:pb-1 flex items-center justify-between gap-3">
+                <div class="flex items-start gap-2.5 pr-2">
+                  <span class="veg-icon mt-1" title="Pure Vegetarian"></span>
+                  <div>
+                    <div class="flex flex-wrap items-center gap-1.5">
+                      <h3 class="font-semibold text-sm sm:text-base text-espresso">${item.name}</h3>
+                      ${item.badge ? renderBadge(item.badge) : ''}
+                    </div>
+                    ${item.desc ? `<p class="text-xs text-taupe mt-0.5 leading-relaxed">${item.desc}</p>` : ''}
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+                  ${item.half !== null ? `
+                    <button onclick="addToOrder('${escapeQuotes(item.name)}', 'Half', ${item.half})"
+                      class="w-16 sm:w-20 py-1.5 rounded-xl bg-parchment hover:bg-terracotta hover:text-parchment border border-espresso/10 text-xs sm:text-sm font-semibold text-espresso text-center transition-colors"
+                      title="Add Half portion">
+                      ₹${item.half}
+                    </button>
+                  ` : `
+                    <span class="w-16 sm:w-20 text-center text-sm text-taupe/50">—</span>
+                  `}
+
+                  <button onclick="addToOrder('${escapeQuotes(item.name)}', 'Full', ${item.full})"
+                    class="w-16 sm:w-20 py-1.5 rounded-xl bg-cream hover:bg-terracotta hover:text-parchment border border-espresso/10 text-xs sm:text-sm font-bold text-espresso text-center transition-colors"
+                    title="Add Full portion">
+                    ₹${item.full}
+                  </button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </section>
+      `;
+    }
+
+    // Thali & Family Combos Featured Card Template
+    function renderComboPage(page) {
+      return `
+        <section class="bg-white rounded-3xl border border-espresso/10 shadow-sm p-6 sm:p-8">
+          ${renderPageHeader(page)}
+
+          <div class="mt-6 grid grid-cols-1 gap-4">
+            ${page.items.map(item => `
+              <div class="p-5 rounded-2xl bg-parchment/80 border border-espresso/10 hover:border-terracotta/40 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div class="space-y-1.5">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span class="veg-icon"></span>
+                    <h3 class="font-serif font-bold text-lg text-espresso">${item.name}</h3>
+                    ${item.badge ? renderBadge(item.badge) : ''}
+                  </div>
+                  <p class="text-xs sm:text-sm text-taupe leading-relaxed pl-6">
+                    ${item.desc}
+                  </p>
+                </div>
+
+                <div class="flex sm:flex-col items-center sm:items-end justify-between gap-2 pl-6 sm:pl-0 flex-shrink-0">
+                  <span class="font-serif font-bold text-2xl text-terracotta">₹${item.price}</span>
+                  <button onclick="addToOrder('${escapeQuotes(item.name)}', 'Combo', ${item.price})"
+                    class="px-4 py-2 rounded-xl bg-espresso hover:bg-terracotta text-parchment text-xs font-semibold transition-colors">
+                    + Add to List
+                  </button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </section>
+      `;
+    }
+
+    // Shared Header for Category Pages
+    function renderPageHeader(page) {
+      return `
+        <div class="border-b border-espresso/10 pb-4">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold uppercase tracking-widest text-terracotta">
+              Section ${page.sectionNumber}
+            </span>
+            <span class="text-[11px] text-taupe">Tap price to shortlist</span>
+          </div>
+          <h2 class="font-serif font-bold text-2xl sm:text-3xl text-espresso mt-1">
+            ${page.category}
+          </h2>
+          <p class="text-xs sm:text-sm text-taupe mt-1">${page.subtitle}</p>
+        </div>
+      `;
+    }
+
+    function renderBadge(text) {
+      return `<span class="px-2 py-0.5 rounded-md bg-marigold/20 text-[#8A5A00] text-[10px] font-semibold uppercase tracking-wide">${text}</span>`;
+    }
+
+    // ==================== PAGINATION CONTROLS ====================
+    function goToPage(index) {
+      renderPage(index);
+    }
+
+    function nextPage() {
+      if (currentPageIndex < MENU_PAGES.length - 1) {
+        renderPage(currentPageIndex + 1);
+      }
+    }
+
+    function prevPage() {
+      if (currentPageIndex > 0) {
+        renderPage(currentPageIndex - 1);
+      }
+    }
+
+    function renderPageDots() {
+      const dots = document.getElementById('page-dots');
+      dots.innerHTML = MENU_PAGES.map((_, idx) => `
+        <button onclick="goToPage(${idx})" aria-label="Go to page ${idx + 1}"
+          class="h-2 rounded-full transition-all ${
+            idx === currentPageIndex ? 'w-6 bg-terracotta' : 'w-2 bg-espresso/20 hover:bg-espresso/40'
+          }">
+        </button>
+      `).join('');
+    }
+
+    function updateFooterButtons() {
+      const prevBtn = document.getElementById('prev-btn');
+      const nextBtn = document.getElementById('next-btn');
+      const counter = document.getElementById('page-counter-text');
+
+      prevBtn.disabled = currentPageIndex === 0;
+      nextBtn.disabled = currentPageIndex === MENU_PAGES.length - 1;
+      counter.textContent = `Page ${currentPageIndex + 1} of ${MENU_PAGES.length}`;
+    }
+
+    // ==================== TOUCH SWIPE & KEYBOARD NAVIGATION ====================
+    function setupSwipeGestures() {
+      const area = document.getElementById('swipe-area');
+      let touchStartX = 0;
+      let touchStartY = 0;
+
+      area.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+      }, { passive: true });
+
+      area.addEventListener('touchend', (e) => {
+        const diffX = e.changedTouches[0].screenX - touchStartX;
+        const diffY = e.changedTouches[0].screenY - touchStartY;
+
+        // Only trigger horizontal swipe if horizontal movement dominates vertical scroll
+        if (Math.abs(diffX) > 60 && Math.abs(diffX) > Math.abs(diffY) * 1.4) {
+          if (diffX < 0) nextPage();
+          else prevPage();
+        }
+      }, { passive: true });
+    }
+
+    function setupKeyboardNavigation() {
+      document.addEventListener('keydown', (e) => {
+        // Ignore if typing in an input
+        if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+        if (e.key === 'ArrowRight') nextPage();
+        if (e.key === 'ArrowLeft') prevPage();
+        if (e.key === 'Escape') {
+          closeQrModal();
+          closeSearchModal();
+          closeOrderModal();
+        }
+      });
+    }
+
+    // ==================== TABLE SHORTLIST / ORDER CALCULATOR ====================
+    function addToOrder(name, variant, price) {
+      const key = `${name}__${variant}`;
+      if (!orderCart[key]) {
+        orderCart[key] = { name, variant, price, qty: 0 };
+      }
+      orderCart[key].qty += 1;
+      updateOrderBar();
+      showToast(`Added ${name} (${variant}) — ₹${price}`);
+    }
+
+    function changeOrderQty(key, delta) {
+      if (!orderCart[key]) return;
+      orderCart[key].qty += delta;
+      if (orderCart[key].qty <= 0) {
+        delete orderCart[key];
+      }
+      updateOrderBar();
+      renderOrderModalItems();
+    }
+
+    function clearOrder() {
+      orderCart = {};
+      updateOrderBar();
+      renderOrderModalItems();
+      closeOrderModal();
+      showToast('Table shortlist cleared');
+    }
+
+    function updateOrderBar() {
+      const entries = Object.values(orderCart);
+      const totalQty = entries.reduce((sum, item) => sum + item.qty, 0);
+      const totalPrice = entries.reduce((sum, item) => sum + item.price * item.qty, 0);
+
+      const bar = document.getElementById('order-bar');
+      if (totalQty > 0) {
+        bar.classList.remove('hidden');
+        document.getElementById('order-count-badge').textContent = totalQty;
+        document.getElementById('order-total-text').textContent = `₹${totalPrice}`;
+        // Add bottom padding so floating bar never hides footer buttons
+        document.body.style.paddingBottom = '84px';
+      } else {
+        bar.classList.add('hidden');
+        document.body.style.paddingBottom = '0px';
+      }
+    }
+
+    function openOrderModal() {
+      renderOrderModalItems();
+      const modal = document.getElementById('order-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeOrderModal() {
+      const modal = document.getElementById('order-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function renderOrderModalItems() {
+      const list = document.getElementById('order-items-list');
+      const entries = Object.entries(orderCart);
+      let total = 0;
+
+      if (entries.length === 0) {
+        list.innerHTML = `<p class="text-sm text-center text-taupe py-8">Your shortlist is empty.</p>`;
+      } else {
+        list.innerHTML = entries.map(([key, item]) => {
+          const subtotal = item.price * item.qty;
+          total += subtotal;
+          return `
+            <div class="flex items-center justify-between gap-3 p-3 rounded-2xl bg-white border border-espresso/10">
+              <div>
+                <p class="text-sm font-semibold text-espresso">${item.name}</p>
+                <p class="text-xs text-taupe">${item.variant} &bull; ₹${item.price}</p>
+              </div>
+              <div class="flex items-center gap-2">
+                <button onclick="changeOrderQty('${escapeQuotes(key)}', -1)"
+                  class="w-7 h-7 rounded-lg bg-cream hover:bg-espresso/10 text-espresso font-bold text-sm">−</button>
+                <span class="w-5 text-center text-sm font-semibold">${item.qty}</span>
+                <button onclick="changeOrderQty('${escapeQuotes(key)}', 1)"
+                  class="w-7 h-7 rounded-lg bg-terracotta text-parchment font-bold text-sm">+</button>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      document.getElementById('order-modal-total').textContent = `₹${total}`;
+    }
+
+    // ==================== QR CODE GENERATION & MODAL ====================
+    function initQrUrl() {
+      const input = document.getElementById('qr-url-input');
+      // Use current hosted URL if http/https, otherwise a clean default URL
+      const defaultUrl = window.location.protocol.startsWith('http')
+        ? window.location.href
+        : 'https://nitinpateldhaba.in/menu';
+      input.value = defaultUrl;
+    }
+
+    function generateQrCode(urlText) {
+      const container = document.getElementById('qrcode-canvas');
+      container.innerHTML = '';
+      try {
+        qrCodeInstance = new QRCode(container, {
+          text: urlText || 'https://nitinpateldhaba.in/menu',
+          width: 180,
+          height: 180,
+          colorDark: '#2C1E16',
+          colorLight: '#FFFFFF',
+          correctLevel: QRCode.CorrectLevel.H
+        });
+      } catch (err) {
+        container.innerHTML = '<p class="text-xs text-terracotta">Unable to generate QR code.</p>';
+      }
+    }
+
+    function openQrModal() {
+      const modal = document.getElementById('qr-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      const urlVal = document.getElementById('qr-url-input').value.trim();
+      generateQrCode(urlVal);
+    }
+
+    function closeQrModal() {
+      const modal = document.getElementById('qr-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function updateQrFromInput() {
+      const urlVal = document.getElementById('qr-url-input').value.trim();
+      if (!urlVal) {
+        showToast('Please enter a valid menu link');
+        return;
+      }
+      generateQrCode(urlVal);
+      showToast('QR Code updated!');
+    }
+
+    function copyMenuLink() {
+      const input = document.getElementById('qr-url-input');
+      input.select();
+      input.setSelectionRange(0, 99999);
+      try {
+        document.execCommand('copy');
+        showToast('Menu link copied to clipboard!');
+      } catch (e) {
+        showToast('Copy failed. Please copy manually.');
+      }
+    }
+
+    // ==================== SEARCH ACROSS ALL PAGES ====================
+    function openSearchModal() {
+      const modal = document.getElementById('search-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      const input = document.getElementById('search-input');
+      input.value = '';
+      handleSearch('');
+      setTimeout(() => input.focus(), 100);
+    }
+
+    function closeSearchModal() {
+      const modal = document.getElementById('search-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function handleSearch(query) {
+      const resultsBox = document.getElementById('search-results');
+      const q = query.trim().toLowerCase();
+
+      if (!q) {
+        resultsBox.innerHTML = `<p class="text-xs text-center text-taupe py-6">Type a dish name or ingredient to search across all ${MENU_PAGES.length} pages.</p>`;
+        return;
+      }
+
+      const matches = [];
+      MENU_PAGES.forEach((page, pageIdx) => {
+        if (!page.items) return;
+        page.items.forEach(item => {
+          const text = `${item.name} ${item.desc || ''} ${page.category}`.toLowerCase();
+          if (text.includes(q)) {
+            matches.push({ pageIdx, pageTitle: page.shortTitle, item, priceType: page.priceType });
+          }
+        });
+      });
+
+      if (matches.length === 0) {
+        resultsBox.innerHTML = `<p class="text-sm text-center text-taupe py-6">No dishes found matching "${query}".</p>`;
+        return;
+      }
+
+      resultsBox.innerHTML = matches.map(m => {
+        let priceLabel = '';
+        if (m.priceType === 'half-full') {
+          priceLabel = m.item.half ? `Half ₹${m.item.half} | Full ₹${m.item.full}` : `Full ₹${m.item.full}`;
+        } else if (m.priceType === 'combo') {
+          priceLabel = `₹${m.item.price}`;
+        } else {
+          priceLabel = m.item.displayPrice;
+        }
+
+        return `
+          <button onclick="closeSearchModal(); goToPage(${m.pageIdx});"
+            class="w-full text-left p-3.5 rounded-2xl bg-white hover:bg-cream border border-espresso/10 flex items-center justify-between gap-3 transition-colors">
+            <div>
+              <p class="text-sm font-semibold text-espresso">${m.item.name}</p>
+              <p class="text-[11px] text-taupe mt-0.5">Page ${m.pageIdx + 1} &bull; ${m.pageTitle}</p>
+            </div>
+            <span class="text-xs font-bold text-terracotta whitespace-nowrap">${priceLabel}</span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    // ==================== UTILITIES ====================
+    function escapeQuotes(str) {
+      return String(str).replace(/'/g, "\\'").replace(/"/g, '&quot;');
+    }
+
+    let toastTimer = null;
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.remove('opacity-0');
+      toast.classList.add('opacity-100');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0');
+      }, 2200);
+    }
+  </script>
+</body>
+</html>
