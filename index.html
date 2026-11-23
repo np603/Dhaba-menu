@@ -336,7 +336,7 @@
     </div>
   </div>
 
-  <!-- ==================== CHEF PIN PAD MODAL (NO BROWSER PROMPT) ==================== -->
+  <!-- ==================== CHEF PIN PAD MODAL (PRIVATE ACCESS) ==================== -->
   <div id="chef-pin-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-roast/70 backdrop-blur-sm p-4">
     <div class="bg-ivory w-full max-w-xs rounded-3xl p-6 text-center shadow-2xl border border-roast/10 animate-sheet">
       <div class="flex justify-between items-center mb-2">
@@ -344,7 +344,7 @@
         <button onclick="closeChefPinModal()" class="text-umber hover:text-roast font-bold text-sm p-1">✕</button>
       </div>
       <h3 class="font-serif font-bold text-xl text-roast">Enter Chef PIN</h3>
-      <p class="text-xs text-umber mt-0.5">Default PIN: <strong>1234</strong></p>
+      <p class="text-xs text-umber mt-0.5">Authorized Kitchen Staff Only</p>
 
       <!-- PIN Dots -->
       <div id="pin-dots" class="flex justify-center gap-3 my-5">
@@ -469,10 +469,10 @@
 
   <!-- ==================== COMPLETE APPLICATION LOGIC ==================== -->
   <script>
-    const MENU_BASE_URL = "https:/" + "/np603.github.io/Dhaba-menu/";
+    const MENU_BASE_URL = "https://np603.github.io/Dhaba-menu/";
     const NTFY_TOPIC = "nitin-patel-dhaba-chandrapur-kds-v2";
-    const NTFY_ENDPOINT = "https:/" + "/ntfy.sh/" + NTFY_TOPIC;
-    const CHEF_SECRET_PIN = "1234";
+    const NTFY_ENDPOINT = "https://ntfy.sh/" + NTFY_TOPIC;
+    const CHEF_SECRET_PIN = "2006";
 
     // Complete Curated Menu Dataset
     const DHABA_MENU = [
@@ -1053,7 +1053,7 @@
           closeChefPinModal();
           openChefDashboard();
         } else {
-          document.getElementById("pin-error-text").textContent = "Wrong PIN. Try 1234";
+          document.getElementById("pin-error-text").textContent = "Incorrect PIN. Access denied.";
           setTimeout(() => {
             enteredPin = "";
             updatePinDots();
