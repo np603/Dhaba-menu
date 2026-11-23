@@ -95,22 +95,28 @@
       animation: slideUp 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
-    /* Print styling for Table QR Standee */
+    /* Dedicated Print Styling for Table QR Standee OR Customer Bill Receipt */
     @media print {
       body * {
         visibility: hidden !important;
       }
-      #printable-standee, #printable-standee * {
+      .active-print-target, .active-print-target * {
         visibility: visible !important;
       }
-      #printable-standee {
+      .active-print-target {
         position: fixed !important;
-        inset: 0 !important;
-        margin: auto !important;
-        width: 360px !important;
+        left: 50% !important;
+        top: 0 !important;
+        transform: translateX(-50%) !important;
+        width: 100% !important;
+        max-width: 350px !important;
         height: fit-content !important;
-        border: 2px solid #231710 !important;
+        border: 1.5px solid #000000 !important;
+        border-radius: 8px !important;
         box-shadow: none !important;
+        background: #FFFFFF !important;
+        color: #000000 !important;
+        margin: 0 !important;
       }
     }
   </style>
@@ -148,7 +154,7 @@
 
         <button onclick="openChefAuth()"
           class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-roast text-ivory hover:bg-spice text-xs font-semibold shadow-sm transition-colors"
-          title="Chef Kitchen & Table QRs">
+          title="Chef Kitchen, Bills & Table QRs">
           <span>👨‍🍳</span>
           <span>Chef</span>
           <span id="chef-live-dot" class="hidden w-2 h-2 rounded-full bg-green-400 animate-ping"></span>
@@ -325,7 +331,7 @@
       </span>
       <h3 class="font-serif font-bold text-2xl text-roast mt-2">Order Received by Chef!</h3>
       <p class="text-sm text-umber mt-2 leading-relaxed">
-        Your dishes are now on our kitchen screen. Sit back and relax — our server will bring your meal hot to your table.
+        Your dishes are now on our kitchen screen. Sit back and relax — our server will bring your meal and bill receipt to your table.
       </p>
       <div id="success-summary-box" class="mt-4 p-3.5 rounded-2xl bg-ivory border border-roast/10 text-left text-xs space-y-1">
       </div>
@@ -373,13 +379,13 @@
     </div>
   </div>
 
-  <!-- ==================== CHEF LIVE KITCHEN & QR GENERATOR DASHBOARD ==================== -->
+  <!-- ==================== CHEF LIVE KITCHEN, BILLS & QR DASHBOARD ==================== -->
   <div id="chef-dashboard-modal" class="fixed inset-0 z-50 hidden bg-roast/80 backdrop-blur-sm overflow-y-auto">
     <div class="min-h-screen max-w-2xl mx-auto bg-ivory flex flex-col shadow-2xl">
       <!-- Top Kitchen Bar -->
       <div class="px-5 py-4 bg-roast text-ivory flex items-center justify-between sticky top-0 z-10">
         <div>
-          <h2 class="font-serif font-bold text-xl">👨‍🍳 Chef Kitchen &amp; Table QRs</h2>
+          <h2 class="font-serif font-bold text-xl">👨‍🍳 Chef Kitchen &amp; Billing</h2>
           <p id="kitchen-status-subtitle" class="text-xs text-ivory/75">Tap "Activate Live Alarm" to receive table orders</p>
         </div>
         <button onclick="closeChefDashboard()" class="px-3.5 py-1.5 rounded-full bg-white/15 hover:bg-white/25 text-xs font-bold">
@@ -387,15 +393,19 @@
         </button>
       </div>
 
-      <!-- Mode Switch Tabs: Live Orders vs Print Table QRs -->
-      <div class="px-5 pt-4 bg-sand border-b border-roast/10 flex gap-2">
+      <!-- 3 Mode Switch Tabs: Live Orders | Generated Bills | Print Table QRs -->
+      <div class="px-3 sm:px-5 pt-4 bg-sand border-b border-roast/10 flex gap-1.5">
         <button id="tab-live-orders" onclick="switchChefTab('orders')"
-          class="flex-1 py-2.5 rounded-t-xl bg-ivory text-roast font-extrabold text-xs sm:text-sm border-t border-x border-roast/10">
-          🔔 Live Orders (<span id="active-orders-count">0</span>)
+          class="flex-1 py-2.5 px-2 rounded-t-xl bg-ivory text-roast font-extrabold text-xs sm:text-sm border-t border-x border-roast/10 truncate">
+          🔔 Orders (<span id="active-orders-count">0</span>)
+        </button>
+        <button id="tab-bills-history" onclick="switchChefTab('bills')"
+          class="flex-1 py-2.5 px-2 rounded-t-xl bg-transparent text-umber font-bold text-xs sm:text-sm truncate">
+          🧾 Bills (<span id="generated-bills-count">0</span>)
         </button>
         <button id="tab-table-qrs" onclick="switchChefTab('qrs')"
-          class="flex-1 py-2.5 rounded-t-xl bg-transparent text-umber font-bold text-xs sm:text-sm">
-          🖨️ Print Table QR Cards
+          class="flex-1 py-2.5 px-2 rounded-t-xl bg-transparent text-umber font-bold text-xs sm:text-sm truncate">
+          🖨️ Table QRs
         </button>
       </div>
 
@@ -418,7 +428,25 @@
         </div>
       </div>
 
-      <!-- TAB 2: TABLE-WISE QR GENERATOR -->
+      <!-- TAB 2: GENERATED CUSTOMER BILLS & RECEIPTS -->
+      <div id="chef-bills-panel" class="hidden p-5 flex-1 space-y-4">
+        <div class="flex items-center justify-between bg-white p-3.5 rounded-2xl border border-roast/10">
+          <div>
+            <h3 class="font-bold text-sm text-roast">Completed &amp; Handed-Over Bills</h3>
+            <p class="text-[11px] text-umber">Tap any bill to open &amp; print for the customer</p>
+          </div>
+          <button onclick="clearBillsHistory()"
+            class="px-3 py-1.5 rounded-xl bg-sand hover:bg-red-100 text-umber hover:text-red-700 text-xs font-bold transition-colors">
+            Clear All
+          </button>
+        </div>
+
+        <div id="generated-bills-list" class="space-y-3">
+          <!-- Generated Bills rendered here -->
+        </div>
+      </div>
+
+      <!-- TAB 3: TABLE-WISE QR GENERATOR -->
       <div id="chef-qr-panel" class="hidden p-5 flex-1 space-y-4">
         <div class="bg-white p-4 rounded-2xl border border-roast/10">
           <label class="block text-xs font-extrabold uppercase tracking-wider text-roast mb-2">
@@ -427,7 +455,7 @@
           <div class="flex gap-2">
             <input id="qr-table-number-input" type="number" min="1" max="99" value="1" oninput="renderTableStandeeQR(this.value)"
               class="w-28 px-3.5 py-2 rounded-xl border border-roast/15 bg-ivory font-extrabold text-base text-roast focus:outline-none focus:border-spice" />
-            <button onclick="window.print()"
+            <button onclick="printTableQR()"
               class="flex-1 py-2.5 px-4 rounded-xl bg-spice hover:bg-spiceDark text-ivory font-bold text-sm shadow-sm">
               🖨️ Print / Save PDF Card
             </button>
@@ -457,6 +485,102 @@
 
           <p class="text-sm font-extrabold text-spice">Scan &rarr; Pick Food &rarr; Direct Order to Chef</p>
           <p class="text-[11px] text-umber mt-1">No waiting to order &bull; Freshly prepared on your tap</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== PRINTABLE CUSTOMER BILL / RECEIPT MODAL ==================== -->
+  <div id="bill-receipt-modal" class="fixed inset-0 z-[60] hidden items-center justify-center bg-roast/75 backdrop-blur-sm p-4 overflow-y-auto">
+    <div class="bg-ivory w-full max-w-sm rounded-3xl shadow-2xl border border-roast/15 overflow-hidden my-auto animate-sheet">
+      <!-- Top Modal Bar -->
+      <div class="px-5 py-3.5 bg-roast text-ivory flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span>🧾</span>
+          <span class="font-bold text-sm">Customer Bill / Receipt</span>
+        </div>
+        <button onclick="closeBillReceiptModal()" class="w-7 h-7 rounded-full bg-white/15 hover:bg-white/25 text-xs font-bold flex items-center justify-center">
+          ✕
+        </button>
+      </div>
+
+      <div class="p-5 space-y-4">
+        <!-- Printable Receipt Sheet -->
+        <div id="printable-bill-receipt" class="bg-white p-5 rounded-2xl border border-roast/20 shadow-sm text-roast font-mono text-xs">
+          <!-- Dhaba Header -->
+          <div class="text-center border-b-2 border-dashed border-roast/30 pb-3">
+            <p class="text-[10px] font-bold uppercase tracking-widest text-leaf">100% Pure Vegetarian</p>
+            <h3 class="font-serif font-extrabold text-xl text-roast tracking-tight mt-0.5">NITIN PATEL DHABA</h3>
+            <p class="text-[11px] text-umber font-sans">Highway &amp; Family Dhaba</p>
+            <p class="text-[11px] text-umber font-sans">Chandrapur, Chhattisgarh</p>
+          </div>
+
+          <!-- Bill Meta Details -->
+          <div class="py-2.5 border-b border-dashed border-roast/30 space-y-1 text-[11px]">
+            <div class="flex justify-between">
+              <span class="text-umber">Bill No:</span>
+              <strong id="receipt-bill-no">#NPD-101</strong>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-umber">Table No:</span>
+              <strong id="receipt-table-no" class="text-sm">TABLE #1</strong>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-umber">Date &amp; Time:</span>
+              <span id="receipt-datetime">23 Nov 2026, 10:30 AM</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-umber">Service Status:</span>
+              <span class="font-bold text-leaf">HANDED TO SERVER</span>
+            </div>
+          </div>
+
+          <!-- Itemized Columns Header -->
+          <div class="py-2 border-b border-roast/20 flex justify-between font-bold text-[11px] uppercase">
+            <span class="flex-1">Item</span>
+            <span class="w-10 text-center">Qty</span>
+            <span class="w-16 text-right">Amount</span>
+          </div>
+
+          <!-- Itemized Rows -->
+          <div id="receipt-items-body" class="py-2.5 border-b-2 border-dashed border-roast/30 space-y-2 text-[11px]">
+            <!-- Populated dynamically -->
+          </div>
+
+          <!-- Optional Chef Note -->
+          <div id="receipt-note-row" class="hidden py-2 border-b border-dashed border-roast/30 text-[10px] text-umber">
+            <strong>Note:</strong> <span id="receipt-note-text"></span>
+          </div>
+
+          <!-- Totals -->
+          <div class="pt-3 space-y-1">
+            <div class="flex justify-between text-[11px] text-umber">
+              <span>Total Items:</span>
+              <span id="receipt-total-qty">0</span>
+            </div>
+            <div class="flex justify-between items-center text-base font-extrabold text-roast pt-1">
+              <span class="font-sans">GRAND TOTAL</span>
+              <span id="receipt-grand-total">₹0</span>
+            </div>
+          </div>
+
+          <!-- Footer Note -->
+          <div class="mt-4 pt-3 border-t border-dashed border-roast/30 text-center font-sans text-[10px] text-umber space-y-0.5">
+            <p class="font-bold text-roast">Thank you for visiting Nitin Patel Dhaba!</p>
+            <p>Please hand this receipt at the cash counter while paying.</p>
+          </div>
+        </div>
+
+        <!-- Print & Done Actions (Hidden during print) -->
+        <div class="grid grid-cols-2 gap-2.5">
+          <button onclick="closeBillReceiptModal()"
+            class="py-3 px-4 rounded-xl bg-sand hover:bg-roast/10 text-roast font-bold text-xs transition-colors">
+            Done
+          </button>
+          <button onclick="printCustomerBill()"
+            class="py-3 px-4 rounded-xl bg-spice hover:bg-spiceDark text-ivory font-extrabold text-xs shadow-md transition-colors flex items-center justify-center gap-1.5">
+            <span>🖨️ Print Bill</span>
+          </button>
         </div>
       </div>
     </div>
@@ -610,8 +734,10 @@
     let quickFilter = "all";
     let searchQuery = "";
 
-    // Chef Kitchen State
+    // Chef Kitchen & Billing State
     let kitchenOrders = JSON.parse(localStorage.getItem("npd_kds_orders_v2") || "[]");
+    let completedBills = JSON.parse(localStorage.getItem("npd_kds_bills_v1") || "[]");
+    let billCounter = Number(localStorage.getItem("npd_bill_counter") || "101");
     let alarmLoopId = null;
     let audioContext = null;
     let sseConnected = false;
@@ -625,6 +751,7 @@
       renderMenuFeed();
       updateCartUI();
       renderKitchenTickets();
+      renderGeneratedBills();
     });
 
     function detectUrlTable() {
@@ -1084,6 +1211,7 @@
     function openChefDashboard() {
       document.getElementById("chef-dashboard-modal").classList.remove("hidden");
       renderKitchenTickets();
+      renderGeneratedBills();
       renderTableStandeeQR(document.getElementById("qr-table-number-input").value || 1);
     }
 
@@ -1093,16 +1221,19 @@
 
     function switchChefTab(tab) {
       const isOrders = tab === "orders";
+      const isBills = tab === "bills";
+      const isQrs = tab === "qrs";
+
       document.getElementById("chef-orders-panel").classList.toggle("hidden", !isOrders);
-      document.getElementById("chef-qr-panel").classList.toggle("hidden", isOrders);
+      document.getElementById("chef-bills-panel").classList.toggle("hidden", !isBills);
+      document.getElementById("chef-qr-panel").classList.toggle("hidden", !isQrs);
 
-      document.getElementById("tab-live-orders").className = isOrders
-        ? "flex-1 py-2.5 rounded-t-xl bg-ivory text-roast font-extrabold text-xs sm:text-sm border-t border-x border-roast/10"
-        : "flex-1 py-2.5 rounded-t-xl bg-transparent text-umber font-bold text-xs sm:text-sm";
+      const activeClass = "flex-1 py-2.5 px-2 rounded-t-xl bg-ivory text-roast font-extrabold text-xs sm:text-sm border-t border-x border-roast/10 truncate";
+      const inactiveClass = "flex-1 py-2.5 px-2 rounded-t-xl bg-transparent text-umber font-bold text-xs sm:text-sm truncate";
 
-      document.getElementById("tab-table-qrs").className = !isOrders
-        ? "flex-1 py-2.5 rounded-t-xl bg-ivory text-roast font-extrabold text-xs sm:text-sm border-t border-x border-roast/10"
-        : "flex-1 py-2.5 rounded-t-xl bg-transparent text-umber font-bold text-xs sm:text-sm";
+      document.getElementById("tab-live-orders").className = isOrders ? activeClass : inactiveClass;
+      document.getElementById("tab-bills-history").className = isBills ? activeClass : inactiveClass;
+      document.getElementById("tab-table-qrs").className = isQrs ? activeClass : inactiveClass;
     }
 
     // ==================== KITCHEN LIVE ALARM & SSE STREAM ====================
@@ -1179,12 +1310,44 @@
     }
 
     function changeKitchenTicketStatus(id, nextStatus) {
+      const targetOrder = kitchenOrders.find(o => o.id === id);
+      if (!targetOrder) return;
+
       if (nextStatus === "served") {
+        // Generate Bill / Receipt upon Handing Dish to Server
+        const now = new Date();
+        const dateStr = now.toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" });
+        const timeStr = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+
+        const generatedBill = {
+          billNo: `NPD-${billCounter}`,
+          id: targetOrder.id,
+          table: targetOrder.table,
+          items: targetOrder.items,
+          total: targetOrder.total,
+          note: targetOrder.note || "",
+          billedAt: `${dateStr}, ${timeStr}`
+        };
+
+        billCounter += 1;
+        localStorage.setItem("npd_bill_counter", String(billCounter));
+
+        completedBills.unshift(generatedBill);
+        saveCompletedBills();
+
+        // Remove from active kitchen queue
         kitchenOrders = kitchenOrders.filter(o => o.id !== id);
-      } else {
-        const order = kitchenOrders.find(o => o.id === id);
-        if (order) order.status = nextStatus;
+        saveKitchenOrders();
+        renderKitchenTickets();
+        renderGeneratedBills();
+        evaluateAlarmState();
+
+        // Open Printable Receipt Modal immediately for Chef
+        openBillReceiptModal(generatedBill);
+        return;
       }
+
+      targetOrder.status = nextStatus;
       saveKitchenOrders();
       renderKitchenTickets();
       evaluateAlarmState();
@@ -1192,6 +1355,10 @@
 
     function saveKitchenOrders() {
       localStorage.setItem("npd_kds_orders_v2", JSON.stringify(kitchenOrders));
+    }
+
+    function saveCompletedBills() {
+      localStorage.setItem("npd_kds_bills_v1", JSON.stringify(completedBills));
     }
 
     function renderKitchenTickets() {
@@ -1254,13 +1421,107 @@
                   </button>`
                 : `<button onclick="changeKitchenTicketStatus(${order.id}, 'served')"
                     class="w-full py-3 rounded-xl bg-leaf hover:bg-green-800 text-white font-extrabold text-sm shadow-sm">
-                    ✅ Food Ready — Hand to Server
+                    ✅ Hand Over Dish &amp; Generate Bill 🧾
                   </button>`
               }
             </div>
           </div>
         `;
       }).join("");
+    }
+
+    // ==================== BILL / RECEIPT GENERATION & PRINTING ====================
+    function renderGeneratedBills() {
+      document.getElementById("generated-bills-count").textContent = completedBills.length;
+      const listEl = document.getElementById("generated-bills-list");
+
+      if (completedBills.length === 0) {
+        listEl.innerHTML = `
+          <div class="bg-white rounded-3xl border border-roast/10 p-10 text-center">
+            <p class="text-3xl mb-2">🧾</p>
+            <p class="font-bold text-sm text-roast">No bills generated yet</p>
+            <p class="text-xs text-umber mt-1">When you tap "Hand Over Dish &amp; Generate Bill", customer receipts appear here.</p>
+          </div>
+        `;
+        return;
+      }
+
+      listEl.innerHTML = completedBills.map((bill, idx) => `
+        <div class="bg-white p-4 rounded-2xl border border-roast/10 shadow-sm flex items-center justify-between gap-3">
+          <div class="min-w-0">
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded-lg bg-roast text-saffron font-extrabold text-xs">TABLE #${bill.table}</span>
+              <span class="font-mono font-bold text-xs text-umber">#${bill.billNo}</span>
+            </div>
+            <p class="text-xs text-roast font-semibold mt-1.5 truncate">
+              ${bill.items.map(i => `${i.name} ×${i.qty}`).join(", ")}
+            </p>
+            <p class="text-[11px] text-umber mt-0.5">${bill.billedAt}</p>
+          </div>
+
+          <div class="flex flex-col items-end gap-1.5 flex-shrink-0">
+            <span class="font-extrabold text-base text-roast">₹${bill.total}</span>
+            <button onclick="openBillByIndex(${idx})"
+              class="px-3 py-1.5 rounded-xl bg-spice hover:bg-spiceDark text-ivory text-xs font-bold shadow-sm transition-colors">
+              🖨️ View / Print
+            </button>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function openBillByIndex(idx) {
+      const bill = completedBills[idx];
+      if (bill) openBillReceiptModal(bill);
+    }
+
+    function openBillReceiptModal(bill) {
+      document.getElementById("receipt-bill-no").textContent = `#${bill.billNo}`;
+      document.getElementById("receipt-table-no").textContent = `TABLE #${bill.table}`;
+      document.getElementById("receipt-datetime").textContent = bill.billedAt;
+
+      const totalQty = bill.items.reduce((sum, i) => sum + i.qty, 0);
+      document.getElementById("receipt-total-qty").textContent = totalQty;
+      document.getElementById("receipt-grand-total").textContent = `₹${bill.total}`;
+
+      document.getElementById("receipt-items-body").innerHTML = bill.items.map(i => `
+        <div class="flex justify-between items-start gap-2">
+          <span class="flex-1 font-sans font-semibold text-roast leading-snug">${i.name}</span>
+          <span class="w-10 text-center font-bold">×${i.qty}</span>
+          <span class="w-16 text-right font-bold">₹${i.price * i.qty}</span>
+        </div>
+      `).join("");
+
+      const noteRow = document.getElementById("receipt-note-row");
+      if (bill.note) {
+        noteRow.classList.remove("hidden");
+        document.getElementById("receipt-note-text").textContent = bill.note;
+      } else {
+        noteRow.classList.add("hidden");
+      }
+
+      const modal = document.getElementById("bill-receipt-modal");
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+    }
+
+    function closeBillReceiptModal() {
+      const modal = document.getElementById("bill-receipt-modal");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    }
+
+    function clearBillsHistory() {
+      completedBills = [];
+      saveCompletedBills();
+      renderGeneratedBills();
+      showToast("Bill history cleared");
+    }
+
+    function printCustomerBill() {
+      document.getElementById("printable-standee").classList.remove("active-print-target");
+      document.getElementById("printable-bill-receipt").classList.add("active-print-target");
+      window.print();
     }
 
     // ==================== PRINTABLE TABLE QR GENERATOR ====================
@@ -1279,6 +1540,12 @@
         colorLight: "#FFFFFF",
         correctLevel: QRCode.CorrectLevel.H
       });
+    }
+
+    function printTableQR() {
+      document.getElementById("printable-bill-receipt").classList.remove("active-print-target");
+      document.getElementById("printable-standee").classList.add("active-print-target");
+      window.print();
     }
 
     // ==================== TOAST HELPER ====================
